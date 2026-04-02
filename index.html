@@ -68,7 +68,23 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-eyebrow">Introducing</div>
+      <!-- Rotating text circle -->
+      <div class="rotating-circle">
+        <svg viewBox="0 0 300 300" class="rotating-text-svg">
+          <defs>
+            <path id="circlePath" d="M 150,150 m -120,0 a 120,120 0 1,1 240,0 a 120,120 0 1,1 -240,0" />
+          </defs>
+          <text>
+            <textPath href="#circlePath" class="circle-text">
+              MAISON MOVE &bull; MAISON MOVE &bull; MAISON MOVE &bull; MAISON MOVE &bull; MAISON MOVE &bull; MAISON MOVE &bull;
+            </textPath>
+          </text>
+        </svg>
+        <div class="rotating-circle-inner">
+          <span class="circle-mm">MM</span>
+        </div>
+      </div>
+
       <h1 class="hero-title">
         <span>A House Built</span>
         <span>for the Body</span>
@@ -80,6 +96,45 @@
     <div class="hero-scroll-indicator">
       <span>Scroll</span>
       <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section class="countdown-section">
+    <div class="container">
+      <div class="countdown-inner">
+        <span class="section-label">Coming Soon</span>
+        <h2 class="countdown-title">The House Opens</h2>
+        <div class="countdown-timer" id="countdown">
+          <div class="countdown-block">
+            <span class="countdown-number" id="cd-days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-separator">:</div>
+          <div class="countdown-block">
+            <span class="countdown-number" id="cd-hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-separator">:</div>
+          <div class="countdown-block">
+            <span class="countdown-number" id="cd-minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-separator">:</div>
+          <div class="countdown-block">
+            <span class="countdown-number" id="cd-seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+        <p class="countdown-text">Register for early access and be the first to shop the debut collection.</p>
+        <form class="countdown-form" onsubmit="event.preventDefault(); this.querySelector('.countdown-success').style.display='block'; this.querySelector('button').textContent='Registered';">
+          <div class="newsletter-input-group">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary">Notify Me</button>
+          </div>
+          <p class="countdown-success">You're on the list. Welcome to the house.</p>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -246,6 +301,104 @@
     </div>
   </section>
 
+  <!-- BodyMap Interactive -->
+  <section class="bodymap" id="bodymap">
+    <div class="container">
+      <div class="bodymap-grid">
+        <div class="bodymap-visual">
+          <svg viewBox="0 0 200 520" class="bodymap-svg" xmlns="http://www.w3.org/2000/svg">
+            <!-- Body silhouette -->
+            <path class="bodymap-silhouette" d="
+              M100,12 C108,12 115,18 115,28 C115,38 108,46 100,46 C92,46 85,38 85,28 C85,18 92,12 100,12 Z
+              M100,46 L100,52
+              M72,90 C68,72 60,58 55,52 C52,48 55,44 60,46 L82,58 C86,60 90,56 90,52 L90,52
+              M128,90 C132,72 140,58 145,52 C148,48 145,44 140,46 L118,58 C114,60 110,56 110,52 L110,52
+              M90,52 C90,48 94,46 100,46 C106,46 110,48 110,52
+              L114,130 C116,160 118,180 116,200
+              L115,240 C114,260 112,280 110,300
+              L108,340 C107,360 108,380 110,400
+              L112,430 C113,445 112,460 108,475
+              C106,482 104,490 103,500 C102,506 101,510 100,512
+              C99,510 98,506 97,500 C96,490 94,482 92,475
+              C88,460 87,445 88,430
+              L90,400 C92,380 93,360 92,340
+              L90,300 C88,280 86,260 85,240
+              L84,200 C82,180 84,160 86,130 Z
+            " />
+
+            <!-- Interactive zones -->
+            <g class="bodymap-zone" data-zone="core">
+              <ellipse cx="100" cy="140" rx="22" ry="35" class="zone-area zone-high" />
+              <circle cx="100" cy="140" r="4" class="zone-dot" />
+            </g>
+            <g class="bodymap-zone" data-zone="glutes">
+              <ellipse cx="100" cy="210" rx="20" ry="25" class="zone-area zone-high" />
+              <circle cx="100" cy="210" r="4" class="zone-dot" />
+            </g>
+            <g class="bodymap-zone" data-zone="calves">
+              <ellipse cx="93" cy="380" rx="10" ry="30" class="zone-area zone-light" />
+              <ellipse cx="107" cy="380" rx="10" ry="30" class="zone-area zone-light" />
+              <circle cx="93" cy="380" r="4" class="zone-dot" />
+              <circle cx="107" cy="380" r="4" class="zone-dot" />
+            </g>
+            <g class="bodymap-zone" data-zone="breathe">
+              <ellipse cx="93" cy="295" rx="8" ry="15" class="zone-area zone-breathe" />
+              <ellipse cx="107" cy="295" rx="8" ry="15" class="zone-area zone-breathe" />
+              <circle cx="93" cy="295" r="4" class="zone-dot" />
+              <circle cx="107" cy="295" r="4" class="zone-dot" />
+            </g>
+          </svg>
+        </div>
+        <div class="bodymap-content">
+          <span class="section-label">Interactive</span>
+          <h2 class="section-title">BodyMap&trade; Zones</h2>
+          <p class="section-description" style="margin-bottom: 2.5rem;">Hover over each zone to explore how multi-zone adaptive compression works across the body.</p>
+
+          <div class="bodymap-info" id="bodymap-default">
+            <div class="bodymap-info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+              </svg>
+            </div>
+            <p>Hover over the highlighted zones on the body to discover the compression mapping.</p>
+          </div>
+
+          <div class="bodymap-info bodymap-detail" id="bodymap-core" style="display:none;">
+            <div class="bodymap-detail-header">
+              <span class="bodymap-zone-tag tag-high">High Compression</span>
+            </div>
+            <h3>Core &amp; Waist</h3>
+            <p>Maximum support around the core for sculpting and posture. Engineered to hold without restricting breathing. The fabric compresses evenly across the midsection, reducing muscle oscillation during high-impact movement.</p>
+          </div>
+
+          <div class="bodymap-info bodymap-detail" id="bodymap-glutes" style="display:none;">
+            <div class="bodymap-detail-header">
+              <span class="bodymap-zone-tag tag-high">High Compression</span>
+            </div>
+            <h3>Glutes &amp; Hips</h3>
+            <p>Targeted lift and sculpt compression around the glutes. The seam architecture follows the natural contour of the muscle, providing support during squats, lunges, and deadlifts without riding or shifting.</p>
+          </div>
+
+          <div class="bodymap-info bodymap-detail" id="bodymap-calves" style="display:none;">
+            <div class="bodymap-detail-header">
+              <span class="bodymap-zone-tag tag-light">Light Compression</span>
+            </div>
+            <h3>Calves &amp; Ankles</h3>
+            <p>Graduated light compression for freedom of movement. Enough support to reduce fatigue during long sessions, light enough to feel unrestricted. The fabric weight drops to 180 GSM in this zone for breathability.</p>
+          </div>
+
+          <div class="bodymap-info bodymap-detail" id="bodymap-breathe" style="display:none;">
+            <div class="bodymap-detail-header">
+              <span class="bodymap-zone-tag tag-breathe">Breathable Zone</span>
+            </div>
+            <h3>Behind the Knees</h3>
+            <p>Mesh-ventilated panels at high-heat areas. These zones use an open-knit structure that increases airflow by 40% compared to standard compression fabric. Heat escapes, comfort stays.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Marquee -->
   <section class="marquee-section">
     <div class="marquee">
@@ -279,34 +432,43 @@
     <div class="container">
       <div class="story-grid">
         <div class="story-image-col">
-          <div class="story-image" style="background-color: #c9c1b6;">
-            <div class="collection-placeholder">
-              <span class="placeholder-mm" style="font-size: 3rem;">MM</span>
-            </div>
+          <div class="story-image">
+            <img src="assets/storyC.jpg" alt="Woman training with a barbell — the strength behind Maison Move">
           </div>
         </div>
         <div class="story-content-col">
           <span class="section-label">03</span>
-          <h2 class="section-title">The Story</h2>
+          <h2 class="section-title">Why We Exist.</h2>
           <div class="story-text">
             <p>
-              Maison Move is a house built for the body in motion. Founded by Sapph in Wales,
-              it's a premium activewear and loungewear label that fuses fashion-house design
-              with genuine fabric innovation.
+              Maison Move was born from a problem I lived every day. I'd finish a weights session
+              and have coffee with friends straight after &mdash; but nothing I owned could do both.
+              I was coming home to change between every part of my day. Gym, then home. Change.
+              Go out, then home. Change again. My wardrobe was split in two and my life was
+              working around it.
             </p>
             <p>
-              The name: <em>Maison</em> because this is a house of design, not a warehouse of product.
-              <em>Move</em> because that's what she does &mdash; constantly, confidently, beautifully.
+              The brands I loved did one thing well. Performance wear that looked like performance wear.
+              Beautiful lounge pieces that couldn't survive a warm-up. Nothing existed in the middle &mdash;
+              nothing that could take me from a deadlift to a flat white without a second thought.
             </p>
             <p>
-              Maison Move exists for the woman who doesn't separate her wardrobe into
-              "gym" and "life." She moves through both with the same confidence, the same
-              standards, and the same refusal to compromise.
+              So I built it. Every Maison Move piece is constructed with BodyMap&trade; multi-zone
+              compression that genuinely supports your body through training, paired with our
+              MineralSoft&trade; recovery fabric that feels buttery soft against the skin and helps
+              your muscles restore while you wear it. The technology is invisible &mdash; what you
+              feel is something that performs like your best gym kit but looks and feels elevated
+              enough to wear anywhere.
             </p>
-            <p>The house was built for her.</p>
+            <p>
+              We don't believe you should have to choose between how something performs and how
+              it makes you feel. At Maison Move, we pride ourselves on being the best at both &mdash;
+              because you shouldn't have to compromise, and neither should your clothes.
+            </p>
+            <p>The house was built for the woman who refuses to pause.</p>
           </div>
           <div class="story-signature">
-            <span>Sapph</span>
+            <span>Sapphira Mort</span>
             <span class="signature-title">Founder</span>
           </div>
         </div>
@@ -342,23 +504,73 @@
     </div>
   </section>
 
-  <!-- Editorial Band -->
-  <section class="editorial">
-    <div class="editorial-grid">
-      <div class="editorial-block" style="background-color: #d4cec6;">
-        <div class="collection-placeholder">
-          <span class="placeholder-mm" style="font-size: 2rem;">MM</span>
+  <!-- Horizontal Lookbook -->
+  <section class="lookbook">
+    <div class="container">
+      <div class="lookbook-header">
+        <div>
+          <span class="section-label">04</span>
+          <h2 class="section-title">The Lookbook</h2>
+        </div>
+        <div class="lookbook-nav">
+          <button class="lookbook-arrow lookbook-prev" aria-label="Previous">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          </button>
+          <button class="lookbook-arrow lookbook-next" aria-label="Next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
         </div>
       </div>
-      <div class="editorial-block" style="background-color: #4a4540;">
-        <div class="collection-placeholder placeholder-light">
-          <span class="placeholder-mm" style="font-size: 2rem;">MM</span>
+    </div>
+    <div class="lookbook-track-wrapper">
+      <div class="lookbook-track">
+        <div class="lookbook-slide">
+          <div class="lookbook-image" style="background-color: #d4cec6;">
+            <div class="collection-placeholder"><span class="placeholder-mm" style="font-size:2rem;">MM</span></div>
+          </div>
+          <p class="lookbook-caption">BodyMap Sculpt Legging &mdash; Sand</p>
+        </div>
+        <div class="lookbook-slide lookbook-slide-tall">
+          <div class="lookbook-image" style="background-color: #4a4540;">
+            <div class="collection-placeholder placeholder-light"><span class="placeholder-mm" style="font-size:2rem;">MM</span></div>
+          </div>
+          <p class="lookbook-caption">The Half-Zip &mdash; Charcoal</p>
+        </div>
+        <div class="lookbook-slide">
+          <div class="lookbook-image" style="background-color: #c4a882;">
+            <div class="collection-placeholder"><span class="placeholder-mm" style="font-size:2rem;">MM</span></div>
+          </div>
+          <p class="lookbook-caption">Lounge Set &mdash; Caramel</p>
+        </div>
+        <div class="lookbook-slide lookbook-slide-tall">
+          <div class="lookbook-image" style="background-color: #c9c1b6;">
+            <div class="collection-placeholder"><span class="placeholder-mm" style="font-size:2rem;">MM</span></div>
+          </div>
+          <p class="lookbook-caption">Soft Lounge Legging &mdash; Cloud</p>
+        </div>
+        <div class="lookbook-slide">
+          <div class="lookbook-image" style="background-color: #3a3632;">
+            <div class="collection-placeholder placeholder-light"><span class="placeholder-mm" style="font-size:2rem;">MM</span></div>
+          </div>
+          <p class="lookbook-caption">High-Support Bra &mdash; Espresso</p>
+        </div>
+        <div class="lookbook-slide lookbook-slide-tall">
+          <div class="lookbook-image" style="background-color: #b8b0a5;">
+            <div class="collection-placeholder"><span class="placeholder-mm" style="font-size:2rem;">MM</span></div>
+          </div>
+          <p class="lookbook-caption">The Jogger &mdash; Stone</p>
+        </div>
+        <div class="lookbook-slide">
+          <div class="lookbook-image" style="background-color: #d9d3cb;">
+            <div class="collection-placeholder"><span class="placeholder-mm" style="font-size:2rem;">MM</span></div>
+          </div>
+          <p class="lookbook-caption">Lounge Bralette &mdash; Ivory</p>
         </div>
       </div>
-      <div class="editorial-block" style="background-color: #c4a882;">
-        <div class="collection-placeholder">
-          <span class="placeholder-mm" style="font-size: 2rem;">MM</span>
-        </div>
+    </div>
+    <div class="container">
+      <div class="lookbook-progress">
+        <div class="lookbook-progress-bar" id="lookbook-progress-bar"></div>
       </div>
     </div>
   </section>
