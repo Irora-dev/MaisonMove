@@ -501,6 +501,235 @@ MaisonMove occupies the upper-right quadrant: fashion-forward AND technology-adv
 
 ---
 
+## Core Line Transition: When, How Much, and What Triggers It
+
+### The Six Transition Triggers
+
+There is no single metric. It's a cluster of signals that must align simultaneously. If only half are met, continue vault-only and reassess next quarter.
+
+| # | Trigger | Threshold | Why This Number |
+|---|---|---|---|
+| 1 | **Consecutive sellouts** | 5-6 Vaults sold out | Proves consistent demand, not a one-off spike. Multiple data points needed to identify which products are hero items worth making permanent. |
+| 2 | **Repeat purchase rate** | 30%+ of Vault 1-2 buyers returning | Fashion ecommerce average is ~10%. Activewear leaders with loyalty programs hit 35-45%. At 30%+, product-market fit is strong enough to justify permanent inventory. |
+| 3 | **Email list** | 15,000-20,000+ subscribers | Below 10K, daily organic traffic can't sustain always-on sales. At 15-20K engaged subscribers, email alone drives 5-15 orders/day — enough to keep a small Core line turning. |
+| 4 | **Cumulative revenue** | £250K-400K+ | Below this, working capital can't support permanent stock alongside vault production. Above it, cash reserves fund 2-3 months of Core inventory without jeopardising vault operations. |
+| 5 | **Product data** | One legging and/or bra sold out in 3+ Vaults | You must know *which* product to make permanent. If the same silhouette sells out repeatedly across colourways, that's the Core candidate. Making the wrong product permanent is worse than not having Core at all. |
+| 6 | **Customer complaints** | Receiving "when can I rebuy?" messages | The repurchase trap has activated. Customers are telling you their Vault leggings are worn out and they want the same product again. This is the demand signal Core was designed to serve. |
+
+All six should show green before committing capital to Core. Five out of six means wait another Vault and reassess.
+
+### Capital Required for Core Launch
+
+Carrying permanent inventory is fundamentally different from vault pre-orders. Stock is purchased before it's sold — the thing vaults were designed to avoid.
+
+**Core inventory investment** (2 products × 3 colourways × 5 sizes = 30 SKUs):
+
+| | Legging | Bra | Total |
+|---|---|---|---|
+| Units per SKU (initial stock) | 30-50 | 30-50 | |
+| Total initial units | 450-750 | 450-750 | 900-1,500 |
+| COGS per unit | £14-16 | £11-13 | |
+| **Inventory investment** | **£6,300-12,000** | **£4,950-9,750** | **£11,250-21,750** |
+
+**Carrying costs** (20-30% of inventory value per year):
+
+| Cost | Annual | Notes |
+|---|---|---|
+| Storage | £500-1,500 | Home/small unit initially. 3PL if outsourcing. |
+| Insurance on stock | £200-400 | Addition to existing product liability |
+| Capital opportunity cost | £1,500-3,000 | Cash tied up that could earn returns elsewhere |
+| Depreciation/markdowns | £1,000-2,000 | Some sizes/colours sell slower |
+| **Total carrying cost** | **£3,200-6,900/year** | |
+
+**Returns infrastructure** (Core accepts returns, unlike Vaults):
+
+| Cost | Amount |
+|---|---|
+| Return shipping labels (prepaid) | £3-4 per return |
+| Processing/repackaging | £2-3 per return |
+| Expected return rate | 15-25% |
+| Cost per 1,000 Core units sold | £750-1,750 in returns handling |
+
+**Total Core launch capital:**
+
+| Item | Amount |
+|---|---|
+| Initial inventory (900-1,500 units) | £11,250-21,750 |
+| Restock buffer (replenishment orders) | £5,000-8,000 |
+| Returns handling reserve (6 months) | £2,000-4,000 |
+| Photography + product pages | £1,500-2,500 |
+| Size guide updates + fit content | £500-1,000 |
+| **Total** | **£20,250-37,250** |
+
+This is comfortable at £250-400K+ cumulative vault revenue — representing 8-15% of accumulated profit. Low risk at that stage.
+
+### Core Transition Decision Checklist
+
+Run through this before committing:
+
+| Question | Required Answer | If No |
+|---|---|---|
+| Have 5+ consecutive Vaults sold out? | Yes | Wait. Not enough demand proof. |
+| Is repeat purchase rate 30%+? | Yes | Product may not be sticky enough for Core. |
+| Is the email list 15K+? | Yes | Can't generate enough daily traffic for always-on. |
+| Do you have £20-35K available without touching vault operating capital? | Yes | Can't afford the inventory investment yet. |
+| Has one specific product sold out in 3+ Vaults? | Yes | Don't know which product to make permanent. |
+| Are customers asking to rebuy worn-out products? | Yes | Repurchase need hasn't materialised yet. |
+| Can your manufacturer deliver restocks in 4-6 weeks? | Yes | Can't maintain Core availability without fast restocking. |
+
+All seven green = launch Core. Anything else = keep running vaults and reassess.
+
+---
+
+## Supplier Leverage: When Volume Matters
+
+### Manufacturing Price Breaks
+
+The cost curve drops steeply early, then flattens:
+
+| Annual Volume | Legging Cost | Discount vs 250 Units | What Changes |
+|---|---|---|---|
+| 250 units | £20 | Baseline | Small-batch premium. Setup costs spread thin. |
+| 500 units | £18 | -10% | Setup amortised. Fabric MOQ met more easily. |
+| 1,000 units | £16 | -20% | Meaningful volume discount. Manufacturer prioritises orders. |
+| 2,500 units | £13-14 | -30-35% | Fabric bought in bulk rolls (500m+). Dedicated cutting schedule. |
+| 5,000 units | £11-12 | -40-45% | Significant client. Negotiate payment terms (net-30/60 instead of 50% deposit). |
+| 10,000+ units | £9-11 | -45-55% | Priority production slots. Dedicated QC. Possible fabric exclusivity. |
+
+The biggest per-unit savings come between 250 → 1,000 units (-20%). After 5,000, savings flatten — squeezing pennies, not pounds.
+
+### Negotiating Power Beyond Price
+
+| Volume | What You Can Ask For |
+|---|---|
+| 500+/order | Consistent quality. Basic priority. |
+| 1,000+/order | 5-10% price reduction. Free sample rounds. |
+| 2,500+/year | Net-30 payment terms (instead of 50% upfront). Faster turnaround. |
+| 5,000+/year | Net-60 terms. Dedicated production slot. Free samples. Lower custom colourway MOQs. |
+| 10,000+/year | Fabric exclusivity. First-call production. Possible co-development of new fabrics. |
+
+### CELLIANT/Technology Leverage
+
+| Stage | Leverage Level | What You Can Negotiate |
+|---|---|---|
+| Pre-launch (0 units) | Low | Standard terms. Print application only. |
+| Post-Vault 001 (250+ sold) | Moderate | Better mineral pricing. Marketing support. Co-branded content. |
+| 5,000+ units/year | Strong | Volume pricing on Print. Possible move to fiber-embedded CELLIANT (higher quality). Joint PR. |
+| 10,000+ units/year | High | Custom formulations. R&D collaboration. Exclusive category access. |
+
+---
+
+## Retail Leverage: When Stores Care
+
+### Selfridges Benchmark (Reverse-Engineered from Actual Entrants)
+
+| Brand | Revenue at Entry | Social Following | Community | Time from Founding |
+|---|---|---|---|---|
+| **Sisterly Tribe** | Est. £2-5M | ~100-200K Instagram | Pop-ups, wellness classes, dinners, DMs | 3-4 years |
+| **TALA** | £16.8M (FY2024) | 1.3M+ Instagram | Grace Beverley personal brand | 5 years |
+| **Gymshark** | £500M+ | 6M+ Instagram | Flagship store, massive community | 12 years |
+
+Sisterly Tribe is the realistic MaisonMove benchmark. They entered Selfridges with a community-led story, minimalist aesthetic, and UK as fastest-growing market — without TALA-scale revenue or Gymshark-scale following.
+
+### Minimum Viable Profile for Selfridges
+
+| Metric | Minimum | Ideal |
+|---|---|---|
+| Annual revenue | £500K-1M+ | £2M+ |
+| Social following | 50-100K+ (engaged) | 150K+ |
+| Email list | 20K+ | 50K+ |
+| Sellout track record | 4-6 consecutive | 8+ |
+| Press coverage | 3-5 UK fashion/lifestyle outlets | Regular features |
+| IRL community events | 1-2 cities | 3+ cities |
+| Product range | 6-8 SKUs | 10-15 SKUs |
+| Celebrity/founder story | Recognisable name or compelling narrative | Both |
+| Unique differentiator | Something no other brand on their floor has | Clinically validated textile tech |
+
+Ruth Jones and infrared technology together give MaisonMove a story no other brand on Selfridges' floor can match. This compensates for lower revenue/following versus TALA or Gymshark.
+
+### Net-a-Porter Entry
+
+Net-a-Porter is increasingly shifting to e-concession (brand keeps inventory, retailer takes commission) rather than traditional wholesale. This is advantageous for MaisonMove:
+
+- Lower risk — not selling them 500 units on speculation
+- Maintains inventory control
+- Commission-based — they earn when you sell
+- Requirements: quality + aesthetic alignment + sustainability story + unique assortment gap
+
+Estimated minimums:
+- Annual revenue: £500K+
+- Product range: 4-6 SKUs
+- Professional lookbook and line sheets
+- Production capacity to fulfil within their timelines
+- UK/EU textile compliance
+
+### Harvey Nichols / Harrods
+
+Higher bar than Selfridges for emerging brands. Typically expect:
+- Proven wholesale track record (Selfridges first, then approach others)
+- £1M+ annual revenue
+- Established press profile
+- Ability to support in-store activations and events
+
+---
+
+## Leverage Timeline: What Unlocks When
+
+```
+MONTHS 0-6 (Vaults 001-002)
+├── Supplier leverage: NONE. Standard pricing, standard terms.
+├── Retail leverage: NONE. Focus entirely on DTC.
+├── Volume: ~1,250 cumulative units
+├── Revenue: ~£96K cumulative
+├── Email list: 5-8K
+└── Status: Proving the concept
+
+MONTHS 6-12 (Vaults 003-004)
+├── Supplier leverage: LOW. Can request 5-10% discount.
+│   Annual volume approaching 5,000 units.
+├── Retail leverage: NONE yet. Building press + community.
+├── Volume: ~5,250 cumulative units
+├── Revenue: ~£440K cumulative
+├── Email list: 10-15K
+└── Status: Legitimate brand with sellout track record
+
+MONTHS 12-18 (Vaults 005-006)
+├── Supplier leverage: MODERATE. Net-30 terms. Free samples.
+│   Annual volume 8,000-10,000 units.
+├── Retail leverage: EARLY. Attend trade shows. Get noticed.
+├── Revenue: ~£700K-1M cumulative
+├── Email list: 15-20K
+├── ** CORE LINE TRIGGERS LIKELY MET **
+└── Status: Ready to develop Core line
+
+MONTHS 18-24 (Vaults 007-008 + Core Launch)
+├── Supplier leverage: STRONG. 10,000+ annual units.
+│   Custom colourways at lower MOQs. Priority scheduling.
+├── Retail leverage: MODERATE. Can approach Selfridges for pop-up.
+├── Revenue: £1-1.5M cumulative (Vault + Core)
+├── Email list: 25-40K
+└── Status: Dual-channel brand, wholesale-tier in development
+
+MONTHS 24-36 (Vault + Core + Wholesale)
+├── Supplier leverage: HIGH. Net-60 terms. Co-develop fabrics.
+├── Retail leverage: STRONG. Selfridges pop-up → permanent.
+│   Net-a-Porter e-concession application.
+├── Revenue: £1.5-3M cumulative
+├── Social: 75-150K
+└── Status: Multi-channel luxury activewear brand
+
+MONTHS 36-48 (Full Brand)
+├── Supplier leverage: MAXIMUM at this scale.
+│   Exclusive fabric treatments. First-call production.
+├── Retail leverage: MAXIMUM. Multi-retailer. International.
+│   Harvey Nichols, Harrods, Nordstrom conversations.
+├── Revenue: £2-5M annual
+└── Status: Established brand. Question shifts from
+    "can we get in?" to "which stores do we want?"
+```
+
+---
+
 ## Key Milestones
 
 | Milestone | Target Date | Significance |
@@ -511,9 +740,13 @@ MaisonMove occupies the upper-right quadrant: fashion-forward AND technology-adv
 | Vault 001 sellout | Month 4-5 | Proof of concept |
 | £100K cumulative revenue | Month 8-10 | Business viability proven |
 | First IRL community event | Month 12 | Community moves offline |
+| Core line triggers assessed | Month 12-18 | Decision point: ready for permanent collection? |
+| Core line launched | Month 18-24 | Retention engine activated |
 | Trade show attendance | Month 18-24 | Wholesale preparation |
+| 10,000+ annual units | Month 18-24 | Strong supplier leverage unlocked |
 | Selfridges buyer meeting | Month 30-36 | Retail entry conversation |
 | Selfridges pop-up | Month 36-42 | First wholesale placement |
 | £1M annual revenue | Year 3 | Scaling threshold |
+| Net-a-Porter e-concession | Year 3-4 | Online luxury wholesale |
 | Permanent Selfridges space | Year 3-4 | Luxury brand status confirmed |
 | International retailer | Year 4-5 | Global brand |
