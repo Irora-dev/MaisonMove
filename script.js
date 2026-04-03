@@ -4,6 +4,15 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- Loading Screen ---
+  const loader = document.getElementById('loader');
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 600);
+    }, 1400);
+  }
+
   // --- Mobile Menu Toggle ---
   const toggle = document.querySelector('.nav-toggle');
   const mobileMenu = document.querySelector('.mobile-menu');
@@ -21,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.classList.remove('active');
         mobileMenu.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.classList.add('page-transition');
+        setTimeout(() => document.body.classList.remove('page-transition'), 800);
       });
     });
   }
@@ -42,11 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
       nav.style.transform = 'translateY(0)';
     }
     lastScroll = currentScroll;
+
+    // Back to top visibility
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      btt.classList.toggle('visible', currentScroll > 600);
+    }
+  });
+
+  // Back to top click
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // --- Fade-in on scroll ---
   const fadeEls = document.querySelectorAll(
-    '.section-header, .collection-item, .tech-card, .story-content-col, .story-image-col, .value-item, .newsletter-inner, .brand-statement-inner, .countdown-inner, .bodymap-grid, .lookbook-header'
+    '.section-header, .collection-item, .tech-card, .story-content-col, .story-image-col, .value-item, .newsletter-inner, .brand-statement-inner, .countdown-inner, .bodymap-grid, .lookbook-header, .tech-diff-header, .tech-diff-item, .loyalty-tier, .testimonial-card, .cert-item'
   );
 
   fadeEls.forEach(el => el.classList.add('fade-in'));
@@ -65,7 +87,325 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fadeEls.forEach(el => observer.observe(el));
 
-  // --- Smooth scroll for anchor links ---
+  // --- Account System ---
+  const accountModal = document.getElementById('account-modal');
+  const tabs = document.querySelectorAll('.account-tab');
+  const panelSignup = document.getElementById('panel-signup');
+  const panelLogin = document.getElementById('panel-login');
+  const panelDashboard = document.getElementById('panel-dashboard');
+  const signupForm = document.getElementById('signup-form');
+  const loginForm = document.getElementById('login-form');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  // Tab switching
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      panelSignup.style.display = tab.dataset.tab === 'signup' ? 'block' : 'none';
+      panelLogin.style.display = tab.dataset.tab === 'login' ? 'block' : 'none';
+      panelDashboard.style.display = 'none';
+    });
+  });
+
+  function showDashboard(user) {
+    document.querySelector('.account-tabs').style.display = 'none';
+    panelSignup.style.display = 'none';
+    panelLogin.style.display = 'none';
+    panelDashboard.style.display = 'block';
+    document.getElementById('dashboard-name').textContent = user.firstName;
+    document.getElementById('dashboard-points').textContent = user.points || 0;
+
+    const points = user.points || 0;
+    let tierName = 'Move';
+    let nextTierText = '500 points to Maison';
+    let progress = (points / 500) * 100;
+
+    if (points >= 1000) {
+      tierName = 'Maison Elite';
+      nextTierText = 'You\'ve reached the highest tier';
+      progress = 100;
+    } else if (points >= 500) {
+      tierName = 'Maison';
+      nextTierText = (1000 - points) + ' points to Maison Elite';
+      progress = ((points - 500) / 500) * 100;
+    }
+
+    document.getElementById('dashboard-tier-name').textContent = tierName;
+    document.getElementById('dashboard-next-tier').textContent = nextTierText;
+    document.getElementById('dashboard-progress-bar').style.width = progress + '%';
+  }
+
+  // Check if already logged in
+  const currentUser = JSON.parse(localStorage.getItem('mm_user'));
+  if (currentUser) {
+    showDashboard(currentUser);
+  }
+
+  // Sign up
+  signupForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const inputs = signupForm.querySelectorAll('input');
+    const user = {
+      firstName: inputs[0].value,
+      lastName: inputs[1].value,
+      email: inputs[2].value,
+      points: 0,
+      tier: 'Move',
+      joined: new Date().toISOString()
+    };
+    localStorage.setItem('mm_user', JSON.stringify(user));
+    showDashboard(user);
+  });
+
+  // Log in
+  loginForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem('mm_user'));
+    if (user) {
+      showDashboard(user);
+    } else {
+      alert('No account found. Please sign up first.');
+    }
+  });
+
+  // Log out
+  logoutBtn?.addEventListener('click', () => {
+    localStorage.removeItem('mm_user');
+    document.querySelector('.account-tabs').style.display = 'flex';
+    tabs[0].classList.add('active');
+    tabs[1].classList.remove('active');
+    panelDashboard.style.display = 'none';
+    panelSignup.style.display = 'block';
+    signupForm.reset();
+    accountModal.classList.remove('active');
+  });
+
+  // Close account modal on overlay click
+  accountModal?.addEventListener('click', (e) => {
+    if (e.target === accountModal) accountModal.classList.remove('active');
+  });
+
+  // --- Parallax on Story Image ---
+  const storyImage = document.querySelector('.story-image img');
+  if (storyImage) {
+    const storySection = document.querySelector('.story');
+    window.addEventListener('scroll', () => {
+      const rect = storySection.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      if (rect.top < windowH && rect.bottom > 0) {
+        const progress = (windowH - rect.top) / (windowH + rect.height);
+        const offset = (progress - 0.5) * -60;
+        storyImage.style.transform = `translateY(${offset}px)`;
+      }
+    });
+  }
+
+  // --- Testimonials Drag Scroll ---
+  const testTrackWrapper = document.querySelector('.testimonials-track-wrapper');
+  const testTrack = document.querySelector('.testimonials-track');
+  const testProgressBar = document.getElementById('testimonials-progress-bar');
+
+  if (testTrack && testTrackWrapper) {
+    let testIsDragging = false;
+    let testStartX = 0;
+    let testScrollLeft = 0;
+    let testCurrentTranslate = 0;
+
+    function getTestMaxScroll() {
+      return testTrack.scrollWidth - testTrackWrapper.offsetWidth;
+    }
+
+    function updateTestProgress() {
+      const max = getTestMaxScroll();
+      if (max <= 0 || !testProgressBar) return;
+      const pct = Math.abs(testCurrentTranslate) / max;
+      testProgressBar.style.width = '20%';
+      testProgressBar.style.marginLeft = (pct * 80) + '%';
+    }
+
+    function setTestTranslate(val) {
+      const max = getTestMaxScroll();
+      testCurrentTranslate = Math.max(-max, Math.min(0, val));
+      testTrack.style.transform = `translateX(${testCurrentTranslate}px)`;
+      updateTestProgress();
+    }
+
+    testTrackWrapper.addEventListener('mousedown', (e) => {
+      testIsDragging = true;
+      testStartX = e.pageX;
+      testScrollLeft = testCurrentTranslate;
+      testTrack.style.transition = 'none';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!testIsDragging) return;
+      setTestTranslate(testScrollLeft + (e.pageX - testStartX));
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (testIsDragging) {
+        testIsDragging = false;
+        testTrack.style.transition = 'transform 0.4s ease';
+      }
+    });
+
+    testTrackWrapper.addEventListener('touchstart', (e) => {
+      testIsDragging = true;
+      testStartX = e.touches[0].pageX;
+      testScrollLeft = testCurrentTranslate;
+      testTrack.style.transition = 'none';
+    }, { passive: true });
+
+    testTrackWrapper.addEventListener('touchmove', (e) => {
+      if (!testIsDragging) return;
+      setTestTranslate(testScrollLeft + (e.touches[0].pageX - testStartX));
+    }, { passive: true });
+
+    testTrackWrapper.addEventListener('touchend', () => {
+      testIsDragging = false;
+      testTrack.style.transition = 'transform 0.4s ease';
+    });
+
+    updateTestProgress();
+    window.addEventListener('resize', updateTestProgress);
+  }
+
+  // --- Wishlist ---
+  const productData = {
+    'bodymap-sculpt-legging': { name: 'BodyMap Sculpt Legging', price: '£95', color: '#d4cec6' },
+    'soft-lounge-legging': { name: 'Soft Lounge Legging', price: '£85', color: '#c9c1b6' },
+    'high-support-sports-bra': { name: 'High-Support Sports Bra', price: '£65', color: '#b8b0a5' },
+    'lounge-bralette': { name: 'Lounge Bralette', price: '£65', color: '#3a3632' },
+    'the-half-zip': { name: 'The Half-Zip', price: '£120', color: '#4a4540' },
+    'the-jogger': { name: 'The Jogger', price: '£110', color: '#c4a882' },
+    'the-lounge-set': { name: 'The Lounge Set', price: '£150', color: '#d9d3cb' }
+  };
+
+  let wishlist = JSON.parse(localStorage.getItem('mm_wishlist')) || [];
+  const wishlistCountEl = document.getElementById('wishlist-count');
+  const wishlistItemsEl = document.getElementById('wishlist-items');
+
+  function updateWishlistUI() {
+    // Update count badge
+    wishlistCountEl.textContent = wishlist.length;
+    wishlistCountEl.classList.toggle('visible', wishlist.length > 0);
+
+    // Update heart buttons
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+      const product = btn.closest('.collection-item')?.dataset.product;
+      if (product) btn.classList.toggle('active', wishlist.includes(product));
+    });
+
+    // Update modal
+    if (wishlist.length === 0) {
+      wishlistItemsEl.innerHTML = '<p class="wishlist-empty">You haven\'t saved any pieces yet.</p>';
+    } else {
+      wishlistItemsEl.innerHTML = wishlist.map(id => {
+        const p = productData[id];
+        if (!p) return '';
+        return `
+          <div class="wishlist-item">
+            <div class="wishlist-item-swatch" style="background-color: ${p.color};"><span>MM</span></div>
+            <div class="wishlist-item-info">
+              <h4>${p.name}</h4>
+              <p>${p.price}</p>
+            </div>
+            <button class="wishlist-item-remove" data-remove="${id}" aria-label="Remove">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      // Remove buttons
+      wishlistItemsEl.querySelectorAll('.wishlist-item-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          wishlist = wishlist.filter(id => id !== btn.dataset.remove);
+          localStorage.setItem('mm_wishlist', JSON.stringify(wishlist));
+          updateWishlistUI();
+        });
+      });
+    }
+  }
+
+  // Heart button clicks
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const product = btn.closest('.collection-item')?.dataset.product;
+      if (!product) return;
+
+      if (wishlist.includes(product)) {
+        wishlist = wishlist.filter(id => id !== product);
+      } else {
+        wishlist.push(product);
+      }
+      localStorage.setItem('mm_wishlist', JSON.stringify(wishlist));
+      updateWishlistUI();
+    });
+  });
+
+  // Wishlist modal close
+  const wishlistModal = document.getElementById('wishlist-modal');
+  wishlistModal?.addEventListener('click', (e) => {
+    if (e.target === wishlistModal) wishlistModal.classList.remove('active');
+  });
+
+  updateWishlistUI();
+
+  // --- Cookie Banner ---
+  const cookieBanner = document.getElementById('cookie-banner');
+  if (cookieBanner && !localStorage.getItem('mm_cookies')) {
+    setTimeout(() => cookieBanner.classList.add('visible'), 2000);
+
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      localStorage.setItem('mm_cookies', 'accepted');
+      cookieBanner.classList.remove('visible');
+    });
+
+    document.getElementById('cookie-decline')?.addEventListener('click', () => {
+      localStorage.setItem('mm_cookies', 'declined');
+      cookieBanner.classList.remove('visible');
+    });
+  }
+
+  // --- FAQ Accordion ---
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!wasActive) item.classList.add('active');
+    });
+  });
+
+  // --- Size Guide Tabs ---
+  const sizeTabs = document.querySelectorAll('.size-tab');
+  sizeTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      sizeTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('size-bottoms').style.display = tab.dataset.sizetab === 'bottoms' ? 'block' : 'none';
+      document.getElementById('size-tops').style.display = tab.dataset.sizetab === 'tops' ? 'block' : 'none';
+    });
+  });
+
+  // Size modal close on overlay
+  const sizeModal = document.getElementById('size-modal');
+  sizeModal?.addEventListener('click', (e) => {
+    if (e.target === sizeModal) sizeModal.classList.remove('active');
+  });
+
+  // --- Modal close on overlay click ---
+  const modal = document.getElementById('collection-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  }
+
+  // --- Smooth scroll with page transition ---
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const target = document.querySelector(anchor.getAttribute('href'));
@@ -73,7 +413,19 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const navHeight = nav.offsetHeight;
         const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+
+        // Add transition class
+        document.body.classList.add('page-transition');
+
+        // Scroll during the fade-out
+        setTimeout(() => {
+          window.scrollTo({ top: targetPos, behavior: 'instant' });
+        }, 250);
+
+        // Remove class after animation
+        setTimeout(() => {
+          document.body.classList.remove('page-transition');
+        }, 800);
       }
     });
   });
@@ -83,6 +435,78 @@ document.addEventListener('DOMContentLoaded', () => {
   staggerEls.forEach((el, i) => {
     el.style.transitionDelay = `${(i % 4) * 0.1}s`;
   });
+
+  // --- Text Reveal Animations ---
+  // Wrap section titles in reveal spans
+  document.querySelectorAll('.section-title, .hero-title, .newsletter-title, .countdown-title, .brand-statement-text, .tech-diff-question, .modal-title').forEach(el => {
+    if (el.classList.contains('hero-title')) {
+      // Hero title already has spans, wrap each
+      el.classList.add('reveal-stagger');
+      el.querySelectorAll('span').forEach(span => {
+        const wrap = document.createElement('span');
+        wrap.className = 'reveal-wrap';
+        const inner = document.createElement('span');
+        inner.className = 'reveal-text';
+        inner.innerHTML = span.innerHTML;
+        wrap.appendChild(inner);
+        span.innerHTML = '';
+        span.appendChild(wrap);
+      });
+    } else {
+      const wrap = document.createElement('span');
+      wrap.className = 'reveal-wrap';
+      const inner = document.createElement('span');
+      inner.className = 'reveal-text';
+      inner.innerHTML = el.innerHTML;
+      el.innerHTML = '';
+      wrap.appendChild(inner);
+      el.appendChild(wrap);
+    }
+  });
+
+  // Add reveal-fade to descriptions
+  document.querySelectorAll('.section-description, .hero-subtitle, .newsletter-text, .countdown-text, .tech-diff-sub, .sustainability-text').forEach(el => {
+    el.classList.add('reveal-fade');
+  });
+
+  // Observer for reveal animations
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Trigger reveal-wrap elements
+        entry.target.querySelectorAll('.reveal-wrap').forEach(wrap => {
+          wrap.classList.add('visible');
+        });
+        // Trigger hero stagger
+        if (entry.target.classList.contains('reveal-stagger')) {
+          entry.target.querySelectorAll('.reveal-wrap').forEach(wrap => {
+            wrap.classList.add('visible');
+          });
+        }
+        // Trigger reveal-fade
+        if (entry.target.classList.contains('reveal-fade')) {
+          entry.target.classList.add('visible');
+        }
+        // Trigger child reveal-fades
+        entry.target.querySelectorAll('.reveal-fade').forEach(el => {
+          el.classList.add('visible');
+        });
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  // Observe parent sections for reveals
+  document.querySelectorAll('.hero-content, .section-header, .brand-statement-inner, .countdown-inner, .tech-diff-header, .newsletter-inner, .sustainability-inner, .faq-header, .lookbook-header').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // Also observe hero title directly
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) revealObserver.observe(heroTitle);
 
 
   // ==========================================

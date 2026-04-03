@@ -12,6 +12,13 @@
 </head>
 <body>
 
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <span class="loader-mm">MM</span>
+    </div>
+  </div>
+
   <!-- Announcement Bar -->
   <div class="announcement-bar">
     <p>Complimentary shipping on orders over &pound;100</p>
@@ -40,10 +47,16 @@
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
         </button>
-        <button class="nav-action" aria-label="Account">
+        <button class="nav-action" aria-label="Account" onclick="document.getElementById('account-modal').classList.add('active')">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
           </svg>
+        </button>
+        <button class="nav-action wishlist-nav-btn" aria-label="Wishlist" onclick="document.getElementById('wishlist-modal').classList.add('active')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span class="wishlist-count" id="wishlist-count">0</span>
         </button>
         <button class="nav-action cart-action" aria-label="Cart">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -152,6 +165,67 @@
     </div>
   </section>
 
+  <!-- Tech Differentiator -->
+  <section class="tech-diff">
+    <div class="container">
+      <div class="tech-diff-header">
+        <h2 class="tech-diff-question">What's in your activewear?</h2>
+        <p class="tech-diff-sub">Most brands start with trends. We start with engineering.</p>
+      </div>
+      <div class="tech-diff-grid">
+        <div class="tech-diff-item">
+          <div class="tech-diff-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3 class="tech-diff-name">BodyMap&trade;</h3>
+          <p class="tech-diff-stat">3&ndash;4 compression zones</p>
+          <p class="tech-diff-desc">Mapped by sports physiotherapists to support where you need it and move where you don't. Not a marketing claim &mdash; an engineered system.</p>
+        </div>
+        <div class="tech-diff-divider"></div>
+        <div class="tech-diff-item">
+          <div class="tech-diff-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m7 13 3 3 7-7"/>
+            </svg>
+          </div>
+          <h3 class="tech-diff-name">MineralSoft&trade;</h3>
+          <p class="tech-diff-stat">Recovery while you wear it</p>
+          <p class="tech-diff-desc">Mineral-infused microcapsules and far-infrared yarn technology that helps your muscles restore through skin contact. The fabric does the work.</p>
+        </div>
+        <div class="tech-diff-divider"></div>
+        <div class="tech-diff-item">
+          <div class="tech-diff-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>
+            </svg>
+          </div>
+          <h3 class="tech-diff-name">ClimateKnit&trade;</h3>
+          <p class="tech-diff-stat">Military-grade temperature regulation</p>
+          <p class="tech-diff-desc">Phase-change microcapsules absorb heat during training and release it when you cool down. Technology from outdoor and military gear, refined for you.</p>
+        </div>
+      </div>
+      <div class="tech-diff-detail-grid" id="technology">
+        <div class="tech-diff-detail">
+          <div class="tech-diff-detail-number">01</div>
+          <h3>BodyMap&trade;</h3>
+          <p>Most activewear applies uniform compression everywhere. BodyMap uses a zoned architecture developed with sports physiotherapists &mdash; varying density, weight, and knit structure across each garment so the fabric responds differently depending on what your body needs in that area.</p>
+        </div>
+        <div class="tech-diff-detail">
+          <div class="tech-diff-detail-number">02</div>
+          <h3>MineralSoft&trade;</h3>
+          <p>The fabric is treated with mineral-infused microcapsules that activate on skin contact, paired with far-infrared yarn that converts body heat into restorative energy. Silver-ion technology keeps every piece fresh between washes. It feels like butter. It works like science.</p>
+        </div>
+        <div class="tech-diff-detail">
+          <div class="tech-diff-detail-number">03</div>
+          <h3>ClimateKnit&trade;</h3>
+          <p>Borrowed from military and outdoor engineering: phase-change microcapsules woven into the fabric store excess heat during intense movement and release it as you cool. Your body stays regulated. The technology is invisible &mdash; the comfort is not.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Collection Grid -->
   <section class="collection" id="collection">
     <div class="container">
@@ -161,11 +235,15 @@
         <p class="section-description">A capsule of 8 essential pieces across two colour stories. Studio to street, without compromise.</p>
       </div>
       <div class="collection-grid">
-        <div class="collection-item collection-item-tall">
+        <div class="collection-item collection-item-tall" data-product="bodymap-sculpt-legging">
           <div class="collection-image" style="background-color: #d4cec6;">
             <div class="collection-placeholder">
               <span class="placeholder-mm">MM</span>
+              <span class="placeholder-soon">Coming Soon</span>
             </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
           </div>
           <div class="collection-info">
             <h3>BodyMap Sculpt Legging</h3>
@@ -173,11 +251,15 @@
             <p class="collection-price">&pound;95</p>
           </div>
         </div>
-        <div class="collection-item">
+        <div class="collection-item" data-product="soft-lounge-legging">
           <div class="collection-image" style="background-color: #c9c1b6;">
             <div class="collection-placeholder">
               <span class="placeholder-mm">MM</span>
+              <span class="placeholder-soon">Coming Soon</span>
             </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
           </div>
           <div class="collection-info">
             <h3>Soft Lounge Legging</h3>
@@ -185,11 +267,15 @@
             <p class="collection-price">&pound;85</p>
           </div>
         </div>
-        <div class="collection-item">
+        <div class="collection-item" data-product="high-support-sports-bra">
           <div class="collection-image" style="background-color: #b8b0a5;">
             <div class="collection-placeholder">
               <span class="placeholder-mm">MM</span>
+              <span class="placeholder-soon">Coming Soon</span>
             </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
           </div>
           <div class="collection-info">
             <h3>High-Support Sports Bra</h3>
@@ -197,11 +283,15 @@
             <p class="collection-price">&pound;65</p>
           </div>
         </div>
-        <div class="collection-item">
+        <div class="collection-item" data-product="lounge-bralette">
           <div class="collection-image" style="background-color: #3a3632;">
             <div class="collection-placeholder placeholder-light">
               <span class="placeholder-mm">MM</span>
+              <span class="placeholder-soon">Coming Soon</span>
             </div>
+            <button class="wishlist-btn wishlist-btn-light" aria-label="Add to wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
           </div>
           <div class="collection-info">
             <h3>Lounge Bralette</h3>
@@ -209,11 +299,15 @@
             <p class="collection-price">&pound;65</p>
           </div>
         </div>
-        <div class="collection-item collection-item-tall">
+        <div class="collection-item collection-item-tall" data-product="the-half-zip">
           <div class="collection-image" style="background-color: #4a4540;">
             <div class="collection-placeholder placeholder-light">
               <span class="placeholder-mm">MM</span>
+              <span class="placeholder-soon">Coming Soon</span>
             </div>
+            <button class="wishlist-btn wishlist-btn-light" aria-label="Add to wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
           </div>
           <div class="collection-info">
             <h3>The Half-Zip</h3>
@@ -221,11 +315,15 @@
             <p class="collection-price">&pound;120</p>
           </div>
         </div>
-        <div class="collection-item">
+        <div class="collection-item" data-product="the-jogger">
           <div class="collection-image" style="background-color: #c4a882;">
             <div class="collection-placeholder">
               <span class="placeholder-mm">MM</span>
+              <span class="placeholder-soon">Coming Soon</span>
             </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
           </div>
           <div class="collection-info">
             <h3>The Jogger</h3>
@@ -233,11 +331,15 @@
             <p class="collection-price">&pound;110</p>
           </div>
         </div>
-        <div class="collection-item collection-item-wide">
+        <div class="collection-item collection-item-wide" data-product="the-lounge-set">
           <div class="collection-image" style="background-color: #d9d3cb;">
             <div class="collection-placeholder">
               <span class="placeholder-mm">MM</span>
+              <span class="placeholder-soon">Coming Soon</span>
             </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
           </div>
           <div class="collection-info">
             <h3>The Lounge Set</h3>
@@ -247,56 +349,7 @@
         </div>
       </div>
       <div class="collection-cta">
-        <a href="#" class="btn btn-secondary">View All Pieces</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Technology -->
-  <section class="technology" id="technology">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">02</span>
-        <h2 class="section-title">The Innovation</h2>
-        <p class="section-description">Three proprietary technologies. One philosophy: your body deserves engineering, not marketing.</p>
-      </div>
-      <div class="tech-grid">
-        <div class="tech-card">
-          <div class="tech-number">01</div>
-          <h3 class="tech-name">BodyMap&trade;</h3>
-          <p class="tech-subtitle">Multi-Zone Adaptive Compression</p>
-          <div class="tech-divider"></div>
-          <p class="tech-description">
-            Three to four strategically placed compression zones mapped to the body.
-            Higher compression around the core and glutes for support and sculpting.
-            Lighter compression at the calves and arms for freedom of movement.
-            Breathable zones at high-heat areas. Designed with input from sports physiotherapists.
-          </p>
-        </div>
-        <div class="tech-card">
-          <div class="tech-number">02</div>
-          <h3 class="tech-name">MineralSoft&trade;</h3>
-          <p class="tech-subtitle">Recovery-Infused Fabric</p>
-          <div class="tech-divider"></div>
-          <p class="tech-description">
-            Mineral-infused microcapsules release trace minerals through skin contact.
-            Far-infrared yarn technology reflects body heat back as restorative energy.
-            Anti-microbial silver-ion properties keep the garment fresh between washes.
-            Wrapped in a matte luxury finish that looks as expensive as it performs.
-          </p>
-        </div>
-        <div class="tech-card">
-          <div class="tech-number">03</div>
-          <h3 class="tech-name">ClimateKnit&trade;</h3>
-          <p class="tech-subtitle">Temperature-Regulating Technology</p>
-          <div class="tech-divider"></div>
-          <p class="tech-description">
-            Phase-change material microcapsules embedded in the fabric absorb body heat
-            during intense exercise and release it when you cool down. This technology
-            exists in outdoor and military gear &mdash; Maison Move brings it to premium
-            women's activewear.
-          </p>
-        </div>
+        <button class="btn btn-secondary" onclick="document.getElementById('collection-modal').classList.add('active')">View All Pieces</button>
       </div>
     </div>
   </section>
@@ -409,9 +462,9 @@
         <span class="marquee-dot"></span>
         <span>MineralSoft&trade; Recovery</span>
         <span class="marquee-dot"></span>
-        <span>Designed in Wales</span>
+        <span>Designed in the UK</span>
         <span class="marquee-dot"></span>
-        <span>&pound;65 &ndash; &pound;150</span>
+        <span>Studio to Street</span>
         <span class="marquee-dot"></span>
         <span>Studio to Street</span>
         <span class="marquee-dot"></span>
@@ -419,9 +472,9 @@
         <span class="marquee-dot"></span>
         <span>MineralSoft&trade; Recovery</span>
         <span class="marquee-dot"></span>
-        <span>Designed in Wales</span>
+        <span>Designed in the UK</span>
         <span class="marquee-dot"></span>
-        <span>&pound;65 &ndash; &pound;150</span>
+        <span>Studio to Street</span>
         <span class="marquee-dot"></span>
       </div>
     </div>
@@ -441,29 +494,28 @@
           <h2 class="section-title">Why We Exist.</h2>
           <div class="story-text">
             <p>
-              Maison Move was born from a problem I lived every day. I'd finish a weights session
-              and have coffee with friends straight after &mdash; but nothing I owned could do both.
-              I was coming home to change between every part of my day. Gym, then home. Change.
-              Go out, then home. Change again. My wardrobe was split in two and my life was
-              working around it.
+              Every woman knows the feeling. You finish training, you have plans straight
+              after, and nothing in your wardrobe works for both. Your clothes don't stay
+              fresh after a session, and they certainly don't look good enough for what comes next.
             </p>
             <p>
-              The brands I loved did one thing well. Performance wear that looked like performance wear.
-              Beautiful lounge pieces that couldn't survive a warm-up. Nothing existed in the middle &mdash;
-              nothing that could take me from a deadlift to a flat white without a second thought.
+              The best performance brands deliver exactly that. Performance. Beautiful
+              loungewear can't survive a warm-up. Nothing exists in the middle. Nothing
+              that carries you from a deadlift to a flat white without a second thought.
             </p>
             <p>
-              So I built it. Every Maison Move piece is constructed with BodyMap&trade; multi-zone
-              compression that genuinely supports your body through training, paired with our
-              MineralSoft&trade; recovery fabric that feels buttery soft against the skin and helps
-              your muscles restore while you wear it. The technology is invisible &mdash; what you
-              feel is something that performs like your best gym kit but looks and feels elevated
-              enough to wear anywhere.
+              Maison Move was created to close that gap. Every piece is constructed with
+              BodyMap&trade; multi-zone compression that genuinely supports the body through
+              training, paired with MineralSoft&trade; recovery-infused fabric that feels
+              buttery soft against the skin and helps muscles restore while you wear it.
+              Silver-ion technology keeps every piece fresh long after your session ends.
+              The technology is invisible. What you feel is something that performs
+              like your best gym kit but looks and feels elevated enough to wear anywhere.
             </p>
             <p>
-              We don't believe you should have to choose between how something performs and how
-              it makes you feel. At Maison Move, we pride ourselves on being the best at both &mdash;
-              because you shouldn't have to compromise, and neither should your clothes.
+              There should never be a choice between how something performs and how it
+              makes you feel. Maison Move is built to be the best at both. Because
+              you shouldn't have to compromise, and neither should your clothes.
             </p>
             <p>The house was built for the woman who refuses to pause.</p>
           </div>
@@ -575,6 +627,265 @@
     </div>
   </section>
 
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The Verdict</span>
+        <h2 class="section-title">What Our Fit Testers Say</h2>
+      </div>
+      <div class="testimonials-track-wrapper">
+        <div class="testimonials-track">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span>
+            </div>
+            <p class="testimonial-quote">"I wore the Sculpt Legging for a full leg day and then lunch straight after. No change needed. The compression is unreal and they still looked polished three hours later."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-name">Charlotte M.</span>
+              <span class="testimonial-detail">Fit Tester &middot; London</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span>
+            </div>
+            <p class="testimonial-quote">"The fabric is like nothing I've felt before. It's buttery soft but holds you in properly. I've tried Skims, Oner, all of them. This is different. This actually does what it says."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-name">Priya K.</span>
+              <span class="testimonial-detail">Fit Tester &middot; Manchester</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span>
+            </div>
+            <p class="testimonial-quote">"I'm genuinely shocked at the quality for the price point. The Half-Zip feels like it should cost twice as much. The temperature regulation actually works. I wasn't overheating for the first time."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-name">Emily R.</span>
+              <span class="testimonial-detail">Fit Tester &middot; Cardiff</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span>
+            </div>
+            <p class="testimonial-quote">"I trained in the morning, ran errands all afternoon, and met friends for dinner. Same outfit. Still felt fresh, still looked put together. That's never happened before."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-name">Olivia T.</span>
+              <span class="testimonial-detail">Fit Tester &middot; Bristol</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">
+              <span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span><span>&starf;</span>
+            </div>
+            <p class="testimonial-quote">"The Lounge Set is dangerous. I put it on after training and didn't want to take it off for two days. It's that comfortable. The recovery fabric genuinely makes your legs feel less sore."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-name">Jade W.</span>
+              <span class="testimonial-detail">Fit Tester &middot; Birmingham</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="testimonials-progress">
+          <div class="testimonials-progress-bar" id="testimonials-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sustainability -->
+  <section class="sustainability" id="sustainability">
+    <div class="container">
+      <div class="sustainability-inner">
+        <div class="sustainability-content">
+          <span class="section-label">Responsibility</span>
+          <h2 class="section-title">Built to Last. Sourced with Care.</h2>
+          <p class="sustainability-text">
+            Every Maison Move garment is made with certified fabrics from mills that meet the highest
+            environmental and safety standards. We believe premium quality and responsible production
+            are the same thing.
+          </p>
+          <div class="cert-grid">
+            <div class="cert-item">
+              <div class="cert-badge">OEKO-TEX 100</div>
+              <p>Every fabric tested and certified free from harmful substances. Safe for you. Safe for skin contact during training.</p>
+            </div>
+            <div class="cert-item">
+              <div class="cert-badge">GRS</div>
+              <p>Global Recycled Standard certified materials. Recycled polyester and responsible sourcing throughout our supply chain.</p>
+            </div>
+            <div class="cert-item">
+              <div class="cert-badge">Low Waste</div>
+              <p>Small-batch production. No overstock. We produce what we need and restock based on real demand, not forecasts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loyalty Programme -->
+  <section class="loyalty" id="loyalty">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">05</span>
+        <h2 class="section-title">The House Rewards</h2>
+        <p class="section-description">Every purchase earns points. Every point brings you closer to the inner house.</p>
+      </div>
+      <div class="loyalty-grid">
+        <div class="loyalty-tier">
+          <div class="loyalty-tier-header">
+            <span class="loyalty-tier-name">Move</span>
+            <span class="loyalty-tier-points">0 &ndash; 499 points</span>
+          </div>
+          <div class="loyalty-divider"></div>
+          <ul class="loyalty-perks">
+            <li>Earn 1 point per &pound;1 spent</li>
+            <li>Early access to new drops</li>
+            <li>Birthday reward</li>
+            <li>Members-only content</li>
+          </ul>
+        </div>
+        <div class="loyalty-tier loyalty-tier-featured">
+          <div class="loyalty-tier-header">
+            <span class="loyalty-tier-name">Maison</span>
+            <span class="loyalty-tier-points">500 &ndash; 999 points</span>
+          </div>
+          <div class="loyalty-divider"></div>
+          <ul class="loyalty-perks">
+            <li>Everything in Move</li>
+            <li>Complimentary shipping on all orders</li>
+            <li>Priority access to limited editions</li>
+            <li>Seasonal gift with purchase</li>
+          </ul>
+        </div>
+        <div class="loyalty-tier">
+          <div class="loyalty-tier-header">
+            <span class="loyalty-tier-name">Maison Elite</span>
+            <span class="loyalty-tier-points">1,000+ points</span>
+          </div>
+          <div class="loyalty-divider"></div>
+          <ul class="loyalty-perks">
+            <li>Everything in Maison</li>
+            <li>Invitations to VIP events</li>
+            <li>First access to collaborations</li>
+            <li>Personal styling recommendations</li>
+          </ul>
+        </div>
+      </div>
+      <div class="loyalty-cta">
+        <button class="btn btn-primary" onclick="document.getElementById('account-modal').classList.add('active')">Join the House</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="faq-inner">
+        <div class="faq-header">
+          <span class="section-label">Support</span>
+          <h2 class="section-title">Frequently Asked</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>When does the collection launch?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Our debut collection is launching soon. Sign up for early access on our homepage to be notified the moment it drops. Early access members will be able to shop before the general public.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What sizes do you offer?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Our debut collection runs from XS to XL (UK 6&ndash;14). We're committed to expanding our size range with future collections based on customer feedback.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How should I care for my Maison Move pieces?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Machine wash cold at 30&deg;C, inside out, on a gentle cycle. Do not tumble dry &mdash; lay flat or hang to dry. Avoid fabric softener as it can affect the performance properties of BodyMap&trade; and MineralSoft&trade; fabrics. Iron on low if needed, avoiding any printed details.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is your shipping policy?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>We offer complimentary UK shipping on orders over &pound;100. Standard UK delivery is &pound;4.95 (3&ndash;5 working days). Express delivery is &pound;7.95 (1&ndash;2 working days). International shipping will be available at launch.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is your returns policy?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>We offer a 30-day returns policy on all unworn items with tags attached. Items must be in their original packaging. Refunds are processed within 5&ndash;7 working days of receiving the return.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Are your fabrics sustainable?</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. All our fabrics are Oeko-Tex 100 certified (free from harmful substances) and we use GRS-certified recycled materials wherever possible. We produce in small batches to minimise waste and work only with mills that meet our environmental standards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Grid -->
+  <section class="instagram">
+    <div class="container">
+      <div class="instagram-header">
+        <span class="section-label">@maisonmove</span>
+        <h2 class="section-title">The World of Maison Move</h2>
+      </div>
+    </div>
+    <div class="instagram-grid">
+      <div class="instagram-item instagram-placeholder" style="background-color: #d4cec6;">
+        <span class="placeholder-mm">MM</span>
+        <span class="placeholder-soon">Coming Soon</span>
+      </div>
+      <div class="instagram-item instagram-placeholder" style="background-color: #c4a882;">
+        <span class="placeholder-mm">MM</span>
+        <span class="placeholder-soon">Coming Soon</span>
+      </div>
+      <div class="instagram-item instagram-placeholder" style="background-color: #c9c1b6;">
+        <span class="placeholder-mm">MM</span>
+        <span class="placeholder-soon">Coming Soon</span>
+      </div>
+      <div class="instagram-item instagram-placeholder" style="background-color: #b8b0a5;">
+        <span class="placeholder-mm">MM</span>
+        <span class="placeholder-soon">Coming Soon</span>
+      </div>
+      <div class="instagram-item instagram-placeholder" style="background-color: #d9d3cb;">
+        <span class="placeholder-mm">MM</span>
+        <span class="placeholder-soon">Coming Soon</span>
+      </div>
+      <div class="instagram-item instagram-placeholder" style="background-color: #c4a882;">
+        <span class="placeholder-mm">MM</span>
+        <span class="placeholder-soon">Coming Soon</span>
+      </div>
+    </div>
+  </section>
+
   <!-- Newsletter -->
   <section class="newsletter" id="journal">
     <div class="container">
@@ -627,7 +938,7 @@
         <div class="footer-col">
           <h4>Support</h4>
           <ul>
-            <li><a href="#">Size Guide</a></li>
+            <li><a href="#" onclick="event.preventDefault(); document.getElementById('size-modal').classList.add('active')">Size Guide</a></li>
             <li><a href="#">Shipping & Returns</a></li>
             <li><a href="#">Care Guide</a></li>
             <li><a href="#">Contact</a></li>
@@ -651,6 +962,167 @@
       </div>
     </div>
   </footer>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-inner">
+      <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+      <div class="cookie-actions">
+        <button class="btn btn-primary btn-small" id="cookie-accept">Accept</button>
+        <button class="btn btn-secondary btn-small" id="cookie-decline">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Account Modal -->
+  <div class="modal-overlay" id="account-modal">
+    <div class="modal modal-account">
+      <button class="modal-close" onclick="document.getElementById('account-modal').classList.remove('active')" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+
+      <!-- Tab Toggle -->
+      <div class="account-tabs">
+        <button class="account-tab active" data-tab="signup">Sign Up</button>
+        <button class="account-tab" data-tab="login">Log In</button>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div class="account-panel" id="panel-signup">
+        <h3 class="modal-title">Join the House</h3>
+        <p class="modal-text">Create an account to earn rewards, track orders, and get early access to every drop.</p>
+        <form class="account-form" id="signup-form">
+          <input type="text" placeholder="First name" required>
+          <input type="text" placeholder="Last name" required>
+          <input type="email" placeholder="Email address" required>
+          <input type="password" placeholder="Password" minlength="8" required>
+          <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+        </form>
+        <p class="account-footer-text">By creating an account, you agree to our Terms of Service and Privacy Policy.</p>
+      </div>
+
+      <!-- Log In Form -->
+      <div class="account-panel" id="panel-login" style="display:none;">
+        <h3 class="modal-title">Welcome Back</h3>
+        <p class="modal-text">Log in to check your rewards, track orders, and access member perks.</p>
+        <form class="account-form" id="login-form">
+          <input type="email" placeholder="Email address" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit" class="btn btn-primary btn-full">Log In</button>
+        </form>
+        <p class="account-footer-text"><a href="#" class="account-link">Forgot your password?</a></p>
+      </div>
+
+      <!-- Logged In State -->
+      <div class="account-panel" id="panel-dashboard" style="display:none;">
+        <h3 class="modal-title">Your House</h3>
+        <div class="dashboard-welcome">
+          <p>Welcome, <span id="dashboard-name"></span></p>
+        </div>
+        <div class="dashboard-loyalty">
+          <div class="dashboard-tier">
+            <span class="loyalty-tier-badge" id="dashboard-tier-name">Move</span>
+          </div>
+          <div class="dashboard-points">
+            <span class="dashboard-points-number" id="dashboard-points">0</span>
+            <span class="dashboard-points-label">Points</span>
+          </div>
+          <div class="dashboard-progress-wrap">
+            <div class="dashboard-progress">
+              <div class="dashboard-progress-bar" id="dashboard-progress-bar"></div>
+            </div>
+            <span class="dashboard-next-tier" id="dashboard-next-tier">500 points to Maison</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary btn-full" id="logout-btn">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div class="modal-overlay" id="wishlist-modal">
+    <div class="modal modal-wishlist">
+      <button class="modal-close" onclick="document.getElementById('wishlist-modal').classList.remove('active')" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <span class="section-label">Your Wishlist</span>
+      <h3 class="modal-title">Saved Pieces</h3>
+      <div class="wishlist-items" id="wishlist-items">
+        <p class="wishlist-empty">You haven't saved any pieces yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Guide Modal -->
+  <div class="modal-overlay" id="size-modal">
+    <div class="modal modal-size">
+      <button class="modal-close" onclick="document.getElementById('size-modal').classList.remove('active')" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <span class="section-label">Fit Guide</span>
+      <h3 class="modal-title">Find Your Size</h3>
+      <p class="modal-text">All measurements in centimetres. Our pieces are designed for a sculpted, supportive fit. If you're between sizes, we recommend sizing up for lounge pieces and staying true to size for performance pieces.</p>
+
+      <div class="size-tabs">
+        <button class="size-tab active" data-sizetab="bottoms">Bottoms</button>
+        <button class="size-tab" data-sizetab="tops">Tops &amp; Bras</button>
+      </div>
+
+      <div class="size-panel" id="size-bottoms">
+        <table class="size-table">
+          <thead>
+            <tr><th>Size</th><th>UK</th><th>Waist</th><th>Hips</th><th>Inside Leg</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>XS</td><td>6</td><td>62&ndash;66</td><td>86&ndash;90</td><td>74</td></tr>
+            <tr><td>S</td><td>8</td><td>66&ndash;70</td><td>90&ndash;94</td><td>76</td></tr>
+            <tr><td>M</td><td>10</td><td>70&ndash;76</td><td>94&ndash;100</td><td>76</td></tr>
+            <tr><td>L</td><td>12</td><td>76&ndash;82</td><td>100&ndash;106</td><td>78</td></tr>
+            <tr><td>XL</td><td>14</td><td>82&ndash;88</td><td>106&ndash;112</td><td>78</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="size-panel" id="size-tops" style="display:none;">
+        <table class="size-table">
+          <thead>
+            <tr><th>Size</th><th>UK</th><th>Bust</th><th>Underbust</th><th>Shoulder</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>XS</td><td>6</td><td>78&ndash;82</td><td>66&ndash;70</td><td>36</td></tr>
+            <tr><td>S</td><td>8</td><td>82&ndash;86</td><td>70&ndash;74</td><td>37</td></tr>
+            <tr><td>M</td><td>10</td><td>86&ndash;92</td><td>74&ndash;80</td><td>38</td></tr>
+            <tr><td>L</td><td>12</td><td>92&ndash;98</td><td>80&ndash;86</td><td>40</td></tr>
+            <tr><td>XL</td><td>14</td><td>98&ndash;104</td><td>86&ndash;92</td><td>41</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collection Notify Modal -->
+  <div class="modal-overlay" id="collection-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('collection-modal').classList.remove('active')" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <span class="section-label">Coming Soon</span>
+      <h3 class="modal-title">Be the first to shop the collection.</h3>
+      <p class="modal-text">Enter your email and we'll notify you the moment the debut collection drops.</p>
+      <form class="modal-form" onsubmit="event.preventDefault(); this.querySelector('.modal-success').style.display='block'; this.querySelector('button').textContent='Registered'; this.querySelector('input').disabled=true;">
+        <div class="newsletter-input-group">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit" class="btn btn-primary">Notify Me</button>
+        </div>
+        <p class="modal-success">You're on the list. Welcome to the house.</p>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
