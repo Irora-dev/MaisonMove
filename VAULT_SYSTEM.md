@@ -690,3 +690,166 @@ At £89 retail with £20 COGS, MaisonMove runs 77.5% gross margin — higher tha
 These three factors together mean the vault system is structurally profitable unless the brand fails to build an audience. The entire financial risk reduces to one question: **can you get enough people to care about 250 units?**
 
 Everything after that is compounding.
+
+---
+
+# Vault-Only vs Hybrid: The Long-Term Model
+
+## The Core Tension: Activewear Is Not Streetwear
+
+Corteiz hit $58M in 2024 revenue on drops-only, DTC-only, no wholesale, no restocks. Supreme ran the same model for 21+ years. The drop-only ceiling is clearly high.
+
+But MaisonMove sells activewear, not streetwear. This creates a fundamental problem that Corteiz and Supreme never face:
+
+**Streetwear is collectible. Activewear is consumable.**
+
+A Supreme box-logo hoodie sits in someone's wardrobe for years. It appreciates in value. The owner doesn't need to replace it.
+
+A pair of leggings worn 3-5x/week needs replacing every 6-12 months. The elastic degrades, the compression loosens, the fabric pills. This is the physics of performance textiles under repeated stress and washing — not a defect.
+
+### The Repurchase Trap
+
+```
+Month 1:    Customer buys Vault 001 leggings. Loves them.
+Month 9:    Leggings wearing out. Wants to rebuy the same product.
+Month 9:    Vault 001 is gone forever. Vault 005 exists but it's
+            a different product, different colourway, different fit.
+Month 9:    Customer either:
+            (a) Buys Vault 005 and hopes the fit is the same
+            (b) Goes to Lululemon and buys what she knows works
+```
+
+Option (b) is how you lose your best customers — the ones who love you enough to want more of the same thing. You're forcing them to gamble on something new or leave.
+
+Corteiz doesn't have this problem because nobody needs another Corteiz cargo pant when theirs is fine. But every active woman needs another pair of leggings when hers wear out. If you don't sell it to her, someone else will.
+
+---
+
+## Drop Fatigue and Customer Frustration
+
+The vault model's magic has a shelf life if used exclusively:
+
+**Exclusivity burnout is real.** Research shows relying too heavily on drops burns out the concept of exclusivity, especially when products are similar across drops.
+
+**Customer frustration compounds.** Skims (drops-only for some products) faced backlash from customers who "couldn't buy basic white tees and underwear for upcoming trips because everything was always sold out unless you shop on drop day." Sandy Liang and Baggu's collaboration sold out before general launch, generating angry TikToks and forcing a public statement.
+
+**The hype has an expiration date.** Harvard Business School's case study on Supreme raised the question of whether the appeal of "the drop" has an inherent shelf life, and whether brands built on exclusivity will eventually need to evolve.
+
+**Negative virality is asymmetric.** The same social media that drives hype can amplify frustration — sold-out anger and perceived unfairness generate negative content faster than brands can respond.
+
+---
+
+## The Hybrid Model: What Smart Brands Do
+
+Fear of God solved this problem. Their Essentials line runs a dual structure:
+
+1. **Core Collection** — permanent, always available. Hoodies, sweatpants, tees in signature colourways. "Free from seasonal restraints." This is what you buy when you want the brand, not the hype.
+
+2. **Seasonal Drops** — limited, time-bound, sell out fast. New colourways, silhouettes, collaborations. This drives press, social media, and waitlists.
+
+The Core Collection exists because Jerry Lorenzo's team recognised that Essentials products sell out quickly — and frustrated customers are lost customers. The Core gives them something to buy at any time.
+
+Research from Shopify, Fourthwall, and multiple industry analyses consistently recommends the hybrid approach: combine always-on with drops to let each strategy's advantages shine while limiting disadvantages.
+
+---
+
+## MaisonMove Implementation: The Two-Phase Approach
+
+### Phase 1: Vault-Only (Years 1-2)
+
+For the first 18-24 months, vault-only is not just acceptable — it's optimal:
+
+- No capital or infrastructure for permanent inventory
+- Scarcity is building the brand story
+- Still collecting sizing and demand data
+- Final-sale vaults protect margin
+- Every sellout is marketing for the next drop
+- Building the waitlist and community that makes everything else possible
+
+**Do not introduce a permanent line during this phase.** It dilutes scarcity, complicates operations, and requires carrying inventory.
+
+### Phase 2: Vault + Core (Year 2-3 onward)
+
+Around Vault 005-006, when you have:
+- Proven hero products (the legging that sells out every time)
+- Reliable sizing data across thousands of customers
+- Manufacturer relationships with consistent quality
+- Enough cash flow to carry standing inventory
+
+Launch **MaisonMove Core** — a small permanent collection alongside ongoing Vaults.
+
+### Vault vs Core: Side-by-Side
+
+| | Vault Drops (ongoing) | Core Line (new in Year 2-3) |
+|---|---|---|
+| Numbered | Yes ("047/250") | No |
+| Limited | 250-2,000 units | Continuous production |
+| Availability | One-time run, never restocked | Always available |
+| Product type | New designs, colourways, tech | Proven bestsellers only |
+| Returns policy | Final sale | Standard returns accepted |
+| Purpose | Drives acquisition + hype | Drives retention + repurchase |
+| Price | £89-135 | £79-89 |
+| Role | The reason people discover you | The reason people stay |
+
+### What Goes Into Core
+
+Only products that have proven demand across multiple Vaults:
+
+- The hero legging (the one that sells out first every time)
+- The hero bra (same criterion)
+- 2-3 signature colourways that don't overlap with current Vault colourways
+- Same technology stack (infrared + silver ion by Year 2-3)
+- Slightly lower price (£79-89 vs Vault £89-95) because they are not numbered or limited
+
+### What Stays Vault-Only
+
+- New product categories (jackets, shorts, tanks)
+- New colourways and seasonal palettes
+- New technology introductions
+- Collaborations
+- Anything experimental or unproven
+
+---
+
+## Financial Impact of Adding Core
+
+| | Vault-Only (Year 2) | Vault + Core (Year 2) |
+|---|---|---|
+| Vault revenue | £1.0-1.3M | £800K-1.0M (some demand shifts to Core) |
+| Core revenue | £0 | £200-400K |
+| **Total revenue** | **£1.0-1.3M** | **£1.0-1.4M** |
+| Vault margin | 75-78% | 75-78% (unchanged) |
+| Core margin | — | 55-65% (carries inventory + returns) |
+| **Blended margin** | **75-78%** | **68-73%** |
+| Repeat purchase rate | Lower (customers can't rebuy) | Higher (Core captures replacement demand) |
+| Customer lifetime value | Limited to new vault purchases | Vault + Core repurchases compound |
+| Revenue predictability | Spiky (drop days only) | Smoother (Core generates daily baseline) |
+
+Core slightly dilutes blended margin because it carries inventory risk and accepts returns. But it dramatically increases customer lifetime value. The customer who bought Vault 001 and needs replacement leggings at Month 9 buys Core instead of going to Lululemon.
+
+---
+
+## The Revenue Ceiling: Vault-Only vs Hybrid
+
+| Factor | Corteiz (Vault-Only Proof Point) | MaisonMove |
+|---|---|---|
+| Category | Streetwear (collectible, no wear-out) | Activewear (functional, wears out 6-12 months) |
+| Audience | Gen Z men (high hype tolerance) | Women 30-55 (lower tolerance for frustration) |
+| Email list | 1.7 million | Starting from zero |
+| Repurchase need | Low (clothing doesn't degrade) | High (leggings need replacing regularly) |
+| Price tolerance for scarcity | Very high (resale culture) | Moderate (functional product, not a collectible) |
+
+The vault-only revenue ceiling for activewear is estimated at **£1-3M** before customer frustration and repurchase friction cap growth. The hybrid model removes that ceiling by capturing replacement demand that would otherwise leave the ecosystem.
+
+---
+
+## The Rule
+
+> **Vaults are how they fall in love. Core is how they stay.**
+
+The biggest mistake would be introducing Core too early (before vault scarcity has built the brand) or never introducing it at all (and losing your best customers when their leggings wear out and they can't rebuy).
+
+**Timeline:**
+- Months 0-24: Vault-only. Build the cult. Prove the products. Collect the data.
+- Months 24-30: Develop Core line from proven vault bestsellers.
+- Month 30+: Hybrid model. Vaults for acquisition and hype. Core for retention and lifetime value.
