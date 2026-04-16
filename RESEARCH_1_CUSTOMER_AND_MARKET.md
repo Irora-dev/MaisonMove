@@ -90,7 +90,7 @@ The "studio-to-street" concept exists. The technology angle combined with fashio
 - Successfully owns "studio-to-street" at a premium price
 - Strong proprietary fabrics (Nulu, Everlux, Luxtreme)
 - **Gap they leave open:** Price point is higher (£88-£128 for leggings). No recovery or temperature-regulation technology. Perceived as "basic" by younger consumers. Weak in the UK market compared to North America.
-- **Lesson for Maison Move:** Proprietary fabric names work. Lululemon proved that naming your technology (Nulu, Everlux) builds perceived value. You're doing this with BodyMap, MineralSoft, ClimateKnit.
+- **Lesson for Maison Move:** Proprietary fabric names work. Lululemon proved that naming your technology (Nulu, Everlux) builds perceived value. You're doing this with SculptMap, MineralSoft, ClimateKnit.
 
 ### Why Nobody Has Combined All Three Technologies
 1. **Cost barrier:** Each technology (compression mapping, mineral-infused fabric, PCM temperature regulation) adds cost. Combining all three is expensive.

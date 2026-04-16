@@ -17,7 +17,7 @@
 
 ### Is Maison Move Eligible?
 **Not yet for the Textile Fund specifically** — you need £50K annual turnover first. However:
-- Your fabric technology innovation (BodyMap compression mapping, MineralSoft recovery fabric, ClimateKnit PCM) could qualify as "innovative application of technology that adds value to textile industries"
+- Your fabric technology innovation (SculptMap compression mapping, MineralSoft recovery fabric, ClimateKnit PCM) could qualify as "innovative application of technology that adds value to textile industries"
 - **Action:** Register your business first, build turnover through DTC sales, then apply in Year 2
 - **In the meantime:** Check the Innovate UK competition portal regularly for open calls — they run different competitions throughout the year with varying eligibility
 

@@ -24,13 +24,10 @@
   pointer-events: none;
 }
 
-.loader-mm {
-  font-family: 'Inter', 'Helvetica Neue', sans-serif;
-  font-size: 2rem;
-  font-weight: 300;
-  letter-spacing: 0.4em;
+.loader-monogram {
+  width: 36px;
+  height: auto;
   color: #1A1A1A;
-  padding-left: 0.4em;
   animation: loaderPulse 1.2s ease-in-out infinite;
 }
 
@@ -318,13 +315,10 @@ ul {
   justify-content: center;
 }
 
-.circle-mm {
-  font-family: var(--font-sans);
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 300;
-  letter-spacing: 0.3em;
+.circle-monogram {
+  width: clamp(28px, 5vw, 42px);
+  height: auto;
   color: var(--black);
-  padding-left: 0.3em;
 }
 
 @keyframes rotateCircle {
@@ -516,6 +510,12 @@ ul {
   gap: 3rem;
 }
 
+.tech-diff-grid-two {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .tech-diff-item {
   flex: 1;
   text-align: center;
@@ -563,11 +563,14 @@ ul {
 
 .tech-diff-detail-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
   margin-top: 5rem;
   padding-top: 5rem;
   border-top: 1px solid rgba(245, 240, 235, 0.08);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tech-diff-detail-number {
@@ -615,10 +618,59 @@ ul {
   padding: 8rem 0;
 }
 
+.collection-group {
+  margin-bottom: 5rem;
+}
+
+.collection-group:last-of-type {
+  margin-bottom: 3rem;
+}
+
+.collection-group-header {
+  display: flex;
+  align-items: baseline;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.collection-group-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.collection-group-story {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--grey);
+  font-weight: 300;
+  max-width: 480px;
+}
+
 .collection-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+}
+
+.collection-grid-half {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.collection-grid-feature {
+  grid-template-columns: 1fr;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.collection-grid-pair {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .collection-item {
@@ -1042,94 +1094,71 @@ ul {
   color: var(--nude);
 }
 
-/* --- BodyMap Interactive --- */
-.bodymap {
+/* --- SculptMap Technology --- */
+.sculptmap {
   padding: 8rem 0;
   background: var(--cream);
 }
 
-.bodymap-grid {
+.sculptmap-zones {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 6rem;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid rgba(26, 26, 26, 0.1);
 }
 
-.bodymap-visual {
+.sculptmap-zone-item {
   display: flex;
-  justify-content: center;
-  padding: 2rem;
+  gap: 2rem;
+  padding: 3rem 3rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+  border-right: 1px solid rgba(26, 26, 26, 0.1);
+  transition: background 0.4s ease;
 }
 
-.bodymap-svg {
-  width: 100%;
-  max-width: 220px;
-  height: auto;
+.sculptmap-zone-item:nth-child(2n) {
+  border-right: none;
 }
 
-.bodymap-silhouette {
-  fill: none;
-  stroke: var(--black);
-  stroke-width: 1;
-  opacity: 0.15;
+.sculptmap-zone-item:hover {
+  background: rgba(26, 26, 26, 0.02);
 }
 
-.zone-area {
-  opacity: 0;
-  cursor: pointer;
-  transition: opacity 0.4s ease;
-}
-
-.zone-high { fill: var(--nude); }
-.zone-light { fill: #a8c4b8; }
-.zone-breathe { fill: #8bb0c4; }
-
-.zone-dot {
-  fill: var(--black);
-  opacity: 0.3;
-  transition: opacity 0.3s ease, r 0.3s ease;
-  cursor: pointer;
-}
-
-.bodymap-zone:hover .zone-area,
-.bodymap-zone.active .zone-area {
-  opacity: 0.35;
-}
-
-.bodymap-zone:hover .zone-dot,
-.bodymap-zone.active .zone-dot {
-  opacity: 1;
-}
-
-.bodymap-info {
-  padding: 2rem;
-  border: 1px solid rgba(26, 26, 26, 0.08);
-  min-height: 200px;
-  transition: opacity 0.3s ease;
-}
-
-.bodymap-info-icon {
-  margin-bottom: 1rem;
-  opacity: 0.3;
-}
-
-.bodymap-info p {
-  font-size: 0.88rem;
-  line-height: 1.8;
-  color: var(--grey);
+.sculptmap-zone-number {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
   font-weight: 300;
+  color: var(--nude);
+  line-height: 1;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
 }
 
-.bodymap-detail-header {
+.sculptmap-zone-body {
+  flex: 1;
+}
+
+.sculptmap-zone-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
-.bodymap-zone-tag {
+.sculptmap-zone-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.sculptmap-zone-tag {
   display: inline-block;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 0.4rem 1rem;
+  padding: 0.3rem 0.8rem;
   font-weight: 400;
 }
 
@@ -1148,12 +1177,11 @@ ul {
   color: var(--black);
 }
 
-.bodymap-detail h3 {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
+.sculptmap-zone-body p {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--grey);
   font-weight: 300;
-  margin-bottom: 1rem;
-  letter-spacing: 0.02em;
 }
 
 /* --- Horizontal Lookbook --- */
@@ -2397,9 +2425,27 @@ ul {
     font-size: clamp(2.5rem, 10vw, 4rem);
   }
 
+  .collection-group-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .collection-group-story {
+    max-width: none;
+  }
+
   .collection-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+  }
+
+  .collection-grid-half {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .collection-grid-feature,
+  .collection-grid-pair {
+    max-width: none;
   }
 
   .collection-item-wide {
@@ -2411,13 +2457,14 @@ ul {
     gap: 3rem;
   }
 
-  .bodymap-grid {
+  .sculptmap-zones {
     grid-template-columns: 1fr;
-    gap: 3rem;
   }
 
-  .bodymap-visual {
-    order: -1;
+  .sculptmap-zone-item,
+  .sculptmap-zone-item:nth-child(2n) {
+    border-right: none;
+    padding: 2rem 1.5rem;
   }
 
   .lookbook-slide {
@@ -2461,7 +2508,8 @@ ul {
 }
 
 @media (max-width: 480px) {
-  .collection-grid {
+  .collection-grid,
+  .collection-grid-half {
     grid-template-columns: 1fr;
   }
 

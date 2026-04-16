@@ -96,7 +96,7 @@ That's your story. That's the post. That's the caption.
 - Allows for zoned compression (different knit densities in different areas)
 - More expensive than cut-and-sew
 - Requires specialised manufacturers
-- **Use for:** BodyMap Sculpt Legging, High-Support Sports Bra
+- **Use for:** SculptMap Sculpt Legging, High-Support Sports Bra
 
 ### Cut-and-Sew (for everything else)
 - Traditional method: fabric is cut from rolls and sewn together

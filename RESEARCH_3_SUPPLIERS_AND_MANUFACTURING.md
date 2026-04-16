@@ -12,7 +12,7 @@ Before approaching any manufacturer, you need tech packs for each design. A tech
 - Construction details (seam types, stitch types)
 - Trim details (labels, hang tags, elastics, zips)
 - Colourways
-- Compression zone mapping (for BodyMap pieces)
+- Compression zone mapping (for SculptMap pieces)
 
 **How to get tech packs made:**
 - Hire a freelance fashion designer on Upwork or People Per Hour

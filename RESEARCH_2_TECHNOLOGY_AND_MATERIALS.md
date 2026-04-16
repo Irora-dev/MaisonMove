@@ -2,7 +2,7 @@
 
 ---
 
-## 1. BodyMap — Multi-Zone Adaptive Compression
+## 1. SculptMap — Multi-Zone Adaptive Compression
 
 ### How It Works
 Precision knitting machines vary the density, weight, and knit structure across a single garment. Different zones use different compression levels — firm around the core and glutes, lighter at the calves, breathable mesh behind the knees. This requires specialised seamless knitting equipment (typically Santoni machines).

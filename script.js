@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Fade-in on scroll ---
   const fadeEls = document.querySelectorAll(
-    '.section-header, .collection-item, .tech-card, .story-content-col, .story-image-col, .value-item, .newsletter-inner, .brand-statement-inner, .countdown-inner, .bodymap-grid, .lookbook-header, .tech-diff-header, .tech-diff-item, .loyalty-tier, .testimonial-card, .cert-item'
+    '.section-header, .collection-group-header, .collection-item, .tech-card, .story-content-col, .story-image-col, .value-item, .newsletter-inner, .brand-statement-inner, .countdown-inner, .sculptmap-zone-item, .lookbook-header, .tech-diff-header, .tech-diff-item, .loyalty-tier, .testimonial-card, .cert-item'
   );
 
   fadeEls.forEach(el => el.classList.add('fade-in'));
@@ -273,13 +273,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Wishlist ---
   const productData = {
-    'bodymap-sculpt-legging': { name: 'BodyMap Sculpt Legging', price: '£95', color: '#d4cec6' },
-    'soft-lounge-legging': { name: 'Soft Lounge Legging', price: '£85', color: '#c9c1b6' },
-    'high-support-sports-bra': { name: 'High-Support Sports Bra', price: '£65', color: '#b8b0a5' },
-    'lounge-bralette': { name: 'Lounge Bralette', price: '£65', color: '#3a3632' },
-    'the-half-zip': { name: 'The Half-Zip', price: '£120', color: '#4a4540' },
-    'the-jogger': { name: 'The Jogger', price: '£110', color: '#c4a882' },
-    'the-lounge-set': { name: 'The Lounge Set', price: '£150', color: '#d9d3cb' }
+    'sculpt-legging': { name: 'The Sculpt Legging', price: '£95', color: '#d4cec6' },
+    'perform-bra': { name: 'The Perform Bra', price: '£60', color: '#b8b0a5' },
+    'racerback-crop': { name: 'The Racerback Crop', price: '£55', color: '#c4a882' },
+    'cropped-jacket': { name: 'The Maison Statement Jacket', price: '£120', color: '#4a4540' },
+    'statement-trouser': { name: 'The Maison Statement Trouser', price: '£85', color: '#4a4540' },
+    'wide-leg-trouser': { name: 'The Reset Trouser', price: '£75', color: '#d9d3cb' },
+    'lounge-tee': { name: 'The Reset Tee', price: '£60', color: '#3a3632' }
   };
 
   let wishlist = JSON.parse(localStorage.getItem('mm_wishlist')) || [];
@@ -544,58 +544,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
 
 
-  // ==========================================
-  // BODYMAP INTERACTIVE
-  // ==========================================
-  const zones = document.querySelectorAll('.bodymap-zone');
-  const defaultInfo = document.getElementById('bodymap-default');
-  const allDetails = document.querySelectorAll('.bodymap-detail');
-
-  zones.forEach(zone => {
-    const zoneName = zone.dataset.zone;
-    const detail = document.getElementById('bodymap-' + zoneName);
-
-    zone.addEventListener('mouseenter', () => {
-      // Hide all
-      defaultInfo.style.display = 'none';
-      allDetails.forEach(d => d.style.display = 'none');
-      zones.forEach(z => z.classList.remove('active'));
-      // Show this one
-      zone.classList.add('active');
-      if (detail) detail.style.display = 'block';
-    });
-
-    zone.addEventListener('mouseleave', () => {
-      zone.classList.remove('active');
-      if (detail) detail.style.display = 'none';
-      // Check if any zone is still hovered
-      setTimeout(() => {
-        const anyActive = document.querySelector('.bodymap-zone:hover');
-        if (!anyActive) {
-          defaultInfo.style.display = 'block';
-        }
-      }, 50);
-    });
-
-    // Touch support
-    zone.addEventListener('click', (e) => {
-      e.stopPropagation();
-      defaultInfo.style.display = 'none';
-      allDetails.forEach(d => d.style.display = 'none');
-      zones.forEach(z => z.classList.remove('active'));
-      zone.classList.add('active');
-      if (detail) detail.style.display = 'block';
-    });
-  });
-
-  // Reset on click outside
-  document.querySelector('.bodymap')?.addEventListener('click', (e) => {
-    if (!e.target.closest('.bodymap-zone')) {
-      allDetails.forEach(d => d.style.display = 'none');
-      zones.forEach(z => z.classList.remove('active'));
-      defaultInfo.style.display = 'block';
-    }
-  });
 
 
   // ==========================================
