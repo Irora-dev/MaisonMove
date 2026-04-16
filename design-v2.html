@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON MOVE — A House Built for the Body in Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & TOKENS
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-void: #0D0B09;
+  --c-umber: #2C2420;
+  --c-terracotta: #6D4C3D;
+  --c-bronze: #A67B5B;
+  --c-sand: #D6C7B9;
+  --c-linen: #EDE7E0;
+  --c-alabaster: #F7F3EF;
+  --c-cream: #FFFCF8;
+
+  --f-display: 'Outfit', sans-serif;
+  --f-body: 'Outfit', sans-serif;
+  --f-brand: 'Outfit', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--c-alabaster);
+  color: var(--c-umber);
+  font-family: var(--f-body);
+  font-weight: 300;
+  line-height: 1.6;
+  cursor: crosshair;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--c-bronze);
+  color: var(--c-void);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   META / UTILITY TYPOGRAPHY
+   ============================================================ */
+.meta {
+  font-family: var(--f-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.serif-italic {
+  font-family: var(--f-display);
+  font-style: italic;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 3rem;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.main-nav * {
+  pointer-events: auto;
+}
+
+.nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nav-label {
+  font-family: var(--f-body);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-alabaster);
+  margin-bottom: 0.25rem;
+  opacity: 0.5;
+}
+
+.nav-link {
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--c-alabaster);
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--c-alabaster);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-brand {
+  font-family: var(--f-brand);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  color: var(--c-alabaster);
+  text-align: center;
+  padding-top: 0.15rem;
+}
+
+.nav-right {
+  text-align: right;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 110vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--c-alabaster);
+  margin-top: 0;
+}
+
+.hero-curves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-curves svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 85%;
+  filter: sepia(3%) contrast(1.02);
+}
+
+.hero-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--c-alabaster) 0%, rgba(247,243,239,0.5) 40%, transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-gradient-top {
+  display: none;
+}
+
+.hero-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 5vw;
+  z-index: 6;
+  pointer-events: none;
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-svg-text {
+  width: clamp(340px, 80vw, 1000px);
+  opacity: 0;
+  animation: heroFadeUp 1.4s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+}
+
+.hero-subtitle {
+  font-family: var(--f-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-terracotta);
+  margin-top: 2rem;
+}
+
+.hero-badge {
+  position: absolute;
+  right: 8vw;
+  top: 35%;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--c-bronze);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-badge svg {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+/* ============================================================
+   SPINNING CIRCLE INTERLUDE
+   ============================================================ */
+.circle-interlude {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem 8rem;
+  margin-top: -200px;
+  background: transparent;
+  overflow: visible;
+  z-index: 10;
+}
+
+.spin-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.spin-circle {
+  width: 100%;
+  height: 100%;
+  animation: spin 30s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spin-monogram {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+}
+
+.spin-monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.circle-label {
+  margin-top: 4rem;
+  font-family: var(--f-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-terracotta);
+}
+
+/* ============================================================
+   COLLECTION GRID
+   ============================================================ */
+.collection {
+  position: relative;
+  padding: 6rem 3rem 10rem;
+  background: linear-gradient(180deg, var(--c-alabaster) 0%, var(--c-cream) 100%);
+  overflow: hidden;
+}
+
+.collection-bg-curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.collection-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw 5rem;
+  gap: 2rem;
+}
+
+.collection-meta {
+  font-family: var(--f-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-terracotta);
+  white-space: nowrap;
+}
+
+.collection-header-line {
+  flex: 1;
+  height: 1px;
+  background: var(--c-bronze);
+  opacity: 0.4;
+}
+
+.collection-title {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: var(--c-umber);
+  white-space: nowrap;
+}
+
+/* Slideshow */
+.slideshow {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slideshow-track {
+  display: flex;
+  gap: 0;
+  padding: 0 5vw;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: grab;
+}
+
+.slideshow-track:active {
+  cursor: grabbing;
+}
+
+.slide {
+  flex: 0 0 calc(33.333% - 1rem);
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 50vh;
+  margin-right: 1.5rem;
+}
+
+.slide-image {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--c-linen);
+}
+
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide:hover .slide-image img {
+  transform: scale(1.03);
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(to top, rgba(13, 11, 9, 0.7) 0%, rgba(13, 11, 9, 0.3) 50%, transparent 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.slide-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slide-tech-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--c-bronze);
+  letter-spacing: 0.02em;
+}
+
+.slide-name {
+  font-family: var(--f-display);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 300;
+  color: var(--c-alabaster);
+  line-height: 1.1;
+}
+
+.slide-name em {
+  font-style: italic;
+  font-weight: 200;
+}
+
+.slide-detail {
+  font-family: var(--f-body);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-sand);
+}
+
+.slide-price {
+  font-family: var(--f-display);
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-weight: 300;
+  color: var(--c-alabaster);
+  letter-spacing: 0.05em;
+}
+
+/* Slide counter + nav */
+.slideshow-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5vw 0;
+}
+
+.slide-counter {
+  font-family: var(--f-display);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--c-terracotta);
+  letter-spacing: 0.1em;
+}
+
+.slide-counter .current {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--c-umber);
+}
+
+.slide-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.slide-nav button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--c-sand);
+  background: transparent;
+  color: var(--c-umber);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-nav button:hover {
+  background: var(--c-umber);
+  color: var(--c-alabaster);
+  border-color: var(--c-umber);
+}
+
+/* Progress bar */
+.slide-progress {
+  width: 100%;
+  height: 2px;
+  background: var(--c-linen);
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-progress-bar {
+  height: 100%;
+  background: var(--c-bronze);
+  transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Slide dots */
+.slide-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  padding-top: 1.5rem;
+}
+
+.slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--c-bronze);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.slide-dot.active {
+  background: var(--c-bronze);
+  transform: scale(1.2);
+}
+
+.product-meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-tech {
+  font-family: var(--f-body);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--c-terracotta);
+}
+
+.product-price {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--c-bronze);
+}
+
+/* ============================================================
+   ETHOS / BRAND STATEMENT
+   ============================================================ */
+.ethos-wave {
+  display: block;
+  width: 100%;
+  height: 80px;
+  background-color: var(--c-sand);
+}
+
+.ethos-wave svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ethos {
+  position: relative;
+  background-color: var(--c-sand);
+  color: var(--c-umber);
+  padding: 10rem 10vw 15rem;
+  overflow: hidden;
+}
+
+.ethos-curve {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ethos-quote {
+  position: relative;
+  z-index: 1;
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+.ethos-quote .highlight {
+  font-style: italic;
+  color: var(--c-terracotta);
+}
+
+.ethos-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--c-bronze);
+  display: flex;
+  gap: 3rem;
+}
+
+.ethos-footer span {
+  font-family: var(--f-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-terracotta);
+}
+
+/* ============================================================
+   VAULT / COMING SOON
+   ============================================================ */
+.vault-transition-in {
+  height: 40px;
+  background: linear-gradient(to bottom, var(--c-sand), var(--c-linen));
+}
+
+.vault-section {
+  position: relative;
+  background: var(--c-linen);
+  color: var(--c-umber);
+  padding: 10rem 10vw 12rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.vault-label {
+  font-family: var(--f-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  margin-bottom: 2rem;
+}
+
+.vault-title {
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  margin-bottom: 4rem;
+  color: var(--c-umber);
+}
+
+.countdown {
+  font-family: var(--f-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  color: var(--c-umber);
+}
+
+.countdown-labels {
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+  margin-bottom: 5rem;
+}
+
+.countdown-labels span {
+  font-family: var(--f-body);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-terracotta);
+}
+
+.vault-subtitle {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--c-terracotta);
+  max-width: 440px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.vault-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.vault-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--c-bronze);
+  color: var(--c-umber);
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  padding: 0.75rem 0;
+  outline: none;
+  letter-spacing: 0.05em;
+  cursor: crosshair;
+}
+
+.vault-input::placeholder {
+  color: rgba(44, 36, 32, 0.35);
+}
+
+.vault-input:focus {
+  border-bottom-color: var(--c-umber);
+}
+
+.vault-btn {
+  background: var(--c-bronze);
+  color: var(--c-cream);
+  border: none;
+  font-family: var(--f-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.vault-btn:hover {
+  background: var(--c-terracotta);
+  transform: translateY(-1px);
+}
+
+.vault-success {
+  display: none;
+  margin-top: 2rem;
+  font-family: var(--f-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--c-bronze);
+}
+
+.vault-success.show {
+  display: block;
+}
+
+.vault-transition-out {
+  height: 40px;
+  background: linear-gradient(to bottom, var(--c-linen), var(--c-alabaster));
+}
+
+/* ============================================================
+   VALUES
+   ============================================================ */
+.values {
+  padding: 10rem 5vw;
+  background: var(--c-alabaster);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.value-item {
+  padding: 2rem 2.5rem;
+  border-left: 1px solid var(--c-bronze);
+  opacity: 0.4;
+}
+
+.value-item:first-child {
+  border-left: none;
+}
+
+.value-item.is-visible {
+  opacity: 1;
+}
+
+.value-number {
+  font-family: var(--f-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--c-bronze);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.value-title {
+  font-family: var(--f-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--c-umber);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.value-desc {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--c-terracotta);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer-transition {
+  height: 40px;
+  background: linear-gradient(to bottom, var(--c-alabaster), var(--c-linen));
+}
+
+footer {
+  background-color: var(--c-linen);
+  color: var(--c-umber);
+  padding: 5rem 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-col h4 {
+  font-family: var(--f-body);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  margin-bottom: 1.25rem;
+}
+
+.footer-col a {
+  display: block;
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--c-umber);
+  opacity: 0.6;
+  margin-bottom: 0.6rem;
+  transition: opacity 0.3s ease;
+}
+
+.footer-col a:hover {
+  opacity: 1;
+}
+
+.footer-brand-watermark {
+  font-family: var(--f-brand);
+  font-size: 8vw;
+  font-weight: 400;
+  color: var(--c-umber);
+  opacity: 0.04;
+  letter-spacing: 0.15em;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(44, 36, 32, 0.1);
+}
+
+.footer-bottom span {
+  font-family: var(--f-body);
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--c-terracotta);
+  opacity: 0.5;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .main-nav {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .nav-col { gap: 0.25rem; }
+  .nav-brand { font-size: 0.75rem; letter-spacing: 0.2em; }
+
+  .hero-image-wrapper {
+    width: 90vw;
+    height: 70vh;
+    border-radius: 120px 120px 0 0;
+  }
+
+  .hero-badge {
+    right: 3vw;
+    top: 20%;
+    width: 60px;
+    height: 60px;
+  }
+
+  .circle-interlude { padding: 6rem 2rem 5rem; }
+
+  .spin-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .collection { padding: 4rem 1.5rem 6rem; }
+
+  .collection-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 2vw 3rem;
+    gap: 0.5rem;
+  }
+
+  .collection-header-line { display: none; }
+
+  .slide { flex: 0 0 calc(50% - 1rem); min-height: 45vh; }
+  .slide-name { font-size: 1.2rem; }
+  .slide-content { padding: 1.5rem 1rem; }
+
+  .ethos { padding: 8rem 6vw; }
+
+  .vault-section { padding: 6rem 5vw 8rem; }
+
+  .countdown-labels { gap: 1.5rem; }
+
+  .vault-form { flex-direction: column; }
+
+  .vault-input { width: 100%; text-align: center; }
+
+  .values-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 0;
+  }
+
+  .value-item:nth-child(3) { border-left: none; }
+
+  .footer-inner { flex-direction: column; gap: 3rem; }
+
+  .footer-brand-watermark { font-size: 15vw; text-align: left; }
+
+  .footer-bottom { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .value-item {
+    border-left: none;
+    border-top: 1px solid var(--c-bronze);
+    padding: 2rem 0;
+  }
+
+  .value-item:first-child { border-top: none; }
+
+  .hero-subtitle { font-size: 0.6rem; letter-spacing: 0.15em; }
+
+  .nav-label { display: none; }
+
+  .ethos-footer { flex-direction: column; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="main-nav">
+  <div class="nav-col">
+    <span class="nav-label">Atelier</span>
+    <a href="#collection" class="nav-link">Collection</a>
+    <a href="#ethos" class="nav-link">Technology</a>
+  </div>
+  <a href="#" class="nav-brand">MAISON MOVE</a>
+  <div class="nav-col nav-right">
+    <span class="nav-label">Boutique</span>
+    <a href="#" class="nav-link">Account</a>
+    <a href="#" class="nav-link">Cart [0]</a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <!-- Background SVG curves -->
+  <div class="hero-curves">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50,300 C200,100 500,500 800,250 S1200,400 1500,200" fill="none" stroke="#A67B5B" stroke-width="1" opacity="0.15"/>
+      <path d="M-100,500 C150,350 450,650 750,400 S1100,550 1500,350" fill="none" stroke="#A67B5B" stroke-width="0.8" opacity="0.12"/>
+      <path d="M-50,700 C300,550 600,800 900,600 S1300,700 1500,500" fill="none" stroke="#6D4C3D" stroke-width="0.6" opacity="0.08"/>
+    </svg>
+  </div>
+
+  <!-- Hero image (arch/pill shape) -->
+  <div class="hero-image-wrapper">
+    <img src="assets/hero-bg.png" alt="Maison Move — Activewear" class="hero-img">
+  </div>
+
+  <!-- Gradients -->
+  <div class="hero-gradient-top"></div>
+  <div class="hero-gradient"></div>
+
+  <!-- Overlaid hero text -->
+  <div class="hero-text">
+    <svg class="hero-svg-text" viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        .hero-letter { font-family: 'Outfit', sans-serif; font-weight: 200; fill: #2C2420; }
+        .hero-letter-italic { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; fill: #2C2420; font-style: italic; }
+      </style>
+      <text x="20" y="100" text-anchor="start" class="hero-letter" font-size="110" letter-spacing="8">A House Built</text>
+      <text x="20" y="210" text-anchor="start" class="hero-letter" font-size="110" letter-spacing="8">for the Body</text>
+      <text x="20" y="330" text-anchor="start" class="hero-letter-italic" font-size="120" letter-spacing="6">in Motion</text>
+      <!-- Decorative curved stroke -->
+      <path d="M20,350 Q240,390 460,350" fill="none" stroke="#A67B5B" stroke-width="1" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <!-- Floating badge -->
+</section>
+
+<!-- ============================================================
+     SPINNING CIRCLE INTERLUDE
+     ============================================================ -->
+<section class="circle-interlude">
+  <div class="spin-container reveal">
+    <svg class="spin-circle" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="circlePath" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/>
+      </defs>
+      <text fill="#D6C7B9" font-family="'Outfit', sans-serif" font-size="10" font-weight="400" letter-spacing="5.2">
+        <textPath href="#circlePath" textLength="1068" lengthAdjust="spacing">MAISON MOVE · MAISON MOVE · MAISON MOVE · MAISON MOVE · MAISON MOVE · MAISON MOVE ·</textPath>
+      </text>
+    </svg>
+    <span class="spin-monogram"><img src="assets/logo-monogram.png" alt="M"></span>
+  </div>
+  <p class="circle-label reveal" style="transition-delay: 0.2s;">Collection One &mdash; Foundation</p>
+</section>
+
+<!-- ============================================================
+     COLLECTION GRID
+     ============================================================ -->
+<section class="collection" id="collection">
+  <!-- Background curve -->
+  <svg class="collection-bg-curve" viewBox="0 0 1440 1200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,200 C400,50 600,400 1000,200 S1400,350 1500,150" fill="none" stroke="#A67B5B" stroke-width="0.7" opacity="0.1"/>
+    <path d="M-100,800 C200,600 500,900 900,700 S1300,850 1500,650" fill="none" stroke="#6D4C3D" stroke-width="0.5" opacity="0.07"/>
+  </svg>
+
+  <div class="collection-header reveal">
+    <span class="collection-meta">S&eacute;rie N&deg; 01 / Foundation</span>
+    <div class="collection-header-line"></div>
+    <h2 class="collection-title">Form &amp; Function</h2>
+  </div>
+
+  <div class="slideshow reveal">
+    <div class="slideshow-track" id="slideshowTrack">
+
+      <div class="slide">
+        <div class="slide-image">
+          <img src="assets/product-placeholder.png" alt="The Sculpt Legging">
+        </div>
+        <div class="slide-content">
+          <div class="slide-info">
+            <span class="slide-tech-label">SculptMap&trade;</span>
+            <h3 class="slide-name">The Sculpt <em>Legging</em></h3>
+            <span class="slide-detail">Multi-Zone Compression &mdash; &Eacute;dition de 200</span>
+          </div>
+          <span class="slide-price">&pound;95</span>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-image">
+          <img src="assets/product-placeholder.png" alt="The Perform Bra">
+        </div>
+        <div class="slide-content">
+          <div class="slide-info">
+            <span class="slide-tech-label">SculptMap&trade;</span>
+            <h3 class="slide-name">Perform <em>Bra</em></h3>
+            <span class="slide-detail">Compression Support &mdash; &Eacute;dition de 200</span>
+          </div>
+          <span class="slide-price">&pound;60</span>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-image">
+          <img src="assets/product-placeholder.png" alt="The Maison Statement Jacket">
+        </div>
+        <div class="slide-content">
+          <div class="slide-info">
+            <span class="slide-tech-label">MaisonReset&trade;</span>
+            <h3 class="slide-name">Jacket <em>Olympe</em></h3>
+            <span class="slide-detail">Lightweight Woven &middot; DWR Finish &mdash; &Eacute;dition de 150</span>
+          </div>
+          <span class="slide-price">&pound;120</span>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-image">
+          <img src="assets/product-placeholder.png" alt="The Reset Trouser">
+        </div>
+        <div class="slide-content">
+          <div class="slide-info">
+            <span class="slide-tech-label">MaisonModal&trade;</span>
+            <h3 class="slide-name">Reset <em>Trouser</em></h3>
+            <span class="slide-detail">Brushed Modal Blend &mdash; &Eacute;dition de 200</span>
+          </div>
+          <span class="slide-price">&pound;75</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ETHOS / BRAND STATEMENT
+     ============================================================ -->
+<div class="ethos-wave">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,60 C240,0 480,80 720,40 C960,0 1200,70 1440,30 L1440,80 L0,80 Z" fill="#D6C7B9"/>
+  </svg>
+</div>
+<section class="ethos" id="ethos">
+  <svg class="ethos-curve" viewBox="0 0 1440 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M-100,200 C300,50 600,350 1000,150 S1400,300 1600,100" fill="none" stroke="#6D4C3D" stroke-width="0.8" opacity="0.12"/>
+    <path d="M-50,600 C250,450 550,700 900,500 S1300,650 1500,450" fill="none" stroke="#A67B5B" stroke-width="0.6" opacity="0.08"/>
+  </svg>
+
+  <blockquote class="ethos-quote reveal">
+    Maison Move fuses fashion-house design with genuine fabric <span class="highlight">innovation</span>. Every piece is engineered to support where you need it and move where you don&rsquo;t.
+  </blockquote>
+
+  <div class="ethos-footer reveal" style="transition-delay: 0.15s;">
+    <span>Manifesto</span>
+    <span>Designed in the UK</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     VAULT / COMING SOON
+     ============================================================ -->
+<div class="vault-transition-in"></div>
+
+<section class="vault-section" id="vault">
+  <p class="vault-label reveal">Coming Soon</p>
+  <h2 class="vault-title reveal" style="transition-delay: 0.1s;">The House Opens</h2>
+
+  <div class="countdown reveal" style="transition-delay: 0.2s;" id="countdown">47 : 12 : 33 : 08</div>
+  <div class="countdown-labels reveal" style="transition-delay: 0.25s;">
+    <span>Days</span>
+    <span>Hours</span>
+    <span>Minutes</span>
+    <span>Seconds</span>
+  </div>
+
+  <p class="vault-subtitle reveal" style="transition-delay: 0.3s;">Register for early access and be the first to shop the debut collection.</p>
+
+  <form class="vault-form reveal" style="transition-delay: 0.35s;" id="vault-form">
+    <input type="email" class="vault-input" placeholder="Your email address" required>
+    <button type="submit" class="vault-btn">Notify Me</button>
+  </form>
+
+  <p class="vault-success" id="vault-success">You&rsquo;re on the list. Welcome to the house.</p>
+</section>
+
+<div class="vault-transition-out"></div>
+
+<!-- ============================================================
+     VALUES
+     ============================================================ -->
+<section class="values">
+  <div class="values-grid">
+    <div class="value-item reveal" style="transition-delay: 0s;">
+      <span class="value-number">01</span>
+      <h3 class="value-title">Fabric-First</h3>
+      <p class="value-desc">We start with the fabric, not the sketch. Every material is sourced and engineered before the first stitch is designed around it.</p>
+    </div>
+    <div class="value-item reveal" style="transition-delay: 0.1s;">
+      <span class="value-number">02</span>
+      <h3 class="value-title">Engineered, Not Decorated</h3>
+      <p class="value-desc">No gratuitous detail. Every seam, panel and construction choice has a functional reason grounded in how the body actually moves.</p>
+    </div>
+    <div class="value-item reveal" style="transition-delay: 0.2s;">
+      <span class="value-number">03</span>
+      <h3 class="value-title">Studio to Street</h3>
+      <p class="value-desc">Designed to perform in the studio and look right outside it. One wardrobe, no compromise between performance and presence.</p>
+    </div>
+    <div class="value-item reveal" style="transition-delay: 0.3s;">
+      <span class="value-number">04</span>
+      <h3 class="value-title">Quiet Luxury</h3>
+      <p class="value-desc">Whispered quality over shouted logos. The kind of product that speaks through cut, feel and fabric &mdash; not branding.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<div class="footer-transition"></div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">The Sculpt Legging</a>
+        <a href="#">The Perform Bra</a>
+        <a href="#">Jacket Olympe</a>
+        <a href="#">Reset Trouser</a>
+      </div>
+      <div class="footer-col">
+        <h4>The House</h4>
+        <a href="#">Our Story</a>
+        <a href="#">Technology</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Journal</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Sizing Guide</a>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-brand-watermark">MAISON MOVE</div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 Maison Move. All rights reserved.</span>
+    <span>Designed with Intention</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ----------------------------------------------------------
+     SCROLL REVEAL (IntersectionObserver)
+     ---------------------------------------------------------- */
+  const reveals = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(function(el) {
+      observer.observe(el);
+    });
+  } else {
+    // Fallback: show everything
+    reveals.forEach(function(el) {
+      el.classList.add('is-visible');
+    });
+  }
+
+  /* ----------------------------------------------------------
+     COUNTDOWN TIMER
+     ---------------------------------------------------------- */
+  // Set launch date to 47 days from now (initial display)
+  var launchDate = new Date();
+  launchDate.setDate(launchDate.getDate() + 47);
+  launchDate.setHours(launchDate.getHours() + 12);
+  launchDate.setMinutes(launchDate.getMinutes() + 33);
+  launchDate.setSeconds(launchDate.getSeconds() + 8);
+
+  var countdownEl = document.getElementById('countdown');
+
+  function pad(n) {
+    return n < 10 ? '0' + n : String(n);
+  }
+
+  function updateCountdown() {
+    var now = new Date();
+    var diff = launchDate - now;
+
+    if (diff <= 0) {
+      countdownEl.textContent = '00 : 00 : 00 : 00';
+      return;
+    }
+
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdownEl.textContent = pad(days) + ' : ' + pad(hours) + ' : ' + pad(minutes) + ' : ' + pad(seconds);
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ----------------------------------------------------------
+     VAULT EMAIL FORM
+     ---------------------------------------------------------- */
+  var form = document.getElementById('vault-form');
+  var successMsg = document.getElementById('vault-success');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    form.style.display = 'none';
+    successMsg.classList.add('show');
+  });
+
+  // ---- Slideshow ----
+  const track = document.getElementById('slideshowTrack');
+  const slides = track ? track.querySelectorAll('.slide') : [];
+  const totalSlides = slides.length;
+  let currentSlide = 0;
+  let dragStart = 0, dragDelta = 0, isDragging = false;
+
+  function goToSlide(i) {
+    currentSlide = Math.max(0, Math.min(i, totalSlides - 1));
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.getElementById('slideCurrent').textContent = String(currentSlide + 1).padStart(2, '0');
+    document.getElementById('slideProgress').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+    document.querySelectorAll('.slide-dot').forEach((d, idx) => d.classList.toggle('active', idx === currentSlide));
+  }
+
+  if (track) {
+    document.getElementById('slideNext').addEventListener('click', () => goToSlide(currentSlide + 1));
+    document.getElementById('slidePrev').addEventListener('click', () => goToSlide(currentSlide - 1));
+    document.querySelectorAll('.slide-dot').forEach(d => d.addEventListener('click', () => goToSlide(+d.dataset.slide)));
+
+    // Drag / swipe
+    track.addEventListener('pointerdown', e => { isDragging = true; dragStart = e.clientX; track.style.transition = 'none'; });
+    window.addEventListener('pointermove', e => {
+      if (!isDragging) return;
+      dragDelta = e.clientX - dragStart;
+      track.style.transform = `translateX(calc(-${currentSlide * 100}% + ${dragDelta}px))`;
+    });
+    window.addEventListener('pointerup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      track.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+      if (dragDelta < -60) goToSlide(currentSlide + 1);
+      else if (dragDelta > 60) goToSlide(currentSlide - 1);
+      else goToSlide(currentSlide);
+      dragDelta = 0;
+    });
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+      if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2530 @@
+/* ============================================
+   MAISON MOVE — Theme 3 & 4
+   Theme 3: "Terra Rosa" — Mediterranean warmth meets desert minimalism
+   Theme 4: "Nordic Frost" — Scandinavian precision meets ice-cool luxury
+   ============================================ */
+
+
+/* ============================================
+   THEME 3: TERRA ROSA
+   Mood: Cult Gaia, Nanushka, Aje
+   Sun-baked terracotta, dried clay, olive groves,
+   dusty rose sunsets, sculptural organic forms
+   ============================================ */
+
+[data-theme="terra"] {
+  /* --- Backgrounds --- */
+  --bg-primary: #F2EBE3;
+  --bg-secondary: #FAF6F1;
+  --bg-dark: #2A1F1A;
+  --bg-card: #F7F2EC;
+
+  /* --- Text --- */
+  --text-primary: #3D2E23;
+  --text-secondary: #8B7565;
+  --text-on-dark: #F2EBE3;
+  --text-muted: #B8A594;
+
+  /* --- Accent --- */
+  --accent: #C4725A;
+  --accent-soft: #DBBFB0;
+  --accent-hover: #A85D47;
+
+  /* --- Borders --- */
+  --border: #DBBFB0;
+  --border-subtle: #E8DED4;
+
+  /* --- Typography --- */
+  --font-display: 'Libre Caslon Display', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-weight-display: 400;
+  --font-weight-body: 300;
+
+  /* --- Radius (organic, generous, soft) --- */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+
+  /* --- Shadows (warm terracotta tones) --- */
+  --shadow-card: 0 4px 20px rgba(196, 114, 90, 0.08), 0 1px 6px rgba(61, 46, 35, 0.04);
+  --shadow-hover: 0 8px 32px rgba(196, 114, 90, 0.15), 0 2px 10px rgba(61, 46, 35, 0.06);
+
+  /* --- Spacing & Tracking --- */
+  --letter-spacing-label: 0.15em;
+  --letter-spacing-heading: 0.01em;
+
+  /* --- Grain (moderate — artisanal handmade quality) --- */
+  --grain-opacity: 0.06;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Base & Body
+   ------------------------------------------------ */
+
+[data-theme="terra"] body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Navigation
+   Solid warm cream, no blur, slight bottom shadow
+   ------------------------------------------------ */
+
+[data-theme="terra"] .nav {
+  background-color: var(--bg-secondary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+  box-shadow: 0 1px 8px rgba(61, 46, 35, 0.06);
+  border-radius: 0;
+}
+
+[data-theme="terra"] .nav-links a {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .logo-maison,
+[data-theme="terra"] .logo-move {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .nav-toggle span {
+  background: var(--text-primary);
+}
+
+[data-theme="terra"] .cart-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Announcement Bar
+   ------------------------------------------------ */
+
+[data-theme="terra"] .announcement-bar {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Hero
+   Large immersive gradient, flowing display font
+   ------------------------------------------------ */
+
+[data-theme="terra"] .hero {
+  background: linear-gradient(180deg, var(--bg-primary) 0%, #EDE0D6 40%, #E8D5C8 100%);
+}
+
+[data-theme="terra"] .hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .hero-subtitle {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+[data-theme="terra"] .hero-scroll-indicator span {
+  color: var(--text-muted);
+}
+
+[data-theme="terra"] .scroll-line {
+  background: var(--text-muted);
+}
+
+/* Hero CTA — pill shape, terracotta fill */
+[data-theme="terra"] .hero-cta,
+[data-theme="terra"] .hero-cta .btn {
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .hero-cta .btn-primary,
+[data-theme="terra"] .hero .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+[data-theme="terra"] .hero-cta .btn-primary:hover,
+[data-theme="terra"] .hero .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Rotating Circle
+   Terracotta colour, subtle background element
+   ------------------------------------------------ */
+
+[data-theme="terra"] .circle-text {
+  fill: var(--accent);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .circle-monogram {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .rotating-text-svg {
+  opacity: 0.7;
+}
+
+[data-theme="terra"] .rotating-text-container {
+  opacity: 0.18;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Buttons (global)
+   Pill-shaped, terracotta fill, cream text
+   ------------------------------------------------ */
+
+[data-theme="terra"] .btn {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+}
+
+[data-theme="terra"] .btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--bg-secondary);
+  border-color: var(--accent-hover);
+}
+
+[data-theme="terra"] .btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+[data-theme="terra"] .btn-secondary:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Brand Statement
+   No borders, generous padding, large display text
+   ------------------------------------------------ */
+
+[data-theme="terra"] .brand-statement {
+  border: none;
+  padding: 10rem 0;
+}
+
+[data-theme="terra"] .brand-statement-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .brand-statement-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Section Headers & Labels
+   Labels in terracotta, not gold
+   ------------------------------------------------ */
+
+[data-theme="terra"] .section-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--accent);
+}
+
+[data-theme="terra"] .section-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="terra"] .section-description {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Section Gradient Transitions
+   Smooth gradients between light/dark sections
+   ------------------------------------------------ */
+
+[data-theme="terra"] .countdown-section::before {
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-dark));
+}
+
+[data-theme="terra"] .collection::before {
+  background: linear-gradient(to bottom, var(--bg-dark), var(--bg-primary));
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Section Padding
+   Generous whitespace, no horizontal divider lines
+   ------------------------------------------------ */
+
+[data-theme="terra"] .collection,
+[data-theme="terra"] .technology,
+[data-theme="terra"] .story,
+[data-theme="terra"] .lookbook,
+[data-theme="terra"] .testimonials,
+[data-theme="terra"] .sustainability,
+[data-theme="terra"] .faq,
+[data-theme="terra"] .loyalty,
+[data-theme="terra"] .sculptmap-zones {
+  padding: 8rem 0;
+}
+
+[data-theme="terra"] .newsletter {
+  padding: 10rem 0;
+}
+
+[data-theme="terra"] .countdown-section {
+  padding: 8rem 0;
+}
+
+[data-theme="terra"] .section-header {
+  margin-bottom: 5rem;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Dividers
+   Thick (3px), short, terracotta, centred
+   ------------------------------------------------ */
+
+[data-theme="terra"] hr,
+[data-theme="terra"] .divider {
+  border: none;
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  margin: 2rem auto;
+  border-radius: 2px;
+}
+
+[data-theme="terra"] .tech-divider,
+[data-theme="terra"] .loyalty-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Product Cards
+   Generous rounded corners, warm terracotta shadow
+   ------------------------------------------------ */
+
+[data-theme="terra"] .product-card,
+[data-theme="terra"] .collection-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+[data-theme="terra"] .product-card {
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-md);
+  border: none;
+}
+
+[data-theme="terra"] .product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="terra"] .collection-image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Product placeholder images — warm clay tone */
+[data-theme="terra"] .product-image,
+[data-theme="terra"] .collection-placeholder {
+  background-color: #D9C9BA;
+}
+
+[data-theme="terra"] .collection-info h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .collection-tech {
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .collection-price {
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+[data-theme="terra"] .placeholder-mm {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Value Cards
+   Rounded, soft shadow
+   ------------------------------------------------ */
+
+[data-theme="terra"] .value-card,
+[data-theme="terra"] .value-item {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+  border: none;
+}
+
+[data-theme="terra"] .value-number {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .value-item h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .value-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Collection Group Headers
+   ------------------------------------------------ */
+
+[data-theme="terra"] .collection-group-header {
+  border-bottom: none;
+}
+
+[data-theme="terra"] .collection-group-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .collection-group-story {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Technology / Dark Sections
+   Rich dark clay, not cold black
+   ------------------------------------------------ */
+
+[data-theme="terra"] .technology,
+[data-theme="terra"] .tech-diff {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .technology .section-label,
+[data-theme="terra"] .technology .section-description,
+[data-theme="terra"] .tech-diff-sub {
+  color: rgba(242, 235, 227, 0.5);
+}
+
+[data-theme="terra"] .tech-card {
+  border: 1px solid rgba(242, 235, 227, 0.1);
+  border-radius: var(--radius-md);
+  transition: border-color 0.4s ease;
+}
+
+[data-theme="terra"] .tech-card:hover {
+  border-color: rgba(196, 114, 90, 0.4);
+}
+
+[data-theme="terra"] .tech-number,
+[data-theme="terra"] .tech-diff-stat,
+[data-theme="terra"] .tech-diff-detail-number {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .tech-name,
+[data-theme="terra"] .tech-diff-name,
+[data-theme="terra"] .tech-diff-question {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .tech-subtitle {
+  color: rgba(242, 235, 227, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .tech-description,
+[data-theme="terra"] .tech-diff-desc,
+[data-theme="terra"] .tech-diff-detail p {
+  color: rgba(242, 235, 227, 0.65);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .tech-diff-detail h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+}
+
+[data-theme="terra"] .tech-diff-divider {
+  background: rgba(242, 235, 227, 0.1);
+}
+
+[data-theme="terra"] .tech-diff-detail-grid {
+  border-top: 1px solid rgba(242, 235, 227, 0.08);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Countdown Section
+   Dark clay bg, terracotta accent elements
+   ------------------------------------------------ */
+
+[data-theme="terra"] .countdown-section {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-section .section-label {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .countdown-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-number {
+  font-family: var(--font-display);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-label {
+  color: rgba(242, 235, 227, 0.4);
+}
+
+[data-theme="terra"] .countdown-separator {
+  color: rgba(242, 235, 227, 0.2);
+  font-family: var(--font-display);
+}
+
+[data-theme="terra"] .countdown-text {
+  color: rgba(242, 235, 227, 0.6);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .countdown-success {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group {
+  border-color: rgba(242, 235, 227, 0.15);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group input {
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group input::placeholder {
+  color: rgba(242, 235, 227, 0.35);
+}
+
+[data-theme="terra"] .countdown-form .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+  border-radius: 0 999px 999px 0;
+}
+
+[data-theme="terra"] .countdown-form .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group button {
+  border-left-color: rgba(242, 235, 227, 0.15);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Email Input & Notify Button
+   Rounded corners, terracotta focus state
+   ------------------------------------------------ */
+
+[data-theme="terra"] .email-input,
+[data-theme="terra"] .newsletter-input-group input,
+[data-theme="terra"] .account-form input {
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="terra"] .email-input:focus,
+[data-theme="terra"] .newsletter-input-group input:focus,
+[data-theme="terra"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 114, 90, 0.15);
+  outline: none;
+}
+
+[data-theme="terra"] .email-input::placeholder,
+[data-theme="terra"] .newsletter-input-group input::placeholder,
+[data-theme="terra"] .account-form input::placeholder {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+[data-theme="terra"] .newsletter-input-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+[data-theme="terra"] .newsletter-input-group input {
+  border: none;
+  border-radius: 0;
+}
+
+[data-theme="terra"] .newsletter-input-group button {
+  border-left: 1px solid var(--border);
+}
+
+/* Notify button — pill, terracotta */
+[data-theme="terra"] .notify-btn,
+[data-theme="terra"] .newsletter-input-group .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+[data-theme="terra"] .notify-btn:hover,
+[data-theme="terra"] .newsletter-input-group .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Wishlist Button
+   Terracotta fill on active
+   ------------------------------------------------ */
+
+[data-theme="terra"] .wishlist-btn {
+  border-radius: var(--radius-sm);
+  background: rgba(242, 235, 227, 0.85);
+}
+
+[data-theme="terra"] .wishlist-btn:hover {
+  background: rgba(242, 235, 227, 1);
+}
+
+[data-theme="terra"] .wishlist-btn.active svg {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+[data-theme="terra"] .wishlist-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Story Section
+   ------------------------------------------------ */
+
+[data-theme="terra"] .story-text p {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .story-text p:last-child {
+  font-family: var(--font-display);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .story-signature span:first-child {
+  font-family: var(--font-display);
+}
+
+[data-theme="terra"] .signature-title {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — SculptMap Zones
+   No top border, clean whitespace separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .sculptmap-zones {
+  border-top: none;
+}
+
+[data-theme="terra"] .sculptmap-zone-item {
+  border-bottom: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+[data-theme="terra"] .sculptmap-zone-item:hover {
+  background: rgba(196, 114, 90, 0.04);
+}
+
+[data-theme="terra"] .sculptmap-zone-number {
+  font-family: var(--font-display);
+  color: var(--accent);
+}
+
+[data-theme="terra"] .sculptmap-zone-name {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .sculptmap-zone-tag {
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .tag-high {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+[data-theme="terra"] .sculptmap-zone-body p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Lookbook
+   No top border, clean padding separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .lookbook {
+  border-top: none;
+}
+
+[data-theme="terra"] .lookbook-image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+[data-theme="terra"] .lookbook-caption {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .lookbook-arrow {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+[data-theme="terra"] .lookbook-arrow:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+[data-theme="terra"] .lookbook-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="terra"] .lookbook-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Marquee
+   No borders, clean separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .marquee-section {
+  border-top: none;
+  border-bottom: none;
+}
+
+[data-theme="terra"] .marquee-track span {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .marquee-dot {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Testimonials
+   No top border, clean whitespace
+   ------------------------------------------------ */
+
+[data-theme="terra"] .testimonials {
+  border-top: none;
+}
+
+[data-theme="terra"] .testimonial-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+[data-theme="terra"] .testimonial-card:hover {
+  border-color: var(--accent-soft);
+  box-shadow: var(--shadow-card);
+}
+
+[data-theme="terra"] .testimonial-stars span {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .testimonial-quote {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .testimonial-name {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .testimonial-detail {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .testimonials-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="terra"] .testimonials-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Newsletter
+   ------------------------------------------------ */
+
+[data-theme="terra"] .newsletter-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .newsletter-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .newsletter-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Sustainability
+   No borders, clean whitespace separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .sustainability {
+  border-top: none;
+}
+
+[data-theme="terra"] .sustainability-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .cert-badge {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+[data-theme="terra"] .cert-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Loyalty / Tiers
+   No top border, clean whitespace
+   ------------------------------------------------ */
+
+[data-theme="terra"] .loyalty {
+  border-top: none;
+}
+
+[data-theme="terra"] .loyalty-tier {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color 0.4s ease;
+}
+
+[data-theme="terra"] .loyalty-tier:hover {
+  border-color: var(--accent-soft);
+}
+
+[data-theme="terra"] .loyalty-tier-featured {
+  border-color: var(--accent);
+}
+
+[data-theme="terra"] .loyalty-tier-featured:hover {
+  border-color: var(--accent);
+}
+
+[data-theme="terra"] .loyalty-tier-name {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+}
+
+[data-theme="terra"] .loyalty-tier-points {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .loyalty-perks li::before {
+  background: var(--accent);
+}
+
+[data-theme="terra"] .loyalty-tier-badge {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-radius: 999px;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — FAQ
+   No top border, clean whitespace
+   ------------------------------------------------ */
+
+[data-theme="terra"] .faq {
+  border-top: none;
+}
+
+[data-theme="terra"] .faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .faq-question {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .faq-answer p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Modals
+   ------------------------------------------------ */
+
+[data-theme="terra"] .modal-overlay {
+  background: rgba(42, 31, 26, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="terra"] .modal {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="terra"] .modal-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .modal-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .modal-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Account Tabs & Forms
+   ------------------------------------------------ */
+
+[data-theme="terra"] .account-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .account-tab {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .account-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+[data-theme="terra"] .account-form input {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: transparent;
+}
+
+[data-theme="terra"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 114, 90, 0.15);
+}
+
+[data-theme="terra"] .account-footer-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Dashboard
+   ------------------------------------------------ */
+
+[data-theme="terra"] .dashboard-loyalty {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+[data-theme="terra"] .dashboard-points-number {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .dashboard-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Mobile Menu
+   ------------------------------------------------ */
+
+[data-theme="terra"] .mobile-menu {
+  background: var(--bg-primary);
+}
+
+[data-theme="terra"] .mobile-menu-inner a {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Footer
+   Dark clay background
+   ------------------------------------------------ */
+
+[data-theme="terra"] .footer {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .footer-logo .logo-maison,
+[data-theme="terra"] .footer-logo .logo-move {
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .footer-tagline {
+  color: rgba(242, 235, 227, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .footer-col h4 {
+  color: rgba(242, 235, 227, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .footer-col ul a {
+  font-family: var(--font-body);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .footer-bottom {
+  border-top: 1px solid rgba(242, 235, 227, 0.1);
+}
+
+[data-theme="terra"] .footer-bottom p {
+  color: rgba(242, 235, 227, 0.35);
+}
+
+[data-theme="terra"] .footer-legal a {
+  color: rgba(242, 235, 227, 0.35);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Cookie Banner
+   ------------------------------------------------ */
+
+[data-theme="terra"] .cookie-banner {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+[data-theme="terra"] .cookie-inner p {
+  color: rgba(242, 235, 227, 0.7);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .cookie-banner .btn-secondary {
+  color: var(--text-on-dark);
+  border-color: rgba(242, 235, 227, 0.3);
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .cookie-banner .btn-secondary:hover {
+  background: var(--text-on-dark);
+  color: var(--bg-dark);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Back to Top
+   ------------------------------------------------ */
+
+[data-theme="terra"] .back-to-top {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="terra"] .back-to-top:hover {
+  background: var(--accent-hover);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Instagram Grid
+   ------------------------------------------------ */
+
+[data-theme="terra"] .instagram-placeholder {
+  background-color: #D9C9BA;
+}
+
+[data-theme="terra"] .instagram-overlay {
+  background: rgba(42, 31, 26, 0);
+}
+
+[data-theme="terra"] .instagram-item:hover .instagram-overlay {
+  background: rgba(42, 31, 26, 0.15);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Size Guide Table
+   ------------------------------------------------ */
+
+[data-theme="terra"] .size-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .size-tab {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .size-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+[data-theme="terra"] .size-table th {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .size-table td {
+  font-family: var(--font-body);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .size-table tbody tr:hover {
+  background: rgba(196, 114, 90, 0.04);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Loader
+   ------------------------------------------------ */
+
+[data-theme="terra"] .loader {
+  background: var(--bg-primary);
+}
+
+[data-theme="terra"] .loader-monogram {
+  color: var(--accent);
+}
+
+
+
+
+/* ============================================
+   THEME 4: NORDIC FROST
+   Mood: COS, Toteme, Acne Studios
+   Hyper-clean, cool-toned, mathematical precision,
+   fjord mist, polished concrete, glacier blue
+   ============================================ */
+
+[data-theme="nordic"] {
+  /* --- Backgrounds --- */
+  --bg-primary: #F4F5F7;
+  --bg-secondary: #FFFFFF;
+  --bg-dark: #1C1E22;
+  --bg-card: #FFFFFF;
+
+  /* --- Text --- */
+  --text-primary: #1C1E22;
+  --text-secondary: #6B7280;
+  --text-on-dark: #F4F5F7;
+  --text-muted: #9CA3AF;
+
+  /* --- Accent --- */
+  --accent: #5B8FA8;
+  --accent-soft: #C8D8E0;
+  --accent-hover: #4A7A91;
+
+  /* --- Borders --- */
+  --border: #E2E5EA;
+  --border-subtle: #EBEDF0;
+
+  /* --- Typography --- */
+  --font-display: 'Poiret One', cursive;
+  --font-body: 'Inter', sans-serif;
+  --font-weight-display: 400;
+  --font-weight-body: 300;
+
+  /* --- Radius (almost sharp — Swiss precision) --- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* --- Shadows (barely there — flat design) --- */
+  --shadow-card: 0 1px 3px rgba(28, 30, 34, 0.04);
+  --shadow-hover: 0 2px 6px rgba(28, 30, 34, 0.06);
+
+  /* --- Spacing & Tracking --- */
+  --letter-spacing-label: 0.3em;
+  --letter-spacing-heading: 0.08em;
+
+  /* --- Grain (none — pristine, clean) --- */
+  --grain-opacity: 0;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Base & Body
+   ------------------------------------------------ */
+
+[data-theme="nordic"] body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Navigation
+   Pure white, crisp 1px bottom border, no blur
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .nav {
+  background-color: var(--bg-secondary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: none;
+  border-radius: 0;
+}
+
+[data-theme="nordic"] .nav-links a {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .logo-maison {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.45em;
+}
+
+[data-theme="nordic"] .logo-move {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.65em;
+}
+
+[data-theme="nordic"] .nav-toggle span {
+  background: var(--text-primary);
+}
+
+[data-theme="nordic"] .cart-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Announcement Bar
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .announcement-bar {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+  letter-spacing: var(--letter-spacing-label);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Hero
+   Clean cool gradient, wide-tracked display font
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .hero {
+  background: linear-gradient(180deg, #F4F5F7 0%, #FFFFFF 100%);
+}
+
+[data-theme="nordic"] .hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+[data-theme="nordic"] .hero-subtitle {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+}
+
+[data-theme="nordic"] .hero-scroll-indicator span {
+  color: var(--text-muted);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .scroll-line {
+  background: var(--text-muted);
+}
+
+/* Hero CTA — rectangular, glacier blue, wide letter-spacing */
+[data-theme="nordic"] .hero-cta .btn,
+[data-theme="nordic"] .hero .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .hero-cta .btn:hover,
+[data-theme="nordic"] .hero .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Rotating Circle
+   Thin glacier blue stroke, very subtle
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .circle-text {
+  fill: var(--accent);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+  font-weight: 300;
+}
+
+[data-theme="nordic"] .circle-monogram {
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .rotating-text-svg {
+  opacity: 0.5;
+}
+
+[data-theme="nordic"] .rotating-text-container {
+  opacity: 0.12;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Buttons (global)
+   Rectangular (tiny radius), glacier blue fill
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .btn {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="nordic"] .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+}
+
+[data-theme="nordic"] .btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--bg-secondary);
+  border-color: var(--accent-hover);
+}
+
+[data-theme="nordic"] .btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+[data-theme="nordic"] .btn-secondary:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Brand Statement
+   Display font ultra-light, subtle borders, generous padding
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .brand-statement {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10rem 0;
+}
+
+[data-theme="nordic"] .brand-statement-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .brand-statement-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Section Headers & Labels
+   Glacier blue, extremely tracked out (0.3em)
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .section-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .section-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .section-description {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Section Gradient Transitions
+   Smooth gradients between light/dark sections
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .countdown-section::before {
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-dark));
+}
+
+[data-theme="nordic"] .collection::before {
+  background: linear-gradient(to bottom, var(--bg-dark), var(--bg-primary));
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Section Padding
+   Generous whitespace for Scandi airiness
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .collection,
+[data-theme="nordic"] .technology,
+[data-theme="nordic"] .story,
+[data-theme="nordic"] .lookbook,
+[data-theme="nordic"] .testimonials,
+[data-theme="nordic"] .sustainability,
+[data-theme="nordic"] .faq,
+[data-theme="nordic"] .loyalty,
+[data-theme="nordic"] .sculptmap-zones {
+  padding: 10rem 0;
+}
+
+[data-theme="nordic"] .newsletter {
+  padding: 10rem 0;
+}
+
+[data-theme="nordic"] .countdown-section {
+  padding: 8rem 0;
+}
+
+[data-theme="nordic"] .section-header {
+  margin-bottom: 5rem;
+}
+
+[data-theme="nordic"] .values-grid {
+  gap: 4rem;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Dividers
+   1px cool grey, full width, structural, grid-like
+   ------------------------------------------------ */
+
+[data-theme="nordic"] hr,
+[data-theme="nordic"] .divider {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 2rem 0;
+  border-radius: 0;
+}
+
+[data-theme="nordic"] .tech-divider,
+[data-theme="nordic"] .loyalty-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--accent-soft);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Product Cards
+   White, 1px border, barely-there shadow, precise
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .product-card,
+[data-theme="nordic"] .collection-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+[data-theme="nordic"] .product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-md);
+}
+
+/* Card hover: subtle border change only, no lift */
+[data-theme="nordic"] .product-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+  transform: none;
+}
+
+[data-theme="nordic"] .collection-image {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+/* Product placeholder images — cool grey */
+[data-theme="nordic"] .product-image,
+[data-theme="nordic"] .collection-placeholder {
+  background-color: #E8EAED;
+}
+
+[data-theme="nordic"] .collection-info h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .collection-tech {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .collection-price {
+  color: var(--text-primary);
+  font-weight: 400;
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .placeholder-mm {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Value Cards
+   White, bordered, flat
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .value-card,
+[data-theme="nordic"] .value-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2rem;
+  box-shadow: none;
+}
+
+[data-theme="nordic"] .value-number {
+  color: var(--accent);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .value-item h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .value-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Collection Group Headers
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .collection-group-header {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .collection-group-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .collection-group-story {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Technology / Dark Sections
+   Anthracite #1C1E22, glacier blue accents
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .technology,
+[data-theme="nordic"] .tech-diff {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .technology .section-label,
+[data-theme="nordic"] .technology .section-description,
+[data-theme="nordic"] .tech-diff-sub {
+  color: rgba(244, 245, 247, 0.5);
+}
+
+[data-theme="nordic"] .tech-card {
+  border: 1px solid rgba(244, 245, 247, 0.06);
+  border-radius: var(--radius-md);
+  transition: border-color 0.3s ease;
+}
+
+[data-theme="nordic"] .tech-card:hover {
+  border-color: rgba(91, 143, 168, 0.35);
+}
+
+[data-theme="nordic"] .tech-number,
+[data-theme="nordic"] .tech-diff-stat,
+[data-theme="nordic"] .tech-diff-detail-number {
+  color: var(--accent);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .tech-name,
+[data-theme="nordic"] .tech-diff-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-on-dark);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .tech-diff-question {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .tech-subtitle {
+  color: rgba(244, 245, 247, 0.5);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .tech-description,
+[data-theme="nordic"] .tech-diff-desc,
+[data-theme="nordic"] .tech-diff-detail p {
+  color: rgba(244, 245, 247, 0.6);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .tech-diff-detail h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .tech-diff-divider {
+  background: rgba(244, 245, 247, 0.06);
+}
+
+[data-theme="nordic"] .tech-diff-detail-grid {
+  border-top: 1px solid rgba(244, 245, 247, 0.06);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Countdown Section
+   Anthracite bg, glacier blue accent elements
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .countdown-section {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .countdown-section .section-label {
+  color: var(--accent);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .countdown-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .countdown-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .countdown-label {
+  color: rgba(244, 245, 247, 0.4);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .countdown-separator {
+  color: rgba(244, 245, 247, 0.15);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+[data-theme="nordic"] .countdown-text {
+  color: rgba(244, 245, 247, 0.6);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .countdown-success {
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group {
+  border-color: rgba(244, 245, 247, 0.1);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group input {
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group input::placeholder {
+  color: rgba(244, 245, 247, 0.3);
+}
+
+[data-theme="nordic"] .countdown-form .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .countdown-form .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group button {
+  border-left-color: rgba(244, 245, 247, 0.1);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Email Input & Notify Button
+   Sharp corners, thin border, blue focus
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .email-input,
+[data-theme="nordic"] .newsletter-input-group input,
+[data-theme="nordic"] .account-form input {
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="nordic"] .email-input:focus,
+[data-theme="nordic"] .newsletter-input-group input:focus,
+[data-theme="nordic"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(91, 143, 168, 0.12);
+  outline: none;
+}
+
+[data-theme="nordic"] .email-input::placeholder,
+[data-theme="nordic"] .newsletter-input-group input::placeholder,
+[data-theme="nordic"] .account-form input::placeholder {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+[data-theme="nordic"] .newsletter-input-group {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="nordic"] .newsletter-input-group input {
+  border: none;
+  border-radius: 0;
+}
+
+[data-theme="nordic"] .newsletter-input-group button {
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* Notify button — rectangular, glacier blue */
+[data-theme="nordic"] .notify-btn,
+[data-theme="nordic"] .newsletter-input-group .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .notify-btn:hover,
+[data-theme="nordic"] .newsletter-input-group .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Wishlist Button
+   Glacier blue fill on active
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .wishlist-btn {
+  border-radius: var(--radius-sm);
+  background: rgba(244, 245, 247, 0.9);
+}
+
+[data-theme="nordic"] .wishlist-btn:hover {
+  background: rgba(244, 245, 247, 1);
+}
+
+[data-theme="nordic"] .wishlist-btn.active svg {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+[data-theme="nordic"] .wishlist-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Story Section
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .story-text p {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .story-text p:last-child {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .story-signature span:first-child {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+[data-theme="nordic"] .signature-title {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — SculptMap Zones
+   Subtle borders kept for Scandi grid feel
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .sculptmap-zones {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .sculptmap-zone-item {
+  border-bottom: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .sculptmap-zone-item:hover {
+  background: rgba(91, 143, 168, 0.03);
+}
+
+[data-theme="nordic"] .sculptmap-zone-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .sculptmap-zone-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .sculptmap-zone-tag {
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="nordic"] .tag-high {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+[data-theme="nordic"] .sculptmap-zone-body p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Lookbook
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .lookbook {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .lookbook-image {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="nordic"] .lookbook-caption {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+}
+
+[data-theme="nordic"] .lookbook-arrow {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+[data-theme="nordic"] .lookbook-arrow:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .lookbook-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="nordic"] .lookbook-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Marquee
+   Subtle borders kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .marquee-section {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .marquee-track span {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .marquee-dot {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Testimonials
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .testimonials {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .testimonial-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  transition: border-color 0.2s ease;
+}
+
+[data-theme="nordic"] .testimonial-card:hover {
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .testimonial-stars span {
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .testimonial-quote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .testimonial-name {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .testimonial-detail {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .testimonials-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="nordic"] .testimonials-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Newsletter
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .newsletter-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .newsletter-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .newsletter-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Sustainability
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .sustainability {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .sustainability-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .cert-badge {
+  border: 1px solid var(--text-muted);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .cert-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Loyalty / Tiers
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .loyalty {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .loyalty-tier {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease;
+}
+
+[data-theme="nordic"] .loyalty-tier:hover {
+  border-color: var(--accent-soft);
+}
+
+[data-theme="nordic"] .loyalty-tier-featured {
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .loyalty-tier-featured:hover {
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .loyalty-tier-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .loyalty-tier-points {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .loyalty-perks li::before {
+  background: var(--accent);
+}
+
+[data-theme="nordic"] .loyalty-tier-badge {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — FAQ
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .faq {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .faq-question {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+[data-theme="nordic"] .faq-answer p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Modals
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .modal-overlay {
+  background: rgba(28, 30, 34, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="nordic"] .modal {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="nordic"] .modal-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .modal-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .modal-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Account Tabs & Forms
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .account-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .account-tab {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .account-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+[data-theme="nordic"] .account-form input {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: transparent;
+}
+
+[data-theme="nordic"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(91, 143, 168, 0.12);
+}
+
+[data-theme="nordic"] .account-footer-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Dashboard
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .dashboard-loyalty {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+[data-theme="nordic"] .dashboard-points-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .dashboard-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Mobile Menu
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .mobile-menu {
+  background: var(--bg-secondary);
+}
+
+[data-theme="nordic"] .mobile-menu-inner a {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Footer
+   Anthracite background
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .footer {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .footer-logo .logo-maison,
+[data-theme="nordic"] .footer-logo .logo-move {
+  color: var(--text-on-dark);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+[data-theme="nordic"] .footer-tagline {
+  color: rgba(244, 245, 247, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .footer-col h4 {
+  color: rgba(244, 245, 247, 0.5);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .footer-col ul a {
+  font-family: var(--font-body);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .footer-bottom {
+  border-top: 1px solid rgba(244, 245, 247, 0.06);
+}
+
+[data-theme="nordic"] .footer-bottom p {
+  color: rgba(244, 245, 247, 0.35);
+}
+
+[data-theme="nordic"] .footer-legal a {
+  color: rgba(244, 245, 247, 0.35);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Cookie Banner
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .cookie-banner {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .cookie-inner p {
+  color: rgba(244, 245, 247, 0.7);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .cookie-banner .btn-secondary {
+  color: var(--text-on-dark);
+  border-color: rgba(244, 245, 247, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="nordic"] .cookie-banner .btn-secondary:hover {
+  background: var(--text-on-dark);
+  color: var(--bg-dark);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Back to Top
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .back-to-top {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="nordic"] .back-to-top:hover {
+  background: var(--accent-hover);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Instagram Grid
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .instagram-placeholder {
+  background-color: #E8EAED;
+}
+
+[data-theme="nordic"] .instagram-overlay {
+  background: rgba(28, 30, 34, 0);
+}
+
+[data-theme="nordic"] .instagram-item:hover .instagram-overlay {
+  background: rgba(28, 30, 34, 0.1);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Size Guide Table
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .size-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .size-tab {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .size-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+[data-theme="nordic"] .size-table th {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .size-table td {
+  font-family: var(--font-body);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .size-table tbody tr:hover {
+  background: rgba(91, 143, 168, 0.03);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Loader
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .loader {
+  background: var(--bg-primary);
+}
+
+[data-theme="nordic"] .loader-monogram {
+  color: var(--accent);
+}

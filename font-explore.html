@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Move — Font Exploration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Instrument+Serif:ital@0;1&family=Jost:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500&family=Outfit:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Prata&family=Sora:wght@200;300;400&family=Space+Grotesk:wght@300;400;500&family=Urbanist:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Reset & Base ────────────────────────────────────────── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #F7F3EF;
+    --bg-card: #FFFFFF;
+    --text: #2C2420;
+    --text-muted: #7A6E65;
+    --bronze: #A67B5B;
+    --bronze-light: #C9A882;
+    --gold: #C5A265;
+    --border: #E8E0D8;
+    --border-hover: #D4C8BC;
+    --shadow: 0 2px 16px rgba(44,36,32,0.06);
+    --shadow-hover: 0 8px 32px rgba(44,36,32,0.10);
+    --shadow-expanded: 0 16px 48px rgba(44,36,32,0.14);
+    --radius: 12px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Page Header ─────────────────────────────────────────── */
+  .page-header {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px 0;
+  }
+
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 3rem;
+    letter-spacing: 0.12em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .page-header .subtitle {
+    font-weight: 300;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 40px;
+  }
+
+  .page-header .subtitle em {
+    color: var(--bronze);
+    font-style: italic;
+  }
+
+  /* ── Filters ─────────────────────────────────────────────── */
+  .filters-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247, 243, 239, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    margin-bottom: 48px;
+  }
+
+  .filters-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--bronze);
+    color: var(--bronze);
+  }
+
+  .filter-btn.active {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  .filter-count {
+    margin-left: auto;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Section Titles ──────────────────────────────────────── */
+  .section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .section-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--bronze);
+    margin-bottom: 48px;
+  }
+
+  /* ── Grids ───────────────────────────────────────────────── */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-bottom: 80px;
+  }
+
+  /* ── Font Card ───────────────────────────────────────────── */
+  .font-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .font-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--bronze), var(--bronze-light));
+    opacity: 0;
+    transition: var(--transition);
+  }
+
+  .font-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .font-card:hover::before {
+    opacity: 1;
+  }
+
+  .font-card.expanded {
+    grid-column: 1 / -1;
+    padding: 48px;
+    box-shadow: var(--shadow-expanded);
+  }
+
+  .font-card.expanded::before {
+    opacity: 1;
+  }
+
+  .font-card.favourite {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold), var(--shadow);
+  }
+
+  .font-card.favourite::before {
+    background: linear-gradient(90deg, var(--gold), #D4B87A);
+    opacity: 1;
+  }
+
+  /* ── Card Header ─────────────────────────────────────────── */
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .card-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .card-mood {
+    font-size: 0.72rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bronze);
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+  }
+
+  .card-category {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    background: rgba(166, 123, 91, 0.08);
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 6px;
+  }
+
+  .star-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+
+  .star-btn:hover {
+    background: rgba(197, 162, 101, 0.1);
+  }
+
+  .star-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: var(--transition);
+  }
+
+  .star-btn .star-outline { color: var(--border-hover); }
+  .star-btn .star-filled { color: var(--gold); display: none; }
+
+  .font-card.favourite .star-btn .star-outline { display: none; }
+  .font-card.favourite .star-btn .star-filled { display: block; }
+
+  /* ── Font Samples ────────────────────────────────────────── */
+  .sample-brand {
+    font-size: 1.1rem;
+    letter-spacing: 0.28em;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .font-card.expanded .sample-brand {
+    font-size: 1.4rem;
+    margin-bottom: 28px;
+  }
+
+  .sample-headline {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .font-card.expanded .sample-headline {
+    font-size: 2.2rem;
+    margin-bottom: 28px;
+  }
+
+  .sample-product {
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .font-card.expanded .sample-product {
+    font-size: 1.2rem;
+  }
+
+  .sample-body {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .font-card.expanded .sample-body {
+    font-size: 1rem;
+    max-width: 560px;
+  }
+
+  .sample-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bronze);
+  }
+
+  .font-card.expanded .sample-label {
+    font-size: 0.78rem;
+  }
+
+  /* ── Pairing Card Extras ─────────────────────────────────── */
+  .pairing-fonts {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 6px;
+  }
+
+  .pairing-fonts span {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .pairing-fonts .divider {
+    color: var(--border);
+  }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  .page-footer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 40px 60px;
+    text-align: center;
+  }
+
+  .page-footer p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 720px) {
+    .page-header { padding: 40px 24px 0; }
+    .page-header h1 { font-size: 2rem; }
+    .filters-inner { padding: 0 24px; }
+    .section-container { padding: 0 24px; }
+    .grid-3 { grid-template-columns: 1fr; gap: 16px; }
+    .grid-2 { grid-template-columns: 1fr; gap: 16px; }
+    .font-card { padding: 24px; }
+    .font-card.expanded { padding: 32px; }
+    .sample-headline { font-size: 1.3rem; }
+    .font-card.expanded .sample-headline { font-size: 1.6rem; }
+    .page-footer { padding: 32px 24px 48px; }
+  }
+
+  /* ── Animations ──────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .font-card {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .font-card[data-hidden="true"] {
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════ Header ═══════════════ -->
+<header class="page-header">
+  <h1>MAISON MOVE</h1>
+  <p class="subtitle">Font exploration for a premium women's activewear brand. <em>Find the voice.</em></p>
+</header>
+
+<!-- ═══════════════ Filters ═══════════════ -->
+<nav class="filters-bar">
+  <div class="filters-inner">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="sans">Sans Serif</button>
+    <button class="filter-btn" data-filter="serif">Serif</button>
+    <button class="filter-btn" data-filter="pairing">Pairings</button>
+    <button class="filter-btn" data-filter="mono">Same Family</button>
+    <button class="filter-btn" data-filter="favourite">Favourites</button>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════ Individual Fonts ═══════════════ -->
+<section class="section-container">
+  <h2 class="section-title">Individual Typefaces</h2>
+  <p class="section-desc">Each font shown across all five content samples. Click to expand, star to save.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-3" id="individualsGrid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<!-- ═══════════════ Pairings ═══════════════ -->
+<section class="section-container">
+  <h2 class="section-title">Font Pairings</h2>
+  <p class="section-desc">Headline in Font A, body and labels in Font B. The italic accent carries <em>in Motion</em>.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-2" id="pairingsGrid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<!-- ═══════════════ Mixed Weight ═══════════════ -->
+<section class="section-container">
+  <h2 class="section-title">Mixed Weight Pairings</h2>
+  <p class="section-desc">One font family at different weights — testing how a single typeface carries the full range.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-3" id="monoGrid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+</main>
+
+<footer class="page-footer">
+  <p>MAISON MOVE &mdash; FONT EXPLORATION &mdash; 2026</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ── Data ─────────────────────────────────────────────
+  const individuals = [
+    { name: 'Cormorant Garamond', family: "'Cormorant Garamond', serif", weights: { brand: 300, headline: 300, headlineItalic: true, product: 400, body: 300, label: 400 }, type: 'serif', mood: 'Thin elegant serif' },
+    { name: 'Playfair Display', family: "'Playfair Display', serif", weights: { brand: 400, headline: 400, headlineItalic: true, product: 500, body: 400, label: 500 }, type: 'serif', mood: 'High-contrast Didone' },
+    { name: 'Sora', family: "'Sora', sans-serif", weights: { brand: 200, headline: 200, headlineItalic: false, product: 300, body: 300, label: 400 }, type: 'sans', mood: 'Geometric modern' },
+    { name: 'Plus Jakarta Sans', family: "'Plus Jakarta Sans', sans-serif", weights: { brand: 300, headline: 300, headlineItalic: false, product: 400, body: 300, label: 500 }, type: 'sans', mood: 'Warm modern' },
+    { name: 'Outfit', family: "'Outfit', sans-serif", weights: { brand: 200, headline: 200, headlineItalic: false, product: 300, body: 300, label: 400 }, type: 'sans', mood: 'Soft geometric' },
+    { name: 'DM Sans', family: "'DM Sans', sans-serif", weights: { brand: 300, headline: 300, headlineItalic: false, product: 400, body: 300, label: 500 }, type: 'sans', mood: 'Clean geometric' },
+    { name: 'Manrope', family: "'Manrope', sans-serif", weights: { brand: 300, headline: 300, headlineItalic: false, product: 400, body: 300, label: 500 }, type: 'sans', mood: 'Modern rounded' },
+    { name: 'Bricolage Grotesque', family: "'Bricolage Grotesque', sans-serif", weights: { brand: 300, headline: 300, headlineItalic: false, product: 400, body: 300, label: 500 }, type: 'sans', mood: 'Trendy editorial' },
+    { name: 'Space Grotesk', family: "'Space Grotesk', sans-serif", weights: { brand: 300, headline: 300, headlineItalic: false, product: 400, body: 300, label: 500 }, type: 'sans', mood: 'Techy modern' },
+    { name: 'Urbanist', family: "'Urbanist', sans-serif", weights: { brand: 200, headline: 200, headlineItalic: false, product: 300, body: 300, label: 400 }, type: 'sans', mood: 'Ultra clean' },
+    { name: 'Prata', family: "'Prata', serif", weights: { brand: 400, headline: 400, headlineItalic: false, product: 400, body: 400, label: 400 }, type: 'serif', mood: 'Elegant serif' },
+    { name: 'Fraunces', family: "'Fraunces', serif", weights: { brand: 300, headline: 300, headlineItalic: true, product: 400, body: 300, label: 400 }, type: 'serif', mood: 'Soft serif with character' },
+    { name: 'Instrument Serif', family: "'Instrument Serif', serif", weights: { brand: 400, headline: 400, headlineItalic: true, product: 400, body: 400, label: 400 }, type: 'serif', mood: 'Modern editorial serif' },
+    { name: 'Lora', family: "'Lora', serif", weights: { brand: 400, headline: 400, headlineItalic: true, product: 500, body: 400, label: 500 }, type: 'serif', mood: 'Warm readable serif' },
+  ];
+
+  const pairings = [
+    { name: 'Modern Editorial', headFont: "'Instrument Serif', serif", headWeight: 400, headItalicFont: "'Instrument Serif', serif", bodyFont: "'DM Sans', sans-serif", bodyWeight: 400, labelWeight: 500, fonts: 'Instrument Serif + DM Sans' },
+    { name: 'Soft Luxury', headFont: "'Fraunces', serif", headWeight: 300, headItalicFont: "'Fraunces', serif", bodyFont: "'Plus Jakarta Sans', sans-serif", bodyWeight: 300, labelWeight: 500, fonts: 'Fraunces + Plus Jakarta Sans' },
+    { name: 'Elegant Clean', headFont: "'Prata', serif", headWeight: 400, headItalicFont: "'Prata', serif", bodyFont: "'Outfit', sans-serif", bodyWeight: 300, labelWeight: 400, fonts: 'Prata + Outfit' },
+    { name: 'Classic Modern', headFont: "'Playfair Display', serif", headWeight: 400, headItalicFont: "'Playfair Display', serif", bodyFont: "'Manrope', sans-serif", bodyWeight: 300, labelWeight: 500, fonts: 'Playfair Display + Manrope' },
+    { name: 'Bold Editorial', headFont: "'Bricolage Grotesque', sans-serif", headWeight: 400, headItalicFont: "'Instrument Serif', serif", bodyFont: "'DM Sans', sans-serif", bodyWeight: 300, labelWeight: 500, fonts: 'Bricolage Grotesque + DM Sans' },
+    { name: 'Parisian Minimal', headFont: "'Cormorant Garamond', serif", headWeight: 300, headItalicFont: "'Cormorant Garamond', serif", bodyFont: "'Jost', sans-serif", bodyWeight: 300, labelWeight: 400, fonts: 'Cormorant Garamond + Jost', current: true },
+    { name: 'Tech Meets Fashion', headFont: "'Space Grotesk', sans-serif", headWeight: 300, headItalicFont: "'Instrument Serif', serif", bodyFont: "'Instrument Serif', serif", bodyWeight: 400, labelWeight: 400, fonts: 'Space Grotesk + Instrument Serif' },
+    { name: 'Clean & Warm', headFont: "'Urbanist', sans-serif", headWeight: 200, headItalicFont: "'Lora', serif", bodyFont: "'Lora', serif", bodyWeight: 400, labelWeight: 500, fonts: 'Urbanist + Lora' },
+    { name: 'Athletic Luxury', headFont: "'Plus Jakarta Sans', sans-serif", headWeight: 300, headItalicFont: "'Cormorant Garamond', serif", bodyFont: "'Plus Jakarta Sans', sans-serif", bodyWeight: 300, labelWeight: 500, fonts: 'Plus Jakarta Sans + Cormorant Garamond Italic' },
+    { name: 'Soft Contrast', headFont: "'Outfit', sans-serif", headWeight: 200, headItalicFont: "'Fraunces', serif", bodyFont: "'Outfit', sans-serif", bodyWeight: 300, labelWeight: 400, fonts: 'Outfit + Fraunces Italic' },
+    { name: 'Minimal Editorial', headFont: "'DM Sans', sans-serif", headWeight: 300, headItalicFont: "'Instrument Serif', serif", bodyFont: "'DM Sans', sans-serif", bodyWeight: 300, labelWeight: 500, fonts: 'DM Sans + Instrument Serif Italic' },
+    { name: 'Contemporary Classic', headFont: "'Manrope', sans-serif", headWeight: 300, headItalicFont: "'Playfair Display', serif", bodyFont: "'Manrope', sans-serif", bodyWeight: 300, labelWeight: 500, fonts: 'Manrope + Playfair Display Italic' },
+  ];
+
+  const monoWeights = [
+    { name: 'Plus Jakarta Sans', family: "'Plus Jakarta Sans', sans-serif", headWeight: 300, bodyWeight: 500, labelWeight: 500, desc: '300 heading + 500 body' },
+    { name: 'Outfit', family: "'Outfit', sans-serif", headWeight: 200, bodyWeight: 400, labelWeight: 400, desc: '200 heading + 400 body' },
+    { name: 'DM Sans', family: "'DM Sans', sans-serif", headWeight: 300, bodyWeight: 500, labelWeight: 500, desc: '300 heading + 500 body' },
+  ];
+
+  // ── Favourites (localStorage) ────────────────────────
+  const STORAGE_KEY = 'maisonmove_font_favs';
+  let favourites = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+
+  function saveFavourites() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...favourites]));
+  }
+
+  function toggleFavourite(id, card) {
+    if (favourites.has(id)) {
+      favourites.delete(id);
+      card.classList.remove('favourite');
+    } else {
+      favourites.add(id);
+      card.classList.add('favourite');
+    }
+    saveFavourites();
+    updateCount();
+  }
+
+  // ── Star SVG ─────────────────────────────────────────
+  function starHTML() {
+    return `
+      <svg class="star-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
+      </svg>
+      <svg class="star-filled" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
+      </svg>
+    `;
+  }
+
+  // ── Build Individual Card ────────────────────────────
+  function buildIndividualCard(font, index) {
+    const id = 'ind-' + font.name.replace(/\s+/g, '-').toLowerCase();
+    const card = document.createElement('div');
+    card.className = 'font-card';
+    card.dataset.type = font.type;
+    card.dataset.section = 'individual';
+    card.dataset.id = id;
+    if (favourites.has(id)) card.classList.add('favourite');
+    card.style.animationDelay = (index * 0.04) + 's';
+
+    const italicStyle = font.weights.headlineItalic ? 'font-style: italic;' : '';
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div>
+          <div class="card-label">${font.name}</div>
+          <div class="card-mood">${font.mood}</div>
+          <div class="card-category">${font.type}</div>
+        </div>
+        <button class="star-btn" aria-label="Toggle favourite" onclick="event.stopPropagation()">
+          ${starHTML()}
+        </button>
+      </div>
+      <div class="sample-brand" style="font-family: ${font.family}; font-weight: ${font.weights.brand};">MAISON MOVE</div>
+      <div class="sample-headline" style="font-family: ${font.family}; font-weight: ${font.weights.headline};">A House Built for the Body <span style="${italicStyle} font-family: ${font.family};">in Motion</span></div>
+      <div class="sample-product" style="font-family: ${font.family}; font-weight: ${font.weights.product};">The Sculpt Legging</div>
+      <div class="sample-body" style="font-family: ${font.family}; font-weight: ${font.weights.body};">Engineered for the woman who doesn't pause between sets and plans.</div>
+      <div class="sample-label" style="font-family: ${font.family}; font-weight: ${font.weights.label};">COLLECTION ONE &mdash; FOUNDATION</div>
+    `;
+
+    card.addEventListener('click', () => card.classList.toggle('expanded'));
+    card.querySelector('.star-btn').addEventListener('click', () => toggleFavourite(id, card));
+
+    return card;
+  }
+
+  // ── Build Pairing Card ───────────────────────────────
+  function buildPairingCard(pair, index) {
+    const id = 'pair-' + pair.name.replace(/\s+/g, '-').toLowerCase();
+    const card = document.createElement('div');
+    card.className = 'font-card';
+    card.dataset.type = 'pairing';
+    card.dataset.section = 'pairing';
+    card.dataset.id = id;
+    if (favourites.has(id)) card.classList.add('favourite');
+    card.style.animationDelay = (index * 0.05) + 's';
+
+    const currentBadge = pair.current ? ' <span style="font-size:0.6rem; background: var(--bronze); color: #fff; padding: 2px 8px; border-radius: 100px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.08em;">CURRENT</span>' : '';
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div>
+          <div class="card-label">${pair.name}${currentBadge}</div>
+          <div class="card-mood">${pair.fonts}</div>
+          <div class="card-category">pairing</div>
+        </div>
+        <button class="star-btn" aria-label="Toggle favourite" onclick="event.stopPropagation()">
+          ${starHTML()}
+        </button>
+      </div>
+      <div class="sample-brand" style="font-family: ${pair.headFont}; font-weight: ${pair.headWeight}; letter-spacing: 0.28em;">MAISON MOVE</div>
+      <div class="sample-headline" style="font-family: ${pair.headFont}; font-weight: ${pair.headWeight};">A House Built for the Body <span style="font-style: italic; font-family: ${pair.headItalicFont};">in Motion</span></div>
+      <div class="sample-product" style="font-family: ${pair.bodyFont}; font-weight: ${pair.bodyWeight}; letter-spacing: 0.06em;">The Sculpt Legging</div>
+      <div class="sample-body" style="font-family: ${pair.bodyFont}; font-weight: ${pair.bodyWeight};">Engineered for the woman who doesn't pause between sets and plans.</div>
+      <div class="sample-label" style="font-family: ${pair.bodyFont}; font-weight: ${pair.labelWeight};">COLLECTION ONE &mdash; FOUNDATION</div>
+    `;
+
+    card.addEventListener('click', () => card.classList.toggle('expanded'));
+    card.querySelector('.star-btn').addEventListener('click', () => toggleFavourite(id, card));
+
+    return card;
+  }
+
+  // ── Build Mono Card ──────────────────────────────────
+  function buildMonoCard(mono, index) {
+    const id = 'mono-' + mono.name.replace(/\s+/g, '-').toLowerCase();
+    const card = document.createElement('div');
+    card.className = 'font-card';
+    card.dataset.type = 'mono';
+    card.dataset.section = 'mono';
+    card.dataset.id = id;
+    if (favourites.has(id)) card.classList.add('favourite');
+    card.style.animationDelay = (index * 0.06) + 's';
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div>
+          <div class="card-label">${mono.name}</div>
+          <div class="card-mood">${mono.desc}</div>
+          <div class="card-category">same family</div>
+        </div>
+        <button class="star-btn" aria-label="Toggle favourite" onclick="event.stopPropagation()">
+          ${starHTML()}
+        </button>
+      </div>
+      <div class="sample-brand" style="font-family: ${mono.family}; font-weight: ${mono.headWeight}; letter-spacing: 0.28em;">MAISON MOVE</div>
+      <div class="sample-headline" style="font-family: ${mono.family}; font-weight: ${mono.headWeight};">A House Built for the Body <em style="font-family: ${mono.family}; font-weight: ${mono.headWeight};">in Motion</em></div>
+      <div class="sample-product" style="font-family: ${mono.family}; font-weight: ${mono.bodyWeight}; letter-spacing: 0.06em;">The Sculpt Legging</div>
+      <div class="sample-body" style="font-family: ${mono.family}; font-weight: ${mono.bodyWeight};">Engineered for the woman who doesn't pause between sets and plans.</div>
+      <div class="sample-label" style="font-family: ${mono.family}; font-weight: ${mono.labelWeight};">COLLECTION ONE &mdash; FOUNDATION</div>
+    `;
+
+    card.addEventListener('click', () => card.classList.toggle('expanded'));
+    card.querySelector('.star-btn').addEventListener('click', () => toggleFavourite(id, card));
+
+    return card;
+  }
+
+  // ── Render ───────────────────────────────────────────
+  const individualsGrid = document.getElementById('individualsGrid');
+  const pairingsGrid = document.getElementById('pairingsGrid');
+  const monoGrid = document.getElementById('monoGrid');
+
+  individuals.forEach((font, i) => {
+    individualsGrid.appendChild(buildIndividualCard(font, i));
+  });
+
+  pairings.forEach((pair, i) => {
+    pairingsGrid.appendChild(buildPairingCard(pair, i));
+  });
+
+  monoWeights.forEach((mono, i) => {
+    monoGrid.appendChild(buildMonoCard(mono, i));
+  });
+
+  // ── Filter Logic ─────────────────────────────────────
+  const allCards = document.querySelectorAll('.font-card');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  function updateCount() {
+    const visible = document.querySelectorAll('.font-card:not([data-hidden="true"])').length;
+    document.getElementById('filterCount').textContent = visible + ' shown';
+  }
+
+  function applyFilter(filter) {
+    allCards.forEach(card => {
+      let show = false;
+      const type = card.dataset.type;
+      const section = card.dataset.section;
+      const id = card.dataset.id;
+
+      switch (filter) {
+        case 'all':
+          show = true;
+          break;
+        case 'sans':
+          show = type === 'sans' && section === 'individual';
+          break;
+        case 'serif':
+          show = type === 'serif' && section === 'individual';
+          break;
+        case 'pairing':
+          show = section === 'pairing';
+          break;
+        case 'mono':
+          show = section === 'mono';
+          break;
+        case 'favourite':
+          show = favourites.has(id);
+          break;
+      }
+
+      card.dataset.hidden = show ? 'false' : 'true';
+    });
+
+    // Show/hide section containers
+    const sections = document.querySelectorAll('.section-container');
+    sections.forEach(section => {
+      const grid = section.querySelector('.grid-2, .grid-3');
+      if (!grid) return;
+      const hasVisible = grid.querySelector('.font-card:not([data-hidden="true"])');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+
+    updateCount();
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+    });
+  });
+
+  // Initial count
+  updateCount();
+
+})();
+</script>
+
+</body>
+</html>

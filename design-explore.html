@@ -1,0 +1,4258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="athenian">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Move — Design Exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Serif+Display&family=Inter:wght@300;400;500&family=Italiana&family=Libre+Caslon+Display&family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poiret+One&family=Space+Grotesk:wght@300;400;500&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  padding-top: 48px; /* tab bar height */
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input { font-family: inherit; }
+
+/* Smooth transition on all themed elements */
+*, *::before, *::after {
+  transition-property: background-color, color, border-color, box-shadow, opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+}
+
+/* ============================================================
+   HERO TEXT ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes revealLine {
+  from { opacity: 0; transform: translateY(30px); letter-spacing: 0.3em; }
+  to { opacity: 1; transform: translateY(0); letter-spacing: inherit; }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { opacity: var(--circle-resting-opacity, 0.18); }
+  50% { opacity: var(--circle-pulse-opacity, 0.25); }
+}
+
+/* ============================================================
+   SCROLL FADE-IN ANIMATION SYSTEM
+   ============================================================ */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.fade-in-section .stagger-1 { transition-delay: 0.1s; }
+.fade-in-section .stagger-2 { transition-delay: 0.2s; }
+.fade-in-section .stagger-3 { transition-delay: 0.3s; }
+.fade-in-section .stagger-4 { transition-delay: 0.4s; }
+.fade-in-section .stagger-5 { transition-delay: 0.5s; }
+.fade-in-section .stagger-6 { transition-delay: 0.6s; }
+
+/* ============================================================
+   THEME 1: ATHENIAN ATELIER
+   ============================================================ */
+[data-theme="athenian"] {
+  --bg-primary: #F5F0EB;
+  --bg-secondary: #FDFCFA;
+  --bg-dark: #1A1714;
+  --bg-card: #FDFCFA;
+  --text-primary: #2C2824;
+  --text-secondary: #8C8279;
+  --text-on-dark: #F5F0EB;
+  --text-muted: #B5ADA5;
+  --accent: #B8965A;
+  --accent-soft: #D4C5A9;
+  --accent-hover: #9A7D4A;
+  --border: #D4C5A9;
+  --border-subtle: #E8E2DA;
+
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Tenor Sans', sans-serif;
+  --font-weight-display: 400;
+  --font-weight-display-bold: 600;
+  --font-weight-body: 400;
+  --font-weight-body-medium: 400;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-card: 0 2px 20px rgba(44, 40, 36, 0.04);
+  --shadow-hover: 0 8px 40px rgba(44, 40, 36, 0.08);
+
+  --letter-spacing-label: 0.2em;
+  --letter-spacing-heading: -0.01em;
+
+  --section-padding: 120px;
+  --grain-opacity: 0.03;
+
+  --nav-bg: rgba(245, 240, 235, 0.85);
+  --nav-blur: 20px;
+  --nav-border: rgba(212, 197, 169, 0.5);
+
+  --btn-bg: var(--accent);
+  --btn-text: #FDFCFA;
+  --btn-border: var(--accent);
+  --btn-hover-bg: var(--accent-hover);
+  --btn-hover-text: #FDFCFA;
+  --btn-hover-border: var(--accent-hover);
+
+  --input-bg: rgba(253, 252, 250, 0.8);
+  --input-border: var(--border);
+  --input-text: var(--text-primary);
+
+  --card-border: transparent;
+  --card-hover-border: var(--accent-soft);
+
+  --divider-color: var(--accent-soft);
+  --divider-width: 60%;
+
+  --hero-circle-color: var(--accent-soft);
+  --hero-circle-width: 1px;
+  --circle-resting-opacity: 0.18;
+  --circle-pulse-opacity: 0.24;
+
+  --placeholder-bg: #EDE8E2;
+  --placeholder-text: var(--text-muted);
+}
+
+/* ============================================================
+   THEME 2: NOIR MODERNE
+   ============================================================ */
+[data-theme="noir"] {
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #141414;
+  --bg-dark: #000000;
+  --bg-card: #1A1A1A;
+  --text-primary: #F0F0F0;
+  --text-secondary: #8A8A8A;
+  --text-on-dark: #FFFFFF;
+  --text-muted: #5A5A5A;
+  --accent: #C0C0C0;
+  --accent-soft: #3A3A3A;
+  --accent-hover: #FFFFFF;
+  --border: #2A2A2A;
+  --border-subtle: #1E1E1E;
+
+  --font-display: 'Italiana', sans-serif;
+  --font-body: 'Tenor Sans', sans-serif;
+  --font-weight-display: 400;
+  --font-weight-display-bold: 400;
+  --font-weight-body: 400;
+  --font-weight-body-medium: 400;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 12px 50px rgba(0, 0, 0, 0.7);
+
+  --letter-spacing-label: 0.25em;
+  --letter-spacing-heading: 0.02em;
+
+  --section-padding: 120px;
+  --grain-opacity: 0;
+
+  --nav-bg: rgba(10, 10, 10, 0.95);
+  --nav-blur: 0px;
+  --nav-border: rgba(42, 42, 42, 0.8);
+
+  --btn-bg: transparent;
+  --btn-text: var(--accent);
+  --btn-border: var(--accent);
+  --btn-hover-bg: #FFFFFF;
+  --btn-hover-text: #000000;
+  --btn-hover-border: #FFFFFF;
+
+  --input-bg: rgba(26, 26, 26, 0.9);
+  --input-border: var(--border);
+  --input-text: var(--text-primary);
+
+  --card-border: var(--border);
+  --card-hover-border: var(--accent);
+
+  --divider-color: rgba(255, 255, 255, 0.12);
+  --divider-width: 100%;
+
+  --hero-circle-color: rgba(255, 255, 255, 0.6);
+  --hero-circle-width: 1px;
+  --circle-resting-opacity: 0.12;
+  --circle-pulse-opacity: 0.18;
+
+  --placeholder-bg: #1E1E1E;
+  --placeholder-text: var(--text-muted);
+}
+
+/* ============================================================
+   THEME 3: TERRA ROSA
+   ============================================================ */
+[data-theme="terra"] {
+  /* THEME 3 HERE */
+  --bg-primary: #FBF5F0;
+  --bg-secondary: #FFF9F5;
+  --bg-dark: #2A1A14;
+  --bg-card: #FFF9F5;
+  --text-primary: #3D2B22;
+  --text-secondary: #9E7E6F;
+  --text-on-dark: #FBF5F0;
+  --text-muted: #C4A999;
+  --accent: #C4705A;
+  --accent-soft: #E8C4B8;
+  --accent-hover: #A85A45;
+  --border: #E8C4B8;
+  --border-subtle: #F0DDD4;
+
+  --font-display: 'Libre Caslon Display', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-weight-display: 400;
+  --font-weight-display-bold: 400;
+  --font-weight-body: 300;
+  --font-weight-body-medium: 500;
+
+  --radius-sm: 20px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+
+  --shadow-card: 0 4px 24px rgba(61, 43, 34, 0.06);
+  --shadow-hover: 0 12px 48px rgba(196, 112, 90, 0.12);
+
+  --letter-spacing-label: 0.18em;
+  --letter-spacing-heading: -0.01em;
+
+  --section-padding: 120px;
+  --grain-opacity: 0.02;
+
+  --nav-bg: rgba(251, 245, 240, 0.88);
+  --nav-blur: 16px;
+  --nav-border: rgba(232, 196, 184, 0.5);
+
+  --btn-bg: var(--accent);
+  --btn-text: #FFF9F5;
+  --btn-border: var(--accent);
+  --btn-hover-bg: var(--accent-hover);
+  --btn-hover-text: #FFF9F5;
+  --btn-hover-border: var(--accent-hover);
+
+  --input-bg: rgba(255, 249, 245, 0.8);
+  --input-border: var(--border);
+  --input-text: var(--text-primary);
+
+  --card-border: transparent;
+  --card-hover-border: var(--accent);
+
+  --divider-color: var(--accent-soft);
+  --divider-width: 40%;
+
+  --hero-circle-color: var(--accent);
+  --hero-circle-width: 1.5px;
+  --circle-resting-opacity: 0.15;
+  --circle-pulse-opacity: 0.22;
+
+  --placeholder-bg: #F0DDD4;
+  --placeholder-text: var(--text-muted);
+}
+
+/* ============================================================
+   THEME 4: NORDIC FROST
+   ============================================================ */
+[data-theme="nordic"] {
+  /* THEME 4 HERE */
+  --bg-primary: #F4F6F8;
+  --bg-secondary: #FAFBFC;
+  --bg-dark: #1A1E24;
+  --bg-card: #FAFBFC;
+  --text-primary: #1A1E24;
+  --text-secondary: #7B8794;
+  --text-on-dark: #F4F6F8;
+  --text-muted: #A8B2BD;
+  --accent: #5B8BA0;
+  --accent-soft: #C8DDE6;
+  --accent-hover: #4A7589;
+  --border: #D4DEE6;
+  --border-subtle: #E8EDF2;
+
+  --font-display: 'Poiret One', cursive;
+  --font-body: 'Inter', sans-serif;
+  --font-weight-display: 400;
+  --font-weight-display-bold: 400;
+  --font-weight-body: 300;
+  --font-weight-body-medium: 400;
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-card: 0 1px 12px rgba(26, 30, 36, 0.04);
+  --shadow-hover: 0 6px 32px rgba(91, 139, 160, 0.1);
+
+  --letter-spacing-label: 0.22em;
+  --letter-spacing-heading: 0.04em;
+
+  --section-padding: 120px;
+  --grain-opacity: 0;
+
+  --nav-bg: rgba(244, 246, 248, 0.9);
+  --nav-blur: 24px;
+  --nav-border: rgba(212, 222, 230, 0.5);
+
+  --btn-bg: var(--accent);
+  --btn-text: #FAFBFC;
+  --btn-border: var(--accent);
+  --btn-hover-bg: var(--accent-hover);
+  --btn-hover-text: #FAFBFC;
+  --btn-hover-border: var(--accent-hover);
+
+  --input-bg: rgba(250, 251, 252, 0.8);
+  --input-border: var(--border);
+  --input-text: var(--text-primary);
+
+  --card-border: var(--border-subtle);
+  --card-hover-border: var(--accent);
+
+  --divider-color: var(--border);
+  --divider-width: 80%;
+
+  --hero-circle-color: var(--accent);
+  --hero-circle-width: 1px;
+  --circle-resting-opacity: 0.15;
+  --circle-pulse-opacity: 0.22;
+
+  --placeholder-bg: #E2E8EE;
+  --placeholder-text: var(--text-muted);
+}
+
+/* ------------------------------------------------
+   TERRA ROSA — Base & Body
+   ------------------------------------------------ */
+
+[data-theme="terra"] body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Navigation
+   Solid warm cream, no blur, slight bottom shadow
+   ------------------------------------------------ */
+
+[data-theme="terra"] .nav {
+  background-color: var(--bg-secondary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+  box-shadow: 0 1px 8px rgba(61, 46, 35, 0.06);
+  border-radius: 0;
+}
+
+[data-theme="terra"] .nav-links a {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .logo-maison,
+[data-theme="terra"] .logo-move {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .nav-toggle span {
+  background: var(--text-primary);
+}
+
+[data-theme="terra"] .cart-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Announcement Bar
+   ------------------------------------------------ */
+
+[data-theme="terra"] .announcement-bar {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Hero
+   Large immersive gradient, flowing display font
+   ------------------------------------------------ */
+
+[data-theme="terra"] .hero {
+  background: linear-gradient(180deg, var(--bg-primary) 0%, #EDE0D6 40%, #E8D5C8 100%);
+}
+
+[data-theme="terra"] .hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .hero-subtitle {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+[data-theme="terra"] .hero-scroll-indicator span {
+  color: var(--text-muted);
+}
+
+[data-theme="terra"] .scroll-line {
+  background: var(--text-muted);
+}
+
+/* Hero CTA — pill shape, terracotta fill */
+[data-theme="terra"] .hero-cta,
+[data-theme="terra"] .hero-cta .btn {
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .hero-cta .btn-primary,
+[data-theme="terra"] .hero .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+[data-theme="terra"] .hero-cta .btn-primary:hover,
+[data-theme="terra"] .hero .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Rotating Circle
+   Terracotta colour, subtle background element
+   ------------------------------------------------ */
+
+[data-theme="terra"] .circle-text {
+  fill: var(--accent);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .circle-monogram {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .rotating-text-svg {
+  opacity: 0.7;
+}
+
+[data-theme="terra"] .rotating-text-container {
+  opacity: 0.18;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Buttons (global)
+   Pill-shaped, terracotta fill, cream text
+   ------------------------------------------------ */
+
+[data-theme="terra"] .btn {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+}
+
+[data-theme="terra"] .btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--bg-secondary);
+  border-color: var(--accent-hover);
+}
+
+[data-theme="terra"] .btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+[data-theme="terra"] .btn-secondary:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Brand Statement
+   No borders, generous padding, large display text
+   ------------------------------------------------ */
+
+[data-theme="terra"] .brand-statement {
+  border: none;
+  padding: 10rem 0;
+}
+
+[data-theme="terra"] .brand-statement-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .brand-statement-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Section Headers & Labels
+   Labels in terracotta, not gold
+   ------------------------------------------------ */
+
+[data-theme="terra"] .section-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--accent);
+}
+
+[data-theme="terra"] .section-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="terra"] .section-description {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Section Gradient Transitions
+   Smooth gradients between light/dark sections
+   ------------------------------------------------ */
+
+[data-theme="terra"] .countdown-section::before {
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-dark));
+}
+
+[data-theme="terra"] .collection::before {
+  background: linear-gradient(to bottom, var(--bg-dark), var(--bg-primary));
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Section Padding
+   Generous whitespace, no horizontal divider lines
+   ------------------------------------------------ */
+
+[data-theme="terra"] .collection,
+[data-theme="terra"] .technology,
+[data-theme="terra"] .story,
+[data-theme="terra"] .lookbook,
+[data-theme="terra"] .testimonials,
+[data-theme="terra"] .sustainability,
+[data-theme="terra"] .faq,
+[data-theme="terra"] .loyalty,
+[data-theme="terra"] .sculptmap-zones {
+  padding: 8rem 0;
+}
+
+[data-theme="terra"] .newsletter {
+  padding: 10rem 0;
+}
+
+[data-theme="terra"] .countdown-section {
+  padding: 8rem 0;
+}
+
+[data-theme="terra"] .section-header {
+  margin-bottom: 5rem;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Dividers
+   Thick (3px), short, terracotta, centred
+   ------------------------------------------------ */
+
+[data-theme="terra"] hr,
+[data-theme="terra"] .divider {
+  border: none;
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  margin: 2rem auto;
+  border-radius: 2px;
+}
+
+[data-theme="terra"] .tech-divider,
+[data-theme="terra"] .loyalty-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Product Cards
+   Generous rounded corners, warm terracotta shadow
+   ------------------------------------------------ */
+
+[data-theme="terra"] .product-card,
+[data-theme="terra"] .collection-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+[data-theme="terra"] .product-card {
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-md);
+  border: none;
+}
+
+[data-theme="terra"] .product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="terra"] .collection-image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Product placeholder images — warm clay tone */
+[data-theme="terra"] .product-image,
+[data-theme="terra"] .collection-placeholder {
+  background-color: #D9C9BA;
+}
+
+[data-theme="terra"] .collection-info h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .collection-tech {
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .collection-price {
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+[data-theme="terra"] .placeholder-mm {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Value Cards
+   Rounded, soft shadow
+   ------------------------------------------------ */
+
+[data-theme="terra"] .value-card,
+[data-theme="terra"] .value-item {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+  border: none;
+}
+
+[data-theme="terra"] .value-number {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .value-item h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .value-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Collection Group Headers
+   ------------------------------------------------ */
+
+[data-theme="terra"] .collection-group-header {
+  border-bottom: none;
+}
+
+[data-theme="terra"] .collection-group-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .collection-group-story {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Technology / Dark Sections
+   Rich dark clay, not cold black
+   ------------------------------------------------ */
+
+[data-theme="terra"] .technology,
+[data-theme="terra"] .tech-diff {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .technology .section-label,
+[data-theme="terra"] .technology .section-description,
+[data-theme="terra"] .tech-diff-sub {
+  color: rgba(242, 235, 227, 0.5);
+}
+
+[data-theme="terra"] .tech-card {
+  border: 1px solid rgba(242, 235, 227, 0.1);
+  border-radius: var(--radius-md);
+  transition: border-color 0.4s ease;
+}
+
+[data-theme="terra"] .tech-card:hover {
+  border-color: rgba(196, 114, 90, 0.4);
+}
+
+[data-theme="terra"] .tech-number,
+[data-theme="terra"] .tech-diff-stat,
+[data-theme="terra"] .tech-diff-detail-number {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .tech-name,
+[data-theme="terra"] .tech-diff-name,
+[data-theme="terra"] .tech-diff-question {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .tech-subtitle {
+  color: rgba(242, 235, 227, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .tech-description,
+[data-theme="terra"] .tech-diff-desc,
+[data-theme="terra"] .tech-diff-detail p {
+  color: rgba(242, 235, 227, 0.65);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .tech-diff-detail h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+}
+
+[data-theme="terra"] .tech-diff-divider {
+  background: rgba(242, 235, 227, 0.1);
+}
+
+[data-theme="terra"] .tech-diff-detail-grid {
+  border-top: 1px solid rgba(242, 235, 227, 0.08);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Countdown Section
+   Dark clay bg, terracotta accent elements
+   ------------------------------------------------ */
+
+[data-theme="terra"] .countdown-section {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-section .section-label {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .countdown-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-number {
+  font-family: var(--font-display);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-label {
+  color: rgba(242, 235, 227, 0.4);
+}
+
+[data-theme="terra"] .countdown-separator {
+  color: rgba(242, 235, 227, 0.2);
+  font-family: var(--font-display);
+}
+
+[data-theme="terra"] .countdown-text {
+  color: rgba(242, 235, 227, 0.6);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .countdown-success {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group {
+  border-color: rgba(242, 235, 227, 0.15);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group input {
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group input::placeholder {
+  color: rgba(242, 235, 227, 0.35);
+}
+
+[data-theme="terra"] .countdown-form .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+  border-radius: 0 999px 999px 0;
+}
+
+[data-theme="terra"] .countdown-form .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+[data-theme="terra"] .countdown-form .newsletter-input-group button {
+  border-left-color: rgba(242, 235, 227, 0.15);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Email Input & Notify Button
+   Rounded corners, terracotta focus state
+   ------------------------------------------------ */
+
+[data-theme="terra"] .email-input,
+[data-theme="terra"] .newsletter-input-group input,
+[data-theme="terra"] .account-form input {
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="terra"] .email-input:focus,
+[data-theme="terra"] .newsletter-input-group input:focus,
+[data-theme="terra"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 114, 90, 0.15);
+  outline: none;
+}
+
+[data-theme="terra"] .email-input::placeholder,
+[data-theme="terra"] .newsletter-input-group input::placeholder,
+[data-theme="terra"] .account-form input::placeholder {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+[data-theme="terra"] .newsletter-input-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+[data-theme="terra"] .newsletter-input-group input {
+  border: none;
+  border-radius: 0;
+}
+
+[data-theme="terra"] .newsletter-input-group button {
+  border-left: 1px solid var(--border);
+}
+
+/* Notify button — pill, terracotta */
+[data-theme="terra"] .notify-btn,
+[data-theme="terra"] .newsletter-input-group .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+[data-theme="terra"] .notify-btn:hover,
+[data-theme="terra"] .newsletter-input-group .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Wishlist Button
+   Terracotta fill on active
+   ------------------------------------------------ */
+
+[data-theme="terra"] .wishlist-btn {
+  border-radius: var(--radius-sm);
+  background: rgba(242, 235, 227, 0.85);
+}
+
+[data-theme="terra"] .wishlist-btn:hover {
+  background: rgba(242, 235, 227, 1);
+}
+
+[data-theme="terra"] .wishlist-btn.active svg {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+[data-theme="terra"] .wishlist-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Story Section
+   ------------------------------------------------ */
+
+[data-theme="terra"] .story-text p {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .story-text p:last-child {
+  font-family: var(--font-display);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .story-signature span:first-child {
+  font-family: var(--font-display);
+}
+
+[data-theme="terra"] .signature-title {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — SculptMap Zones
+   No top border, clean whitespace separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .sculptmap-zones {
+  border-top: none;
+}
+
+[data-theme="terra"] .sculptmap-zone-item {
+  border-bottom: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+[data-theme="terra"] .sculptmap-zone-item:hover {
+  background: rgba(196, 114, 90, 0.04);
+}
+
+[data-theme="terra"] .sculptmap-zone-number {
+  font-family: var(--font-display);
+  color: var(--accent);
+}
+
+[data-theme="terra"] .sculptmap-zone-name {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .sculptmap-zone-tag {
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .tag-high {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+[data-theme="terra"] .sculptmap-zone-body p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Lookbook
+   No top border, clean padding separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .lookbook {
+  border-top: none;
+}
+
+[data-theme="terra"] .lookbook-image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+[data-theme="terra"] .lookbook-caption {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .lookbook-arrow {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+[data-theme="terra"] .lookbook-arrow:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+[data-theme="terra"] .lookbook-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="terra"] .lookbook-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Marquee
+   No borders, clean separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .marquee-section {
+  border-top: none;
+  border-bottom: none;
+}
+
+[data-theme="terra"] .marquee-track span {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .marquee-dot {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Testimonials
+   No top border, clean whitespace
+   ------------------------------------------------ */
+
+[data-theme="terra"] .testimonials {
+  border-top: none;
+}
+
+[data-theme="terra"] .testimonial-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+[data-theme="terra"] .testimonial-card:hover {
+  border-color: var(--accent-soft);
+  box-shadow: var(--shadow-card);
+}
+
+[data-theme="terra"] .testimonial-stars span {
+  color: var(--accent);
+}
+
+[data-theme="terra"] .testimonial-quote {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .testimonial-name {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .testimonial-detail {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .testimonials-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="terra"] .testimonials-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Newsletter
+   ------------------------------------------------ */
+
+[data-theme="terra"] .newsletter-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .newsletter-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .newsletter-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Sustainability
+   No borders, clean whitespace separation
+   ------------------------------------------------ */
+
+[data-theme="terra"] .sustainability {
+  border-top: none;
+}
+
+[data-theme="terra"] .sustainability-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .cert-badge {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+[data-theme="terra"] .cert-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Loyalty / Tiers
+   No top border, clean whitespace
+   ------------------------------------------------ */
+
+[data-theme="terra"] .loyalty {
+  border-top: none;
+}
+
+[data-theme="terra"] .loyalty-tier {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color 0.4s ease;
+}
+
+[data-theme="terra"] .loyalty-tier:hover {
+  border-color: var(--accent-soft);
+}
+
+[data-theme="terra"] .loyalty-tier-featured {
+  border-color: var(--accent);
+}
+
+[data-theme="terra"] .loyalty-tier-featured:hover {
+  border-color: var(--accent);
+}
+
+[data-theme="terra"] .loyalty-tier-name {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+}
+
+[data-theme="terra"] .loyalty-tier-points {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .loyalty-perks li::before {
+  background: var(--accent);
+}
+
+[data-theme="terra"] .loyalty-tier-badge {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-radius: 999px;
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — FAQ
+   No top border, clean whitespace
+   ------------------------------------------------ */
+
+[data-theme="terra"] .faq {
+  border-top: none;
+}
+
+[data-theme="terra"] .faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .faq-question {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .faq-answer p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Modals
+   ------------------------------------------------ */
+
+[data-theme="terra"] .modal-overlay {
+  background: rgba(42, 31, 26, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="terra"] .modal {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="terra"] .modal-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .modal-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .modal-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Account Tabs & Forms
+   ------------------------------------------------ */
+
+[data-theme="terra"] .account-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .account-tab {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .account-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+[data-theme="terra"] .account-form input {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: transparent;
+}
+
+[data-theme="terra"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 114, 90, 0.15);
+}
+
+[data-theme="terra"] .account-footer-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Dashboard
+   ------------------------------------------------ */
+
+[data-theme="terra"] .dashboard-loyalty {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+[data-theme="terra"] .dashboard-points-number {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+[data-theme="terra"] .dashboard-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Mobile Menu
+   ------------------------------------------------ */
+
+[data-theme="terra"] .mobile-menu {
+  background: var(--bg-primary);
+}
+
+[data-theme="terra"] .mobile-menu-inner a {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Footer
+   Dark clay background
+   ------------------------------------------------ */
+
+[data-theme="terra"] .footer {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .footer-logo .logo-maison,
+[data-theme="terra"] .footer-logo .logo-move {
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .footer-tagline {
+  color: rgba(242, 235, 227, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .footer-col h4 {
+  color: rgba(242, 235, 227, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .footer-col ul a {
+  font-family: var(--font-body);
+  color: var(--text-on-dark);
+}
+
+[data-theme="terra"] .footer-bottom {
+  border-top: 1px solid rgba(242, 235, 227, 0.1);
+}
+
+[data-theme="terra"] .footer-bottom p {
+  color: rgba(242, 235, 227, 0.35);
+}
+
+[data-theme="terra"] .footer-legal a {
+  color: rgba(242, 235, 227, 0.35);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Cookie Banner
+   ------------------------------------------------ */
+
+[data-theme="terra"] .cookie-banner {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+[data-theme="terra"] .cookie-inner p {
+  color: rgba(242, 235, 227, 0.7);
+  font-family: var(--font-body);
+}
+
+[data-theme="terra"] .cookie-banner .btn-secondary {
+  color: var(--text-on-dark);
+  border-color: rgba(242, 235, 227, 0.3);
+  border-radius: 999px;
+}
+
+[data-theme="terra"] .cookie-banner .btn-secondary:hover {
+  background: var(--text-on-dark);
+  color: var(--bg-dark);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Back to Top
+   ------------------------------------------------ */
+
+[data-theme="terra"] .back-to-top {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="terra"] .back-to-top:hover {
+  background: var(--accent-hover);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Instagram Grid
+   ------------------------------------------------ */
+
+[data-theme="terra"] .instagram-placeholder {
+  background-color: #D9C9BA;
+}
+
+[data-theme="terra"] .instagram-overlay {
+  background: rgba(42, 31, 26, 0);
+}
+
+[data-theme="terra"] .instagram-item:hover .instagram-overlay {
+  background: rgba(42, 31, 26, 0.15);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Size Guide Table
+   ------------------------------------------------ */
+
+[data-theme="terra"] .size-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .size-tab {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="terra"] .size-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+[data-theme="terra"] .size-table th {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .size-table td {
+  font-family: var(--font-body);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="terra"] .size-table tbody tr:hover {
+  background: rgba(196, 114, 90, 0.04);
+}
+
+
+/* ------------------------------------------------
+   TERRA ROSA — Loader
+   ------------------------------------------------ */
+
+[data-theme="terra"] .loader {
+  background: var(--bg-primary);
+}
+
+[data-theme="terra"] .loader-monogram {
+  color: var(--accent);
+}
+
+
+
+
+/* ============================================
+   THEME 4: NORDIC FROST
+   Mood: COS, Toteme, Acne Studios
+   Hyper-clean, cool-toned, mathematical precision,
+   fjord mist, polished concrete, glacier blue
+   ============================================ */
+
+[data-theme="nordic"] {
+  /* --- Backgrounds --- */
+  --bg-primary: #F4F5F7;
+  --bg-secondary: #FFFFFF;
+  --bg-dark: #1C1E22;
+  --bg-card: #FFFFFF;
+
+  /* --- Text --- */
+  --text-primary: #1C1E22;
+  --text-secondary: #6B7280;
+  --text-on-dark: #F4F5F7;
+  --text-muted: #9CA3AF;
+
+  /* --- Accent --- */
+  --accent: #5B8FA8;
+  --accent-soft: #C8D8E0;
+  --accent-hover: #4A7A91;
+
+  /* --- Borders --- */
+  --border: #E2E5EA;
+  --border-subtle: #EBEDF0;
+
+  /* --- Typography --- */
+  --font-display: 'Poiret One', cursive;
+  --font-body: 'Inter', sans-serif;
+  --font-weight-display: 400;
+  --font-weight-body: 300;
+
+  /* --- Radius (almost sharp — Swiss precision) --- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* --- Shadows (barely there — flat design) --- */
+  --shadow-card: 0 1px 3px rgba(28, 30, 34, 0.04);
+  --shadow-hover: 0 2px 6px rgba(28, 30, 34, 0.06);
+
+  /* --- Spacing & Tracking --- */
+  --letter-spacing-label: 0.3em;
+  --letter-spacing-heading: 0.08em;
+
+  /* --- Grain (none — pristine, clean) --- */
+  --grain-opacity: 0;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Base & Body
+   ------------------------------------------------ */
+
+[data-theme="nordic"] body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Navigation
+   Pure white, crisp 1px bottom border, no blur
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .nav {
+  background-color: var(--bg-secondary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: none;
+  border-radius: 0;
+}
+
+[data-theme="nordic"] .nav-links a {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .logo-maison {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.45em;
+}
+
+[data-theme="nordic"] .logo-move {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.65em;
+}
+
+[data-theme="nordic"] .nav-toggle span {
+  background: var(--text-primary);
+}
+
+[data-theme="nordic"] .cart-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Announcement Bar
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .announcement-bar {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+  letter-spacing: var(--letter-spacing-label);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Hero
+   Clean cool gradient, wide-tracked display font
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .hero {
+  background: linear-gradient(180deg, #F4F5F7 0%, #FFFFFF 100%);
+}
+
+[data-theme="nordic"] .hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+[data-theme="nordic"] .hero-subtitle {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+}
+
+[data-theme="nordic"] .hero-scroll-indicator span {
+  color: var(--text-muted);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .scroll-line {
+  background: var(--text-muted);
+}
+
+/* Hero CTA — rectangular, glacier blue, wide letter-spacing */
+[data-theme="nordic"] .hero-cta .btn,
+[data-theme="nordic"] .hero .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .hero-cta .btn:hover,
+[data-theme="nordic"] .hero .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Rotating Circle
+   Thin glacier blue stroke, very subtle
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .circle-text {
+  fill: var(--accent);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+  font-weight: 300;
+}
+
+[data-theme="nordic"] .circle-monogram {
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .rotating-text-svg {
+  opacity: 0.5;
+}
+
+[data-theme="nordic"] .rotating-text-container {
+  opacity: 0.12;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Buttons (global)
+   Rectangular (tiny radius), glacier blue fill
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .btn {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="nordic"] .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+}
+
+[data-theme="nordic"] .btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--bg-secondary);
+  border-color: var(--accent-hover);
+}
+
+[data-theme="nordic"] .btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+[data-theme="nordic"] .btn-secondary:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Brand Statement
+   Display font ultra-light, subtle borders, generous padding
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .brand-statement {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10rem 0;
+}
+
+[data-theme="nordic"] .brand-statement-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .brand-statement-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Section Headers & Labels
+   Glacier blue, extremely tracked out (0.3em)
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .section-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .section-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .section-description {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Section Gradient Transitions
+   Smooth gradients between light/dark sections
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .countdown-section::before {
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-dark));
+}
+
+[data-theme="nordic"] .collection::before {
+  background: linear-gradient(to bottom, var(--bg-dark), var(--bg-primary));
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Section Padding
+   Generous whitespace for Scandi airiness
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .collection,
+[data-theme="nordic"] .technology,
+[data-theme="nordic"] .story,
+[data-theme="nordic"] .lookbook,
+[data-theme="nordic"] .testimonials,
+[data-theme="nordic"] .sustainability,
+[data-theme="nordic"] .faq,
+[data-theme="nordic"] .loyalty,
+[data-theme="nordic"] .sculptmap-zones {
+  padding: 10rem 0;
+}
+
+[data-theme="nordic"] .newsletter {
+  padding: 10rem 0;
+}
+
+[data-theme="nordic"] .countdown-section {
+  padding: 8rem 0;
+}
+
+[data-theme="nordic"] .section-header {
+  margin-bottom: 5rem;
+}
+
+[data-theme="nordic"] .values-grid {
+  gap: 4rem;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Dividers
+   1px cool grey, full width, structural, grid-like
+   ------------------------------------------------ */
+
+[data-theme="nordic"] hr,
+[data-theme="nordic"] .divider {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 2rem 0;
+  border-radius: 0;
+}
+
+[data-theme="nordic"] .tech-divider,
+[data-theme="nordic"] .loyalty-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--accent-soft);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Product Cards
+   White, 1px border, barely-there shadow, precise
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .product-card,
+[data-theme="nordic"] .collection-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+[data-theme="nordic"] .product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-md);
+}
+
+/* Card hover: subtle border change only, no lift */
+[data-theme="nordic"] .product-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+  transform: none;
+}
+
+[data-theme="nordic"] .collection-image {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+/* Product placeholder images — cool grey */
+[data-theme="nordic"] .product-image,
+[data-theme="nordic"] .collection-placeholder {
+  background-color: #E8EAED;
+}
+
+[data-theme="nordic"] .collection-info h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .collection-tech {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .collection-price {
+  color: var(--text-primary);
+  font-weight: 400;
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .placeholder-mm {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Value Cards
+   White, bordered, flat
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .value-card,
+[data-theme="nordic"] .value-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2rem;
+  box-shadow: none;
+}
+
+[data-theme="nordic"] .value-number {
+  color: var(--accent);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .value-item h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .value-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Collection Group Headers
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .collection-group-header {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .collection-group-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .collection-group-story {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Technology / Dark Sections
+   Anthracite #1C1E22, glacier blue accents
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .technology,
+[data-theme="nordic"] .tech-diff {
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .technology .section-label,
+[data-theme="nordic"] .technology .section-description,
+[data-theme="nordic"] .tech-diff-sub {
+  color: rgba(244, 245, 247, 0.5);
+}
+
+[data-theme="nordic"] .tech-card {
+  border: 1px solid rgba(244, 245, 247, 0.06);
+  border-radius: var(--radius-md);
+  transition: border-color 0.3s ease;
+}
+
+[data-theme="nordic"] .tech-card:hover {
+  border-color: rgba(91, 143, 168, 0.35);
+}
+
+[data-theme="nordic"] .tech-number,
+[data-theme="nordic"] .tech-diff-stat,
+[data-theme="nordic"] .tech-diff-detail-number {
+  color: var(--accent);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .tech-name,
+[data-theme="nordic"] .tech-diff-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-on-dark);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .tech-diff-question {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .tech-subtitle {
+  color: rgba(244, 245, 247, 0.5);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .tech-description,
+[data-theme="nordic"] .tech-diff-desc,
+[data-theme="nordic"] .tech-diff-detail p {
+  color: rgba(244, 245, 247, 0.6);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .tech-diff-detail h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .tech-diff-divider {
+  background: rgba(244, 245, 247, 0.06);
+}
+
+[data-theme="nordic"] .tech-diff-detail-grid {
+  border-top: 1px solid rgba(244, 245, 247, 0.06);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Countdown Section
+   Anthracite bg, glacier blue accent elements
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .countdown-section {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .countdown-section .section-label {
+  color: var(--accent);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .countdown-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-on-dark);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .countdown-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .countdown-label {
+  color: rgba(244, 245, 247, 0.4);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .countdown-separator {
+  color: rgba(244, 245, 247, 0.15);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+[data-theme="nordic"] .countdown-text {
+  color: rgba(244, 245, 247, 0.6);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .countdown-success {
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group {
+  border-color: rgba(244, 245, 247, 0.1);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group input {
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group input::placeholder {
+  color: rgba(244, 245, 247, 0.3);
+}
+
+[data-theme="nordic"] .countdown-form .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .countdown-form .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg-secondary);
+}
+
+[data-theme="nordic"] .countdown-form .newsletter-input-group button {
+  border-left-color: rgba(244, 245, 247, 0.1);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Email Input & Notify Button
+   Sharp corners, thin border, blue focus
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .email-input,
+[data-theme="nordic"] .newsletter-input-group input,
+[data-theme="nordic"] .account-form input {
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="nordic"] .email-input:focus,
+[data-theme="nordic"] .newsletter-input-group input:focus,
+[data-theme="nordic"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(91, 143, 168, 0.12);
+  outline: none;
+}
+
+[data-theme="nordic"] .email-input::placeholder,
+[data-theme="nordic"] .newsletter-input-group input::placeholder,
+[data-theme="nordic"] .account-form input::placeholder {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+[data-theme="nordic"] .newsletter-input-group {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="nordic"] .newsletter-input-group input {
+  border: none;
+  border-radius: 0;
+}
+
+[data-theme="nordic"] .newsletter-input-group button {
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* Notify button — rectangular, glacier blue */
+[data-theme="nordic"] .notify-btn,
+[data-theme="nordic"] .newsletter-input-group .btn-primary {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .notify-btn:hover,
+[data-theme="nordic"] .newsletter-input-group .btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Wishlist Button
+   Glacier blue fill on active
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .wishlist-btn {
+  border-radius: var(--radius-sm);
+  background: rgba(244, 245, 247, 0.9);
+}
+
+[data-theme="nordic"] .wishlist-btn:hover {
+  background: rgba(244, 245, 247, 1);
+}
+
+[data-theme="nordic"] .wishlist-btn.active svg {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+[data-theme="nordic"] .wishlist-count {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Story Section
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .story-text p {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .story-text p:last-child {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .story-signature span:first-child {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+[data-theme="nordic"] .signature-title {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — SculptMap Zones
+   Subtle borders kept for Scandi grid feel
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .sculptmap-zones {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .sculptmap-zone-item {
+  border-bottom: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .sculptmap-zone-item:hover {
+  background: rgba(91, 143, 168, 0.03);
+}
+
+[data-theme="nordic"] .sculptmap-zone-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .sculptmap-zone-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .sculptmap-zone-tag {
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="nordic"] .tag-high {
+  background: var(--accent);
+  color: var(--bg-secondary);
+}
+
+[data-theme="nordic"] .sculptmap-zone-body p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Lookbook
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .lookbook {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .lookbook-image {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="nordic"] .lookbook-caption {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+}
+
+[data-theme="nordic"] .lookbook-arrow {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+[data-theme="nordic"] .lookbook-arrow:hover {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .lookbook-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="nordic"] .lookbook-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Marquee
+   Subtle borders kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .marquee-section {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .marquee-track span {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .marquee-dot {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Testimonials
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .testimonials {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .testimonial-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  transition: border-color 0.2s ease;
+}
+
+[data-theme="nordic"] .testimonial-card:hover {
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .testimonial-stars span {
+  color: var(--accent);
+}
+
+[data-theme="nordic"] .testimonial-quote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .testimonial-name {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .testimonial-detail {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .testimonials-progress {
+  background: var(--border-subtle);
+}
+
+[data-theme="nordic"] .testimonials-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Newsletter
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .newsletter-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .newsletter-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .newsletter-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Sustainability
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .sustainability {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .sustainability-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .cert-badge {
+  border: 1px solid var(--text-muted);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .cert-item p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Loyalty / Tiers
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .loyalty {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .loyalty-tier {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease;
+}
+
+[data-theme="nordic"] .loyalty-tier:hover {
+  border-color: var(--accent-soft);
+}
+
+[data-theme="nordic"] .loyalty-tier-featured {
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .loyalty-tier-featured:hover {
+  border-color: var(--accent);
+}
+
+[data-theme="nordic"] .loyalty-tier-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="nordic"] .loyalty-tier-points {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .loyalty-perks li::before {
+  background: var(--accent);
+}
+
+[data-theme="nordic"] .loyalty-tier-badge {
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — FAQ
+   Subtle border kept
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .faq {
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .faq-question {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+[data-theme="nordic"] .faq-answer p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Modals
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .modal-overlay {
+  background: rgba(28, 30, 34, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="nordic"] .modal {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="nordic"] .modal-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+[data-theme="nordic"] .modal-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+[data-theme="nordic"] .modal-success {
+  color: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Account Tabs & Forms
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .account-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="nordic"] .account-tab {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .account-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+[data-theme="nordic"] .account-form input {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: transparent;
+}
+
+[data-theme="nordic"] .account-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(91, 143, 168, 0.12);
+}
+
+[data-theme="nordic"] .account-footer-text {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Dashboard
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .dashboard-loyalty {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+[data-theme="nordic"] .dashboard-points-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+[data-theme="nordic"] .dashboard-progress-bar {
+  background: var(--accent);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Mobile Menu
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .mobile-menu {
+  background: var(--bg-secondary);
+}
+
+[data-theme="nordic"] .mobile-menu-inner a {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Footer
+   Anthracite background
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .footer {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .footer-logo .logo-maison,
+[data-theme="nordic"] .footer-logo .logo-move {
+  color: var(--text-on-dark);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+[data-theme="nordic"] .footer-tagline {
+  color: rgba(244, 245, 247, 0.5);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .footer-col h4 {
+  color: rgba(244, 245, 247, 0.5);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-label);
+}
+
+[data-theme="nordic"] .footer-col ul a {
+  font-family: var(--font-body);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .footer-bottom {
+  border-top: 1px solid rgba(244, 245, 247, 0.06);
+}
+
+[data-theme="nordic"] .footer-bottom p {
+  color: rgba(244, 245, 247, 0.35);
+}
+
+[data-theme="nordic"] .footer-legal a {
+  color: rgba(244, 245, 247, 0.35);
+}
+
+
+/* ------------------------------------------------
+   NORDIC FROST — Cookie Banner
+   ------------------------------------------------ */
+
+[data-theme="nordic"] .cookie-banner {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+[data-theme="nordic"] .cookie-inner p {
+  color: rgba(244, 245, 247, 0.7);
+  font-family: var(--font-body);
+}
+
+[data-theme="nordic"] .cookie-banner .btn-secondary {
+  color: var(--text-on-dark);
+  border-color: rgba(244, 245, 247, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="nordic"] .cookie-banner .btn-secondary:hover {
+  background: var(--text-on-dark);
+  color: var(--bg-dark);
+}
+
+/* ============================================================
+   ATHENIAN — Remove hard borders for flowing feel
+   ============================================================ */
+[data-theme="athenian"] hr,
+[data-theme="athenian"] .divider {
+  border: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+  margin: 0;
+}
+
+[data-theme="athenian"] .brand-statement {
+  border-top: none;
+  border-bottom: none;
+}
+
+/* Athenian product cards — no hard borders, float naturally */
+[data-theme="athenian"] .product-card {
+  border: none;
+}
+
+
+/* ============================================================
+   NOIR — Remove dividers for flowing sections
+   ============================================================ */
+[data-theme="noir"] hr,
+[data-theme="noir"] .divider {
+  border: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+  margin: 0;
+}
+
+
+/* ============================================================
+   TAB BAR
+   ============================================================ */
+.tab-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.tab-bar__tab {
+  position: relative;
+  height: 48px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.tab-bar__tab:hover {
+  color: var(--text-secondary);
+}
+
+.tab-bar__tab.active {
+  color: var(--accent);
+}
+
+.tab-bar__tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 70%;
+  height: 2px;
+  background: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.tab-bar__tab.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ============================================================
+   GRAIN OVERLAY
+   ============================================================ */
+.grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 48px;
+  z-index: 9000;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(var(--nav-blur));
+  -webkit-backdrop-filter: blur(var(--nav-blur));
+  border-bottom: 1px solid var(--nav-border);
+}
+
+.nav__left, .nav__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 120px;
+}
+
+.nav__right { justify-content: flex-end; }
+
+.nav__icon {
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.nav__icon:hover {
+  color: var(--accent);
+}
+
+.nav__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.nav__logo {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: 16px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   HERO — HUGE & DYNAMIC
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* Circle — pushed to background, large, ambient */
+.hero__circle-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 560px;
+  height: 560px;
+  z-index: 0;
+  opacity: var(--circle-resting-opacity, 0.18);
+  animation: gentlePulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero__circle {
+  width: 560px;
+  height: 560px;
+  animation: spin 30s linear infinite;
+}
+
+.hero__circle text {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  fill: var(--hero-circle-color);
+}
+
+.hero__circle circle {
+  fill: none;
+  stroke: var(--hero-circle-color);
+  stroke-width: var(--hero-circle-width);
+}
+
+.hero__monogram {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: 56px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  opacity: 0.3;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hero content sits above circle */
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__headline {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 1.05;
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--text-primary);
+  max-width: 900px;
+  margin-bottom: 32px;
+  animation: fadeInUp 1.2s ease-out 0.3s both;
+}
+
+.hero__headline em {
+  font-style: italic;
+  display: inline-block;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin-bottom: 56px;
+  line-height: 1.7;
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.hero__cta {
+  animation: fadeInUp 0.8s ease-out 1.2s both;
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+  animation: fadeInUp 0.6s ease-out 1.6s both;
+}
+
+.hero__scroll-text {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--text-muted);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+  50% { opacity: 0.8; transform: scaleY(1); }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--btn-text);
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  border-color: var(--btn-hover-border);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   SECTION TRANSITIONS — flowing gradients between sections
+   ============================================================ */
+.section-transition-dark {
+  position: relative;
+}
+
+.section-transition-dark::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-dark));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-transition-to-light {
+  position: relative;
+}
+
+.section-transition-to-light::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--bg-dark), var(--bg-secondary));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-transition-to-primary {
+  position: relative;
+}
+
+.section-transition-to-primary::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Footer gradient transition */
+.footer-transition {
+  position: relative;
+}
+
+.footer-transition::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, var(--bg-primary), var(--bg-dark));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================
+   SECTION — VAULT / COUNTDOWN
+   ============================================================ */
+.vault {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  padding: 10rem 24px;
+  text-align: center;
+  position: relative;
+}
+
+.vault__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.vault__title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(28px, 4.5vw, 52px);
+  letter-spacing: var(--letter-spacing-heading);
+  margin-bottom: 48px;
+  color: var(--text-on-dark);
+}
+
+.vault__countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 56px;
+}
+
+.vault__countdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 72px;
+}
+
+.vault__countdown-num {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1;
+  color: var(--text-on-dark);
+  letter-spacing: 0.02em;
+}
+
+.vault__countdown-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.vault__countdown-sep {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(28px, 5vw, 48px);
+  color: var(--accent);
+  padding: 0 4px;
+  align-self: flex-start;
+  line-height: 1;
+}
+
+.vault__form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.vault__input {
+  flex: 1;
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: var(--font-weight-body);
+  letter-spacing: 0.02em;
+  color: var(--text-on-dark);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.vault__input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.vault__input:focus {
+  border-color: var(--accent);
+}
+
+.vault__btn {
+  padding: 14px 28px;
+  font-size: 11px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--btn-text);
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.vault__btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  border-color: var(--btn-hover-border);
+}
+
+/* ============================================================
+   SECTION — PRODUCTS
+   ============================================================ */
+.products {
+  padding: 8rem 24px;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.products__header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.products__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.products__title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--text-primary);
+}
+
+.products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--card-hover-border);
+  transform: translateY(-4px);
+}
+
+.product-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--placeholder-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-card__image-text {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: 36px;
+  color: var(--placeholder-text);
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+.product-card__wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+[data-theme="noir"] .product-card__wishlist {
+  border-radius: 0;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+}
+
+.product-card__wishlist:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.product-card__wishlist svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-muted);
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 0.3s ease;
+}
+
+.product-card__wishlist:hover svg {
+  stroke: var(--accent);
+}
+
+.product-card__info {
+  padding: 20px;
+}
+
+.product-card__name {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.product-card__tech {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.product-card__price {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body-medium);
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   SECTION — BRAND STATEMENT (huge, flowing)
+   ============================================================ */
+.statement {
+  padding: 12rem 24px;
+  background: var(--bg-primary);
+  text-align: center;
+  position: relative;
+}
+
+.statement__text {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.4;
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--text-primary);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Word-by-word animation for statement */
+.statement__text .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.statement.is-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   SECTION — STORY
+   ============================================================ */
+.story {
+  padding: 8rem 24px;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.story__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.story__image {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background: var(--placeholder-bg);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story__image-text {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display);
+  font-size: 48px;
+  color: var(--placeholder-text);
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+.story__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.story__title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: clamp(28px, 3.5vw, 42px);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.story__body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.story__signature {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: 16px;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.story__signature-role {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--font-weight-body);
+  color: var(--text-muted);
+  font-style: normal;
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* Story content delayed animation */
+.story.is-visible .story__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story .story__content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s;
+}
+
+/* ============================================================
+   SECTION — VALUES
+   ============================================================ */
+.values {
+  padding: 8rem 24px;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.values__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.value-card {
+  padding: 40px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--card-hover-border);
+  transform: translateY(-2px);
+}
+
+.value-card__title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: 20px;
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.value-card__desc {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  padding: 100px 40px 48px;
+  position: relative;
+}
+
+.footer__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.footer__brand-name {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+  margin-bottom: 16px;
+}
+
+.footer__brand-desc {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 280px;
+}
+
+.footer__col-title {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.footer__col-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__col-list li a {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: var(--font-weight-body);
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.footer__col-list li a:hover {
+  color: var(--text-on-dark);
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__copy {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--font-weight-body);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   DIVIDER — hidden by default for flowing feel
+   ============================================================ */
+.divider {
+  width: 0;
+  height: 0;
+  background: transparent;
+  margin: 0;
+  border: none;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .products__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .values__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer__top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tab-bar__tab {
+    padding: 0 14px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .nav {
+    padding: 0 20px;
+  }
+
+  .nav__logo {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+  }
+
+  .hero__circle-wrap {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero__circle {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero__monogram {
+    font-size: 36px;
+  }
+
+  .hero__headline {
+    font-size: clamp(2.2rem, 8vw, 4rem);
+  }
+
+  .vault__form {
+    flex-direction: column;
+  }
+
+  .vault__input,
+  .vault__btn {
+    width: 100%;
+  }
+
+  .vault__countdown-block {
+    min-width: 48px;
+  }
+
+  .products__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .product-card__info {
+    padding: 14px;
+  }
+
+  .product-card__name {
+    font-size: 14px;
+  }
+
+  .story__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .story__image {
+    aspect-ratio: 3 / 4;
+  }
+
+  .values__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .value-card {
+    padding: 28px 24px;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .statement {
+    padding: 6rem 24px;
+  }
+
+  .vault {
+    padding: 6rem 24px;
+  }
+
+  :root {
+    --section-padding: 80px;
+  }
+  [data-theme="athenian"],
+  [data-theme="noir"],
+  [data-theme="terra"],
+  [data-theme="nordic"] {
+    --section-padding: 80px;
+  }
+
+  /* Reduce section transition gradients on mobile */
+  .section-transition-dark::before,
+  .section-transition-to-light::before,
+  .section-transition-to-primary::before,
+  .footer-transition::before {
+    height: 50px;
+    top: -50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products__grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .vault__countdown-num {
+    font-size: 28px;
+  }
+
+  .vault__countdown-sep {
+    font-size: 22px;
+  }
+
+  .hero__circle-wrap {
+    width: 240px;
+    height: 240px;
+  }
+
+  .hero__circle {
+    width: 240px;
+    height: 240px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============================================================
+     TAB BAR
+     ============================================================ -->
+<div class="tab-bar" role="tablist">
+  <button class="tab-bar__tab active" role="tab" data-tab="athenian">Athenian Atelier</button>
+  <button class="tab-bar__tab" role="tab" data-tab="noir">Noir Moderne</button>
+  <button class="tab-bar__tab" role="tab" data-tab="terra">Terra Rosa</button>
+  <button class="tab-bar__tab" role="tab" data-tab="nordic">Nordic Frost</button>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav">
+  <div class="nav__left">
+    <span class="nav__icon">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </span>
+  </div>
+  <div class="nav__logo">MAISON MOVE</div>
+  <div class="nav__right">
+    <span class="nav__icon">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+    </span>
+    <span class="nav__icon">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </span>
+    <span class="nav__icon">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </span>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO — huge, dynamic, text as centrepiece
+     ============================================================ -->
+<section class="hero">
+  <!-- Spinning circle — large, behind text, ambient -->
+  <div class="hero__circle-wrap">
+    <svg class="hero__circle" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="95" />
+      <defs>
+        <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
+      </defs>
+      <text>
+        <textPath href="#circlePath" startOffset="0%">MAISON MOVE &bull; MAISON MOVE &bull; MAISON MOVE &bull; MAISON MOVE &bull; </textPath>
+      </text>
+    </svg>
+    <div class="hero__monogram">MM</div>
+  </div>
+
+  <!-- Hero content on top of circle -->
+  <div class="hero__content">
+    <h1 class="hero__headline">A House Built for the Body <em>in Motion</em></h1>
+    <p class="hero__subtitle">Designed for the woman who doesn't pause between sets and plans.</p>
+    <div class="hero__cta">
+      <a href="#" class="btn">Explore the Collection</a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero__scroll-indicator">
+    <span class="hero__scroll-text">Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VAULT / COUNTDOWN — flowing gradient transition from hero
+     ============================================================ -->
+<section class="vault section-transition-dark fade-in-section">
+  <p class="vault__label stagger-1">Coming Soon</p>
+  <h2 class="vault__title stagger-2">The House Opens</h2>
+  <div class="vault__countdown stagger-3">
+    <div class="vault__countdown-block">
+      <span class="vault__countdown-num">47</span>
+      <span class="vault__countdown-label">Days</span>
+    </div>
+    <span class="vault__countdown-sep">:</span>
+    <div class="vault__countdown-block">
+      <span class="vault__countdown-num">12</span>
+      <span class="vault__countdown-label">Hours</span>
+    </div>
+    <span class="vault__countdown-sep">:</span>
+    <div class="vault__countdown-block">
+      <span class="vault__countdown-num">33</span>
+      <span class="vault__countdown-label">Min</span>
+    </div>
+    <span class="vault__countdown-sep">:</span>
+    <div class="vault__countdown-block">
+      <span class="vault__countdown-num">08</span>
+      <span class="vault__countdown-label">Sec</span>
+    </div>
+  </div>
+  <div class="vault__form stagger-4">
+    <input type="email" class="vault__input" placeholder="Enter your email address">
+    <button class="vault__btn">Notify Me</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCTS — gradient transition from dark vault
+     ============================================================ -->
+<section class="products section-transition-to-light fade-in-section">
+  <div class="products__header">
+    <p class="products__label stagger-1">Collection One</p>
+    <h2 class="products__title stagger-2">Foundation</h2>
+  </div>
+  <div class="products__grid">
+
+    <div class="product-card stagger-3">
+      <div class="product-card__image">
+        <span class="product-card__image-text">MM</span>
+        <button class="product-card__wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-card__info">
+        <div class="product-card__name">The Sculpt Legging</div>
+        <div class="product-card__tech">SculptMap&trade;</div>
+        <div class="product-card__price">&pound;95</div>
+      </div>
+    </div>
+
+    <div class="product-card stagger-4">
+      <div class="product-card__image">
+        <span class="product-card__image-text">MM</span>
+        <button class="product-card__wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-card__info">
+        <div class="product-card__name">The Perform Bra</div>
+        <div class="product-card__tech">SculptMap&trade;</div>
+        <div class="product-card__price">&pound;60</div>
+      </div>
+    </div>
+
+    <div class="product-card stagger-5">
+      <div class="product-card__image">
+        <span class="product-card__image-text">MM</span>
+        <button class="product-card__wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-card__info">
+        <div class="product-card__name">The Reset Trouser</div>
+        <div class="product-card__tech">MaisonModal&trade;</div>
+        <div class="product-card__price">&pound;75</div>
+      </div>
+    </div>
+
+    <div class="product-card stagger-6">
+      <div class="product-card__image">
+        <span class="product-card__image-text">MM</span>
+        <button class="product-card__wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-card__info">
+        <div class="product-card__name">The Maison Statement Jacket</div>
+        <div class="product-card__tech">Lightweight Woven</div>
+        <div class="product-card__price">&pound;120</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     BRAND STATEMENT — huge text, pure whitespace
+     ============================================================ -->
+<section class="statement section-transition-to-primary fade-in-section">
+  <p class="statement__text">
+    Maison Move fuses fashion-house design with genuine fabric innovation. Every piece is engineered to support where you need it and move where you don't.
+  </p>
+</section>
+
+<!-- ============================================================
+     STORY — more whitespace, taller image
+     ============================================================ -->
+<section class="story fade-in-section">
+  <div class="story__inner">
+    <div class="story__image stagger-1">
+      <span class="story__image-text">MM</span>
+    </div>
+    <div class="story__content">
+      <p class="story__label stagger-2">Our Story</p>
+      <h2 class="story__title stagger-3">Why We Exist.</h2>
+      <p class="story__body stagger-4">
+        We started Maison Move because we couldn't find activewear that matched how we actually live.
+        We move between the gym floor, the school run, brunch, and the boardroom &mdash; and we refuse to
+        change four times to do it. Every piece in the collection is designed to cross those boundaries
+        invisibly: technical enough to train in, beautiful enough to be seen in. We believe performance
+        fabric and fashion-house design aren't opposites. They're overdue partners.
+      </p>
+      <div class="stagger-5">
+        <p class="story__signature">Sapphira Mort</p>
+        <p class="story__signature-role">Founder</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VALUES
+     ============================================================ -->
+<section class="values fade-in-section">
+  <div class="values__grid">
+    <div class="value-card stagger-1">
+      <h3 class="value-card__title">Fabric-First</h3>
+      <p class="value-card__desc">We begin every design with the material, not the mood board. If the fabric can't perform, the garment doesn't ship.</p>
+    </div>
+    <div class="value-card stagger-2">
+      <h3 class="value-card__title">Engineered, Not Decorated</h3>
+      <p class="value-card__desc">Every seam, panel, and cut line exists for a reason. Structure where you need support, freedom where you need movement.</p>
+    </div>
+    <div class="value-card stagger-3">
+      <h3 class="value-card__title">Studio to Street</h3>
+      <p class="value-card__desc">Designed to cross contexts without changing. From the reformer to the restaurant, nothing about you looks out of place.</p>
+    </div>
+    <div class="value-card stagger-4">
+      <h3 class="value-card__title">Quiet Luxury</h3>
+      <p class="value-card__desc">No logos on display. No trend-chasing. Just exceptional fit, premium hand-feel, and details only you'll notice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER — gradient transition from last section
+     ============================================================ -->
+<footer class="footer footer-transition">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name">Maison Move</div>
+        <p class="footer__brand-desc">A house built for the body in motion. Fashion-house design meets genuine fabric innovation.</p>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Shop</h4>
+        <ul class="footer__col-list">
+          <li><a href="#">Foundation Collection</a></li>
+          <li><a href="#">The Sculpt Range</a></li>
+          <li><a href="#">The Reset Range</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">House</h4>
+        <ul class="footer__col-list">
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Fabric Innovation</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Support</h4>
+        <ul class="footer__col-list">
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Connect</h4>
+        <ul class="footer__col-list">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Maison Move. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // ====================
+  // Theme tab switching
+  // ====================
+  const tabs = document.querySelectorAll('.tab-bar__tab');
+  const html = document.documentElement;
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      // Remove active from all tabs
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      // Set active on clicked tab
+      tab.classList.add('active');
+      // Set theme
+      var theme = tab.getAttribute('data-tab');
+      html.setAttribute('data-theme', theme);
+    });
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key >= '1' && e.key <= '4' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      var index = parseInt(e.key) - 1;
+      if (tabs[index]) {
+        tabs[index].click();
+      }
+    }
+  });
+
+  // ====================
+  // Scroll-triggered fade-in animations
+  // ====================
+  var observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+  var fadeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in-section').forEach(function(el) {
+    fadeObserver.observe(el);
+  });
+
+  // ====================
+  // Brand statement — word-by-word animation
+  // ====================
+  var statementEl = document.querySelector('.statement__text');
+  if (statementEl) {
+    var text = statementEl.textContent.trim();
+    var words = text.split(/\s+/);
+    statementEl.innerHTML = '';
+    words.forEach(function(word, i) {
+      var span = document.createElement('span');
+      span.className = 'word';
+      span.textContent = word;
+      span.style.transitionDelay = (i * 0.04) + 's';
+      statementEl.appendChild(span);
+      // Add space between words
+      if (i < words.length - 1) {
+        statementEl.appendChild(document.createTextNode(' '));
+      }
+    });
+  }
+
+  // Also observe the statement section for word animation
+  var statementSection = document.querySelector('.statement');
+  if (statementSection) {
+    var statementObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          statementObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    statementObserver.observe(statementSection);
+  }
+
+  // Also observe the story section for delayed content animation
+  var storySection = document.querySelector('.story');
+  if (storySection) {
+    var storyObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          storyObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    storyObserver.observe(storySection);
+  }
+
+})();
+</script>
+
+</body>
+</html>
